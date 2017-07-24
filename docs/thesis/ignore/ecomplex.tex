@@ -1,0 +1,116 @@
+\documentclass[11pt ]{article}
+
+\usepackage{affnotes}
+\usepackage{subfiles}
+
+\begin{document}
+
+
+
+   Although the original theory of 
+  has been developed for the more general case of vector-valued 
+  functions, we restrict this presentation to the case of 
+  univariate functions.
+  Let $x(t)$ to be a positive continuous function defined on the 
+  unit inverval $ \mathbb{I} = [0,1]$. Let $\norm{\cdot}$ be a norm on the function and we can assume $\norm{x(t)} = 1$, that is, the function has been normalized 
+  by taking $x(t)/\norm{x(t)}.$ Given some family of approximation 
+  methods $\mathcal{F}$, let $\hat x(\cdot)$ be an approximation
+  of $x(t)$ reconstructed from regularly samples spaced at intervals $h$. Then the absolute recover error function is defined 
+  \begin{align}
+    \delta^{\mathcal{F}}(h) = \inf_{\hat x \in \mathcal{F}} 
+    \sup | x(t) - \hat x(t)|
+  \end{align}
+  % We note that $\delta^{\mathcal{F}}$ is a function of $h$.  
+
+  % We will assume that $x(t)$ does not permit a perfect 
+  % reconstruction for any $\hat x(\cdot) \in \mathcal{F}.$
+  \begin{align*}
+    h_x^*(\varepsilon, \mathcal{F}) = \begin{cases}
+      \inf \{ h \leq 1 : \delta^{\mathcal{F}}(h) > \varepsilon \} & \text{if} 
+      \{ h : \delta^{\mathcal{F}}(h) > \varepsilon \} > 0  \\ 
+        1, &  \text{if no such } \hat x(t) \in \mathcal{F} \hspace{1em}\text{exists.}
+    \end{cases}
+  \end{align*}
+  In words, the function $h^*(\varepsilon, \mathcal{F})$ is the minimum grid spacing $h$, or sample density, needed to approximate $x(t)$ within $\varepsilon$. 
+  \begin{defn}{\textbf{Epsilon-complexity.} }\label{def:ecomplexity}
+  The number
+  \begin{align}
+        % \begin{align}
+  %   -\log h_x^*(\varepsilon, \mathcal{F}) \approx 
+  %   \mathcal{A} + \mathcal{B}\log \varepsilon.
+  % \end{align}
+    \mathbb{S}_x(\varepsilon, \mathcal{F}) =  
+    -\log h_x^*(\varepsilon) 
+    \mathcal{F})
+  \end{align}
+  is the $(\varepsilon, \mathcal{F})-$complexity, 
+  or simply, $\varepsilon-$complexity of the function $x(\cdot)$. 
+  \end{defn}
+
+  We will be referring variously to the H\"older condition or 
+  H\"older continuity of a function which we now define:
+  \begin{defn}{\textbf{H\"older Continuity.} }\label{def:holder}
+    A function $x(t)$ is said to be H\"older continuous if
+  there exists non-negative constants, $C, \alpha$ such that 
+  \[
+      |x(t) - x(s)| \leq C\norm{x -s}^{\alpha}
+  \]
+    for all $t$ and $s$.
+  We refer to this as the H\"older condition with H\"older 
+  exponent $\alpha$ or say a function is H\"older $\alpha$.
+  \end{defn}
+   Darkhovsky and Pirytinska have show that for almost any
+  individual H\"older class function and given a rich 
+  enough family of approximation methods  
+  then the epsilon complexity has an approximately linear
+  relationship to $\log \varepsilon$\cite{darkhovsky2013}
+  \begin{align} \label{eq:linear-ecomplex}
+      -\log h_x^*(\varepsilon, \mathcal{F}) \approx \mathbb{A} + 
+    \mathbb{B}\log \varepsilon.  
+  \end{align}
+  
+  The relationship serves the basis, after rearrangement, 
+  for the estimation of $\varepsilon$-complexity for 
+  discrete time series.
+  In practial applications any function or time series 
+  is acquired as some discrete set of samples, which we
+  will assume to be taken at regular intervals. We 
+  consider this discrete set to be a continuous function
+  restricted to a uniform grid. In this case, 
+  $h*(\epsilon, \mathcal{F})$, which we simplify here to 
+  $h^*(\epsilon)$, is the proportion of sampled points
+  and $\frac{1}{h^*(\varepsilon)}$ is the 
+  number of points needed to approximate some function $x(t)$ within 
+  $\varepsilon$. Let $n$ be the total number of points 
+  in the initial sampling, then we denote the 
+  proportion of points needed for reconstruction with 
+  $\varepsilon$ 
+  \begin{align}
+     S(\cdot) \defeq \frac{n}{h^*(\varepsilon)}.
+   \end{align} 
+   \begin{defn}
+     The $\varepsilon-$complexity of a function 
+     given represented by a set of values sampled on 
+     a uniform grid is $-\log S(\cdot)$.
+   \end{defn}
+  It follows from defintion \ref{def:ecomplexity} that
+  \begin{prop}
+    \[
+      -\log S(\varepsilon, \mathcal{F}) \to \mathbb{S}_x(\varepsilon, \mathcal{F}) 
+    \]
+    as $n \to \infty$.
+  \end{prop}
+  For the discrete case, rearrangement of the relation \ref{eq:linear-ecomplex} gives and substitution of $\log S$ for $\mathbb{S}_x(\varepsilon, \mathcal{F})$ gives us the relation
+  \begin{align}\label{eq:discrete-ecomplexity}
+     \log \varepsilon  \approx A + B \log S.
+   \end{align} 
+  For practical computations, some set number of grid spacings 
+  $h$ determines the set $\{ S_h \}$ which are used to 
+  estimate the linear relation in \ref{eq:discrete-ecomplexity}. 
+  Unlike for the continuous case, we find the minimum errors 
+  corresponding to the set $\{ S_h \}$.
+  The parameters of this linear relationship, $A, B$, are the 
+  $\varepsilon-$complexity coefficients or simply the  
+  complexity coefficients. 
+
+\end{document}

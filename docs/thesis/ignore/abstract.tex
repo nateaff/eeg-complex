@@ -1,0 +1,49 @@
+\documentclass[11pt ]{article}
+
+\usepackage{affnotes}
+\usepackage{subfiles}
+
+\begin{document}
+
+
+% The $\varepsilon-$complexity of a continuous function 
+% is a measure of the amount of information needed to 
+% reconstruct a function. The intrinsic complexity of a
+% function is estimated by taking the logarithm of the number of sampled points needed to approximate
+% that function within some error $\epsilon$. The result 
+% is two parameters we refer to as the complexity coefficients. 
+% We extend the family of approximation methods used to
+% estimate $\varepsilon-$complexity. A set of simulations
+% are used to test the performance of the complexity coefficients
+% in a classification task as the approximation methods are varied. We find that more exact approximation methods do not improve 
+% classification performance on our set of simulations.
+% % We find that the improved accuracy of the 
+% % approximation methods does not improve the performance of
+% % the complexity coefficients in a time series classification 
+% % task. 
+% The complexity coefficients have been shown to 
+% characterize the H\"older class of an individual function.
+%  We test the conjecture that, for 
+% a given generating mechanism, the mean of the complexity 
+% coefficients is constant. For our set of simulations, we find 
+% that the mean of the estimated complexity coefficients 
+% characterizes their H\"older class, supporting the conjecture. 
+% Finally, we apply the 
+% complexity coefficients to the prediction of seizures in 
+% epileptic mice. Change points in the complexity coefficients 
+% are used to segment and average the EEG features used in 
+% the prediction task. We find that a uniform partition performs 
+% slightly better than that based on the complexity coefficients. 
+
+
+The $\varepsilon$-complexity of a continuous function is an intrinsic characteristic of the function which measures the amount of information needed to reconstruct the
+function with an error not larger than $\varepsilon$. It follows from the theory of the $\varepsilon$-complexity that for the H\"older class of functions the $\varepsilon$-complexity is characterized by a pair of real numbers. These numbers are called the $\varepsilon$-complexity coefficients.
+These coefficients have been shown to be useful features for the segmentation and classification of time series. In these applications, time series are treated as a restriction of continuous functions to uniform grids. In this work, we improve the estimation procedure for the $\varepsilon$-complexity coefficients. To estimate the $\varepsilon$-complexity coefficients some set of approximation methods are used. Initially, the family of piecewise polynomial functions was implemented for the estimation procedure. In this work, the family of approximation methods is extended. A set of simulations is used to test the estimation of the complexity coefficients and the performance of the approximation methods in the classification of time series is compared.
+We test the conjecture that, for a given generating mechanism, the mean of the complexity coefficients is constant.
+For our set of simulations, we find that the mean of the estimated complexity coefficients is constant on a constant H\"{o}lder class of functions. Finally, we apply the $\varepsilon$-complexity coefficients to the prediction of seizures in epileptic mice. In particular, the $\varepsilon-$complexity coefficients are used to segment the EEG signal.   
+ % We construct diagnostic sequences from the $\varepsilon$-complexity coefficients of the EEG signal. 
+ A non-parametric method is implemented to detect change points in the $\varepsilon-$complexity coefficients. These change points 
+ determine the partition of the EEG signal and the averages of the feature on the segmented signal are used as the final seizure predictors. We use this technique to identify which signal preceded a seizure with over 80\% accuracy. 
+
+\end{document}
+

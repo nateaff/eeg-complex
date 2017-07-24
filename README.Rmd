@@ -1,0 +1,29 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "figures/README-", 
+  fig.width = 8.2, 
+  fig.height = 5.5
+  )
+
+```
+
+ 
+```{r global_options, echo = FALSE}
+knitr::opts_chunk$set(fig.align = 'center', echo=FALSE, warning=FALSE, message=FALSE, results = "hide", dev = 'png')
+```
+
+eeg-complex
+-------
+This package contains code that reproduces figures and analyses used in my MA thesis, _Improvement of epsilon-complexity estimation and an application to seizure prediction_.
+
+The [`ecomplex`](https://github.com/nateaff/ecomplex) package contains the `R` version of the algorithm. Repositories for the three other packages used in this thesis, [`tssims`](https://github.com/nateaff/tssims), [`tsfeats`](https://github.com/nateaff/tsfeats), are also on github, [`tssegment](https://github.com/nateaff/tssegment). 
+
+

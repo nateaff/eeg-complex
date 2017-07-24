@@ -1,0 +1,557 @@
+[ 
+   {"id" : "160513_Ms1724",
+   "trials" : [ 
+              {
+                "stims":[
+                          {
+                            "stim": false, 
+                            "trial_name": "T1_R_Uni_35mW",
+                            "state": "active",
+                            "stim_start": 0,
+                            "stim_end": 0,
+                            "response": false,
+                            "stim_num": 1
+                          }
+                 ]
+              }
+            ]
+    },
+  {"id" : "160513_Ms1726",
+         "trials" : [ 
+                { 
+                  "stims":[
+                           {
+                              "stim": true, 
+                              "trial_name": "T1_R_Uni_35mW",
+                              "state" : "resting",
+                              "stim_start": 355,
+                              "stim_end": 362,
+                              "response": false, 
+                              "stim_num": 1
+                            },
+                            {
+                              "stim": true, 
+                              "trial_name": "T1_R_Uni_35mW",
+                              "state" : "resting",
+                              "stim_start": 508,
+                              "stim_end":  516,
+                              "response": false,
+                              "stim_num": 2
+                            },
+                            {
+                              "stim": true, 
+                              "trial_name": "T1_R_Uni_35mW",
+                              "state" : "active",
+                              "stim_start": 932,
+                              "stim_end":  938,
+                              "response": false, 
+                              "stim_num": 3
+                            },
+                            {
+                              "stim": true, 
+                              "trial_name": "T1_R_Uni_35mW",
+                              "state" : "active-resting",
+                              "stim_start": 1541,
+                              "stim_end": 1547,
+                              "response": false,
+                              "stim_num": 4
+                            }
+                    ]  
+                }, 
+                { 
+                  "stims" : [
+                              {
+                                "stim": true, 
+                                "trial_name": "T2_R_Uni_35mW",
+                                "state" : "active",
+                                "stim_start": 11,
+                                "stim_end": 16,
+                                "response": false,
+                                "stim_num": 1
+                              },
+                              {
+                                "stim": true, 
+                                "trial_name": "T2_R_Uni_35mW",
+                                "state" : "active",
+                                "stim_start": 319,
+                                "stim_end": 326,
+                                "response": false,
+                                "stim_num": 2
+                              } 
+                            ]     
+                },
+                {
+                  "stims":[
+                            { 
+                              "stim": true, 
+                              "trial_name": "T3_R_Uni_35mW",
+                              "state" : "resting",
+                              "stim_start": 139,
+                              "stim_end": 145,
+                              "response": true,
+                              "stim_num": 1
+                            }, 
+                            {  
+                              "stim": true, 
+                              "trial_name": "T3_R_Uni_35mW",
+                              "state" : "resting",
+                              "stim_start": 1092,
+                              "stim_end": 1097,
+                              "response": true,
+                              "stim_num": 2
+                            }
+                      ]
+                }
+              ]
+      }, 
+      {"id" : "160513_Ms1729",
+         "trials" : [ 
+                {
+                  "stims":[
+                          {
+                            "stim": true,
+                            "trial_name": "T1_R_Uni_35mW",
+                            "state" : "sleeping",
+                            "stim_start": 178,
+                            "stim_end": 185,
+                            "response": false,
+                            "stim_num": 1
+                          },
+                          {
+                            "stim": true, 
+                            "trial_name": "T1_R_Uni_35mW",
+                            "state" : "active",
+                            "stim_start": 1615,
+                            "stim_end": 1622,
+                            "response": false,
+                            "stim_num": 2
+                          }
+                  ]
+                } 
+              ] 
+            },
+      {"id" : "160513_Ms1731",
+         "trials" : [ 
+                {
+                  "stims":[
+                          {
+                            "stim": true, 
+                            "trial_name": "T1_R_Uni_35mW",
+                            "state": "active-resting",
+                            "stim_start": 1577,
+                            "stim_end": 1584,
+                            "response": false,
+                            "stim_num": 1
+                          }, 
+                          { 
+                            "stim": true, 
+                            "trial_name": "T1_R_Uni_35mW",
+                            "state": "resting",
+                            "stim_start": 1888,
+                            "stim_end": 1897,
+                            "response": false,
+                            "stim_num": 2
+                          }
+                  ]
+                }, 
+                {
+                  "stims":[
+                          { "stim": true, 
+                            "trial_name": "T2_R_Uni_35mW",
+                            "state": "resting",
+                            "stim_start": 7,
+                            "stim_end": 15,
+                            "response": false,
+                            "stim_num": 1
+                          },
+                          {
+                            "stim": true, 
+                            "trial_name": "T2_R_Uni_35mW",
+                            "state": "resting",
+                            "stim_start": 382,
+                            "stim_end": 387,
+                            "response": false,
+                            "stim_num": 2
+                          }
+
+                  ]
+                },
+                {
+                  "stims":[
+                          {
+                            "stim": true, 
+                            "trial_name": "T3_L_Uni_35mW",
+                            "state": "active-resting",
+                            "stim_start": 239,
+                            "stim_end": 245,
+                            "response": false,
+                            "stim_num": 1
+                          }, 
+                          {
+                             "stim": true, 
+                            "trial_name": "T3_L_Uni_35mW",
+                            "state": "active-resting",
+                            "stim_start": 507,
+                            "stim_end": 514,
+                            "response": false,
+                            "stim_num": 2
+                          }, 
+                          {
+                             "stim": true, 
+                            "trial_name": "T3_L_Uni_35mW",
+                            "state": "active-resting",
+                            "stim_start": 791,
+                            "stim_end": 799,
+                            "response": false, 
+                            "stim_num": 3
+                          }
+                  ]
+                },
+                {
+                  "stims":[
+                          {
+                            "stim": true, 
+                            "trial_name": "T4_L_Uni_35mW",
+                            "state" : "sleeping",
+                            "stim_start": 241,
+                            "stim_end": 247,
+                            "response": false,
+                            "stim_num": 1
+                          },
+                          { 
+                            "stim": true,
+                            "trial_name": "T4_L_Uni_35mW",
+                            "state": "sleeping",
+                            "stim_start": 790,
+                            "stim_end": 796,
+                            "response": false,
+                            "stim_num": 2
+                          }
+                    ]
+                  }
+              ]
+      },
+      {"id" : "160513_Ms1735",
+         "trials" : [ 
+
+                {
+                  "stims":[
+                          {
+                            "stim": true,
+                            "trial_name": "T1_R_Uni_35mW",
+                            "state" : "active",
+                            "stim_start": 2015,
+                            "stim_end": 2021,
+                            "response": false,
+                            "stim_num": 1
+                          }
+
+                  ]
+                }, 
+                {
+                  "stims":[
+                          {
+                            "stim": true,
+                            "trial_name": "T2_L_Uni_35mW",
+                            "state": "active",
+                            "stim_start": 276,
+                            "stim_end": 283,
+                            "response": false,
+                            "stim_num": 1
+                          }
+
+                  ]
+                },
+                {
+                  "stims":[
+                          {
+                            "stim": true,
+                            "trial_name": "T3_L_Uni_35mW",
+                            "state": "resting",
+                            "stim_start": 9,
+                            "stim_end": 16,
+                            "response": false, 
+                            "stim_num": 1
+                          },
+                          {
+                            "stim": true,
+                            "trial_name": "T3_L_Uni_35mW",
+                            "state": "resting",
+                            "stim_start": 81,
+                            "stim_end": 88,
+                            "response": false,
+                            "stim_num": 2
+                          }, 
+                          {
+                            "stim": true,
+                            "trial_name": "T3_L_Uni_35mW",
+                            "state": "resting",
+                            "stim_start": 121,
+                            "stim_end": 128,
+                            "response": false,
+                            "stim_num": 3
+                          }
+                  ]
+                }
+                ]
+              },
+              {"id" : "160517_DSY1729",
+               "trials" : [ 
+                {
+                  "stims":[
+                          {
+                            "stim": true,
+                            "trial_name": "T1_R_Uni_35mW",
+                            "state" : "resting-active",
+                            "stim_start": 167,
+                            "stim_end": 173,
+                            "response": false,
+                            "stim_num": 1
+                          },
+                          { 
+                            "stim": true,
+                            "trial_name": "T1_R_Uni_35mW",
+                            "state" : "active",
+                            "stim_start": 547,
+                            "stim_end": 553,
+                            "response": false,
+                            "stim_num": 2
+                          },
+                          { 
+                            "stim": true, 
+                            "trial_name": "T1_R_Uni_35mW",
+                            "state" : "active",
+                            "stim_start": 1554,
+                            "stim_end": 1562,
+                            "response": false,
+                            "stim_num": 3
+                          }
+
+                  ]
+                }, 
+                {
+                  "stims":[
+                          {
+                            "stim": false, 
+                            "trial_name": "T2_R_Uni_35mW",
+                            "state" : "resting",
+                            "stim_start" : 0,
+                            "stim_end": 0,
+                            "response": false,
+                            "stim_num": 1
+                          }
+
+                  ]
+                }
+                ]
+                },
+              {"id" : "160531_DSY1854",
+                "trials" : [ 
+                {
+                  "stims":[
+                          {
+                            "stim": false, 
+                            "trial_name": "T1_R_Uni_1mW",
+                            "state" : "active",
+                            "stim_start": 0,
+                            "stim_end": 0,
+                            "response": false,
+                            "stim_num": 1
+                          }
+
+                  ]
+                }, 
+                {
+                  "stims":[
+                          {
+                            "stim": false, 
+                            "trial_name": "T2_R_Uni_1mW",
+                            "state" : "active",
+                            "stim_start": 0,
+                            "stim_end": 0,
+                            "response": false,
+                            "stim_num": 1
+                          }
+
+                  ]
+                }
+                ]
+      }, 
+    {"id" : "160531_DSY1855",
+         "trials" : [ 
+                {
+                  "stims":[
+                          {
+                            "stim": false,
+                            "trial_name": "T1_R_Uni_40mW",
+                            "state": "active",
+                            "stim_start": 0,
+                            "stim_end": 0,
+                            "response": false, 
+                            "stim_num": 1
+                          }
+                  ]
+                }, 
+                {
+                  "stims":[
+                          {
+                            "stim": false,
+                            "trial_name": "T2_R_Uni_2_9_dial",
+                            "state":"active",
+                            "stim_start": 0,
+                            "stim_end": 0,
+                            "response": false,
+                            "stim_num": 1
+                          }
+                  ]
+                }
+                ]
+      },
+    {"id" : "160531_DSY1856",
+         "trials" : [ 
+                {
+                  "stims":[
+                          {
+                            "stim": false,
+                            "trial_name": "T1_R_Uni_20mW",
+                            "state": "active",
+                            "stim_start": 0,
+                            "stim_end": 0,
+                            "response": false, 
+                            "stim_num": 1
+                          }
+
+                  ]
+                }, 
+                {
+                  "stims":[
+                          {
+                            "stim": false,
+                            "trial_name": "T2_R_Uni_20mW",
+                            "state": "active",
+                            "stim_start": 0,
+                            "stim_end": 0,
+                            "response": false, 
+                            "stim_num": 1
+                          }
+                  ]
+                }
+                ]
+      },
+     {"id" : "160912_DSY1726",
+         "trials" : [ 
+                {
+                  "stims":[
+                          {
+                            "stim": false,
+                            "trial_name": "T1_L_Uni_30mW",
+                            "state" : "active",
+                            "stim_start": 0,
+                            "stim_end": 0,
+                            "response": false, 
+                            "stim_num": 1
+                          }
+
+                  ]
+                  }, 
+                {
+                  "stims":[
+                          {
+                            "stim": true, 
+                             "trial_name": "T2_L_Uni_30mW",
+                            "state" : "active-resting",
+                            "stim_start": 281,
+                            "stim_end": 286,
+                            "response": true, 
+                            "stim_num": 1
+                          }, 
+                           {
+                            "stim": true, 
+                            "trial_name": "T2_L_Uni_30mW",
+                            "state": "active-resting",
+                            "stim_start": 1629,
+                            "stim_end": 1638,
+                            "response": true, 
+                            "stim_num": 2
+                          },
+                          { 
+                           "stim": true, 
+                           "trial_name": "T2_L_Uni_30mW",
+                           "state" : "active",
+                           "stim_start": 1967,
+                           "stim_end": 1973,
+                           "response": true,
+                           "stim_num": 3
+                          }
+
+
+                  ]
+                }, 
+                {
+                  "stims":[
+                          {
+                            "stim": true, 
+                            "trial_name": "T3_L_Uni_30mW",
+                            "state": "resting",
+                            "stim_start": 795,
+                            "stim_end": 801,
+                            "response": true,
+                            "stim_num": 1
+                          },
+                          {
+                            "stim": true, 
+                            "trial_name": "T3_L_Uni_30mW",
+                            "state": "resting",
+                            "stim_start": 1087,
+                            "stim_end": 1083,
+                            "response": true,
+                            "stim_num": 2
+                          },
+                          {
+                            "stim": true, 
+                            "trial_name": "T3_L_Uni_30mW",
+                            "state": "resting",
+                            "stim_start": 2058,
+                            "stim_end": 2065,
+                            "response": false,
+                            "stim_num": 3
+                          }
+                    ]
+                }, 
+                { 
+                  "stims":[
+                          { 
+                            "stim": true, 
+                            "trial_name": "T4_L_Uni_30mW",
+                            "state" : "resting",
+                            "stim_start": 308,
+                            "stim_end": 315,
+                            "response": true,
+                            "stim_num": 1
+                          }, 
+                          { 
+                            "stim": true, 
+                            "trial_name": "T4_L_Uni_30mW",
+                            "state" : "resting",
+                            "stim_start": 615,
+                            "stim_end": 621,
+                            "response": true,
+                            "stim_num": 2
+                          }, 
+                          { 
+                            "stim": true, 
+                            "trial_name": "T4_L_Uni_30mW",
+                            "state" : "resting",
+                            "stim_start": 941,
+                            "stim_end": 947 ,
+                            "response": true,
+                            "stim_num": 3
+                          }
+
+                    ] 
+                  }
+            ]
+      }                   
+
+  ]
+

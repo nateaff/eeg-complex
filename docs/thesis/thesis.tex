@@ -1,0 +1,35 @@
+% thesis.tex
+% This is the main file, which calls up preamble.tex, Frontmatterer.tex, and thesis.bib as needed.
+
+% Frontmatter shortcuts; note the extr a space at the end, which is unfortunately necessary:
+\newcommand\myname{Nathanael Aff }
+\newcommand\mytitle{Improvement of Epsilon-Complexity Estimation and an Application to Seizure Prediction} 
+% The graduate division requires this to be in caps.
+\newcommand\mydegree{Master of Arts } % change to  Master of Science if applicable
+\newcommand\myfield{Mathematics } % e.g., Mathematics
+\newcommand\thismonth{August } % graduation month: May / August / \hhline{|=|=|=|=|=|}December
+\newcommand\thisyear{2017 } % e.g., 201\graphicspath{{./figs/}}4
+
+% \newenvironment{blue}{ \color{blue} }
+% \include{preamble/preamble}
+% \include{commands/cmds}
+
+\include{preamble/preamble}  
+% \include{preamble/draftpreamble}  
+
+
+\include{cmds/cmds}
+\include{intro/intro}
+\include{bg/bg}
+\include{lift/lift} 
+\include{holder/holder}
+\include{eeg/eeg}
+\bibliographystyle{amsplain}
+\addcontentsline{toc}{chapter}{Bibliography}
+\singlespacing
+\bibliography{thesis}
+
+\end{document}
+[ruled,vlined]
+
+% cp ~/dev/R-proj/eegcomplex/figures/* figs/

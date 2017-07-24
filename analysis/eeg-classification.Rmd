@@ -1,0 +1,77 @@
+---
+title: "Seizure Prediction"
+author: "Nathanael Aff"
+date: 2017-07-10
+output: 
+  html_document:
+    code_folding: hide
+---
+
+<!-- The file analysis/chunks.R contains chunks that define default settings
+shared across the workflowr files. -->
+```{r read-chunk, include=FALSE, cache=FALSE}
+knitr::read_chunk("chunks.R")
+```
+
+<!-- Update knitr chunk options -->
+```{r knitr-opts-chunk, include=FALSE}
+```
+
+<!-- Insert the date the file was last updated -->
+```{r last-updated, echo=FALSE, results='asis'}
+```
+
+<!-- Insert the code version (Git commit SHA1) if Git repository exists and R
+ package git2r is installed -->
+```{r code-version, echo=FALSE, results='asis'}
+```
+
+
+```{r, egg-plot1}
+  devtools::load_all()
+  knitr::read_chunk("../code/eegplot.R")
+```
+
+
+```{r egg-plot2, fig.cap = "8 second window of EEG inclduing the start appplication of a laser stimulus."}
+  <<eegplot>>
+```
+
+## Classifier
+
+```{r, segment-plot1}
+  knitr::read_chunk("../code/eeg-segment-plot.R")
+```
+
+
+```{r segment-plot2, fig.height = 5, fig.cap = "Segmentation of trial one based on the complexity coefficient $B$. Only spectral features are shown."}
+  <<eeg-segment-plot>>
+```
+
+## Trial
+
+
+```{r, trials-plot1}
+  knitr::read_chunk("../code/eeg-trial-plot.R")
+```
+
+
+```{r trial-plot2, fig.cap = "Schematic of the trial time periods. A seizures is indicated as a 'repsonse' and initial seizures and secondary seizures are indicated by color."}
+  <<trialplot>>
+```
+
+```{r, cv-ch1}
+  knitr::read_chunk("../code/eeg-cv-ch1-plot.R")
+```
+
+
+```{r cv-ch2, fig.cap = "Probability of seizure for model built on channel 1 using complexity coefficients."}
+  <<tcv-ch1-plot>>
+```
+
+
+## Session information
+
+<!-- Insert the session information into the document -->
+```{r session-info}
+```

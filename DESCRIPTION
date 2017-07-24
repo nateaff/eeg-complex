@@ -1,0 +1,37 @@
+Package: eegcomplex
+Title: Analyses for "Complexity-based seizure prediction" 
+Version: 0.0.0.1
+Authors@R: person("Nathanael", "Aff", email = "naff@mail.sfsu.edu", role = c("aut", "cre"))
+Description: The package contains code to reproduce the analyses 
+              supporting the thesis "Complexity-based" seizure 
+              prediction. Intermediate data is saved in the cache file and can be reproduced by setting the 
+              \code{use_cache} flags to FALSE. The raw EEG data 
+              is not included but the derived feature data (will be) 
+              included in the \code{inst\extdata} file.  
+Depends:
+    R (>= 3.2.5)
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Author: Aff Nathanael <nathanaelaff@gmail.com>
+Imports: 
+    ggthemes,
+    gmwm,
+    reshape2,
+    ggplot2,
+    ecomplex,
+    ForeCA, 
+    fArma, 
+    fracdiff, 
+    fractaldim,
+    pdc, 
+    plyr, 
+    dplyr,
+    pracma, 
+    randomForest
+Suggests:
+    testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 5.0.1

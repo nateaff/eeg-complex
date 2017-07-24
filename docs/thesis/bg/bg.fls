@@ -1,0 +1,12 @@
+PWD /home/nathanael/projects/sfsu/thesis/thesis/bg
+INPUT /usr/local/texlive/2014/texmf.cnf
+INPUT /usr/local/texlive/2014/texmf-dist/web2c/texmf.cnf
+INPUT /usr/local/texlive/2014/texmf-var/web2c/pdftex/pdflatex.fmt
+INPUT bg.tex
+OUTPUT bg.log
+INPUT /usr/local/texlive/2014/texmf-dist/fonts/map/fontname/texfonts.map
+INPUT /usr/local/texlive/2014/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
+OUTPUT bg.pdf
+INPUT /usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map
+INPUT /usr/local/texlive/2014/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
+INPUT /usr/local/texlive/2014/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm

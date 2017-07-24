@@ -1,0 +1,97 @@
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{10}
+
+\bibitem{breiman2001}
+Leo Breiman, \emph{Random forests}, Machine learning \textbf{45} (2001), no.~1,
+  5--32.
+
+\bibitem{eeg}
+Michael~X Cohen, \emph{Where does eeg come from and what does it mean?}, Trends
+  in Neurosciences (2017).
+
+\bibitem{dahlquist08}
+Germund Dahlquist and Ake Bj\"orck, \emph{Numerical methods in scientific
+  computing. {V}ol. {I}}, Society for Industrial and Applied Mathematics
+  (SIAM), Philadelphia, PA, 2008. \MR{2412832}
+
+\bibitem{darkhovsky2013}
+Boris Darkhovsky and Alexandra Piryatinska, \emph{Epsilon-complexity of
+  continuous functions},  (2013).
+
+\bibitem{falconer2003}
+Kenneth Falconer, \emph{Fractal geometry}, second ed., John Wiley \& Sons,
+  Inc., Hoboken, NJ, 2003, Mathematical foundations and applications.
+
+\bibitem{gneiting2004}
+Tilmann Gneiting and Martin Schlather, \emph{Stochastic models that separate
+  fractal dimension and the {H}urst effect}, SIAM Rev. \textbf{46} (2004),
+  no.~2, 269--282.
+
+\bibitem{gneiting2012}
+Tilmann et~al. Gneiting, \emph{Estimators of fractal dimension: assessing the
+  roughness of time series and spatial data}, Statist. Sci. \textbf{27} (2012),
+  no.~2, 247--277.
+
+\bibitem{hunt1998}
+Brian~R. Hunt, \emph{The {H}ausdorff dimension of graphs of {W}eierstrass
+  functions}, Proc. Amer. Math. Soc. \textbf{126} (1998), no.~3, 791--800.
+
+\bibitem{ito2013}
+Susumu Ito, Ikuo Ogiwara, Kazuyuki Yamada, Hiroyuki Miyamoto, Takao~K Hensch,
+  Makiko Osawa, and Kazuhiro Yamakawa, \emph{Mouse with na v 1.1
+  haploinsufficiency, a model for dravet syndrome, exhibits lowered sociability
+  and learning impairment}, Neurobiology of disease \textbf{49} (2013), 29--40.
+
+\bibitem{lorenz2006}
+Edward~N. Lorenz, \emph{Regimes in simple systems}, J. Atmospheric Sci.
+  \textbf{63} (2006), no.~8, 2056--2073.
+
+\bibitem{orey1970}
+Steven Orey, \emph{Gaussian sample functions and the {H}ausdorff dimension of
+  level crossings}, Z. Wahrscheinlichkeitstheorie und Verw. Gebiete \textbf{15}
+  (1970), 249--256. \MR{0279882}
+
+\bibitem{pirya2009}
+Alexandra Piryatinska, Gyorgy Terdik, Wojbor~A Woyczynski, Kenneth~A Loparo,
+  Mark~S Scher, and Anatoly Zlotnik, \emph{Automated detection of neonate eeg
+  sleep stages}, Computer methods and programs in biomedicine \textbf{95}
+  (2009), no.~1, 31--46.
+
+\bibitem{fan2003}
+Jianqing Fan;~Yao Qiwei, \emph{Nonlinear time series}, Springer, New York,
+  1993.
+
+\bibitem{baseR}
+{R Core Team}, \emph{R: A language and environment for statistical computing},
+  R Foundation for Statistical Computing, Vienna, Austria, 2016.
+
+\bibitem{racine}
+Jeffrey~S. Racine, \emph{A primer on regression splines}.
+
+\bibitem{sweldens1998}
+Wim Sweldens, \emph{The lifting scheme: a construction of second generation
+  wavelets}, SIAM J. Math. Anal. \textbf{29} (1998), no.~2, 511--546.
+
+\bibitem{sweldens1996}
+Wim Sweldens and Peter Schr{\"o}der, \emph{Building your own wavelets at home},
+  Wavelets in the Geosciences (2000), 72--107.
+
+\bibitem{unser1999}
+Michael Unser, \emph{Splines: A perfect fit for signal and image processing},
+  IEEE Signal processing magazine \textbf{16} (1999), no.~6, 22--38.
+
+\bibitem{vitanyi1993}
+Paul Vitanyi and Ming Li, \emph{An introduction to kolmolgorov complexity and
+  its applications}, Springer-Verlag, New York, 1993.
+
+\bibitem{weron2002}
+Rafa\l Weron, \emph{Estimating long-range dependence: finite sample properties
+  and confidence intervals}, Phys. A \textbf{312} (2002), no.~1-2, 285--299.
+
+\end{thebibliography}

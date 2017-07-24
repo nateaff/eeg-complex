@@ -1,0 +1,1023 @@
+
+
+\chapter{Background}
+  
+  % In this chapter we introduce the definitions 
+  % and notation that will be used in the following chapters. After 
+  % a formal definition of $\varepsilon-$complexity we describe the 
+  % procedure for computing
+
+
+  % The sections on time series and approximation methods present basic background that someone familiar with the subjects could skip or refer back to as needed. 
+  
+\section{Epsilon-complexity} 
+  
+  % The term complexity has been used to describe diverse phenomena. The sensitivity of a dynamic system to initial conditions, 
+  % the description length of a model, the unpredictability of a 
+  %  sequence, the irregularity of a function or it's graph -- 
+  %  a which the term complexity has been applied. 
+
+  The word complexity has been used to describe a diverse set of both mathematical and natural phenomena. The use of the term to describe the complexity of a continuous
+  function agrees with Kolmogorov's definition of the complexity of a discrete sequence. Kolmogorov 
+  complexity characterizes the regularity of a
+   sequence or string by the size of the program needed to output that sequence. For example, we can take as our sequence a natural number and let our 'program' or representation of that number in scientific notation.
+    Then we can express 1,000,000 in 2 digits as 1E6 while the prime 7919 could not be similarly compressed \cite{vitanyi1993}. In this case, 1,000,000 is less complex 7919. 
+  The approach taken by Darkhovsky and Piryatinska in defining the $\varepsilon$-complexity of a continuous function takes inspiration from Kolmogorov's definition of complexity\cite{darkhovsky2013}. 
+   The information, roughly speaking, contained in a continuous 
+   function is measured by the number of points sampled from the function that is needed to reconstruct that function within some error $\varepsilon$. 
+   The algorithm used to compute $\varepsilon-$complexity coefficients makes successive approximations of
+   a function with fewer and fewer sampled points. The two $\varepsilon$-complexity coefficients parametrize the linear 
+   relationship between 
+   the log of the approximation error and the log of the proportion 
+   of points for each successive approximation.
+
+  % \begin{defn}{Kolmologrov Complexity}\label{def:kolmogorov1}
+  %   The Kolmogorov complexity of a sequence $a(t)$, denoted $K(w)$ 
+  %   is the shortest program that outputs $a(t)$.
+  % \end{defn}
+  % -------------- edit above ----------------
+  % } % end blu
+  
+  We begin with the formal definition of the $\varepsilon-$complexity of a single function followed by the primary theorem of \cite{darkhovsky2013} which shows that $\varepsilon-$complexity  characterizes the H\"older condition of a class of functions. The practical computation of $\varepsilon-$complexity takes a slightly different form than that used in the proof of this theorem and we describe this difference and present the algorithm used to compute the $\varepsilon-$complexity coefficients in practice. 
+
+  % Throughout this thesis we will be referring to continuous 
+  % functions, stohastic processes and observed time series 
+  % and in 
+
+% begin edit -------------------------------------------------------
+   Although the original theory of 
+  has been developed for the more general case of vector-valued 
+  functions, we restrict this presentation to the case of 
+  univariate functions.
+  Let $x(t)$ to be a positive continuous function defined on the 
+  unit inverval $ \mathbb{I} = [0,1]$. Let $\norm{\cdot}$ be a norm on the function and we can assume $\norm{x(t)} = 1$, that is, the function has been normalized 
+  by taking $x(t)/\norm{x(t)}.$ Given some family of approximation 
+  methods $\mathcal{F}$, let $\hat x(\cdot)$ be an approximation
+  of $x(t)$ reconstructed from regularly samples spaced at intervals $h$. Then the absolute recover error function is defined 
+  \begin{align}
+    \delta^{\mathcal{F}}(h) = \inf_{\hat x \in \mathcal{F}} 
+    \sup | x(t) - \hat x(t)|
+  \end{align}
+  % We note that $\delta^{\mathcal{F}}$ is a function of $h$.  
+
+  % We will assume that $x(t)$ does not permit a perfect 
+  % reconstruction for any $\hat x(\cdot) \in \mathcal{F}.$
+  \begin{align*}
+    h_x^*(\varepsilon, \mathcal{F}) = \begin{cases}
+      \inf \{ h \leq 1 : \delta^{\mathcal{F}}(h) > \varepsilon \} & \text{if} 
+      \{ h : \delta^{\mathcal{F}}(h) > \varepsilon \} > 0  \\ 
+        1, &  \text{if no such } \hat x(t) \in \mathcal{F} \hspace{1em}\text{exists.}
+    \end{cases}
+  \end{align*}
+  In words, the function $h^*(\varepsilon, \mathcal{F})$ is the minimum grid spacing $h$, or sample density, needed to approximate $x(t)$ within $\varepsilon$. 
+  \begin{defn}{\textbf{Epsilon-complexity.} }\label{def:ecomplexity}
+  The number
+  \begin{align}
+        % \begin{align}
+  %   -\log h_x^*(\varepsilon, \mathcal{F}) \approx 
+  %   \mathcal{A} + \mathcal{B}\log \varepsilon.
+  % \end{align}
+    \mathbb{S}_x(\varepsilon, \mathcal{F}) =  
+    -\log h_x^*(\varepsilon) 
+    \mathcal{F})
+  \end{align}
+  is the $(\varepsilon, \mathcal{F})-$complexity, 
+  or simply, $\varepsilon-$complexity of the function $x(\cdot)$. 
+  \end{defn}
+
+  We will be referring variously to the H\"older condition or 
+  H\"older continuity of a function which we now define:
+  \begin{defn}{\textbf{H\"older Continuity.} }\label{def:holder}
+    A function $x(t)$ is said to be H\"older continuous if
+  there exists non-negative constants, $C, \alpha$ such that 
+  \[
+      |x(t) - x(s)| \leq C\norm{x -s}^{\alpha}
+  \]
+    for all $t$ and $s$.
+  We refer to this as the H\"older condition with H\"older 
+  exponent $\alpha$ or say a function is H\"older $\alpha$.
+  \end{defn}
+   Darkhovsky and Pirytinska have show that for almost any
+  individual H\"older class function and given a rich 
+  enough family of approximation methods  
+  then the epsilon complexity has an approximately linear
+  relationship to $\log \varepsilon$\cite{darkhovsky2013}
+  \begin{align} \label{eq:linear-ecomplex}
+      -\log h_x^*(\varepsilon, \mathcal{F}) \approx \mathbb{A} + 
+    \mathbb{B}\log \varepsilon.  
+  \end{align}
+  
+  The relationship serves the basis, after rearrangement, 
+  for the estimation of $\varepsilon$-complexity for 
+  discrete time series.
+  In practial applications any function or time series 
+  is acquired as some discrete set of samples, which we
+  will assume to be taken at regular intervals. We 
+  consider this discrete set to be a continuous function
+  restricted to a uniform grid. In this case, 
+  $h*(\epsilon, \mathcal{F})$, which we simplify here to 
+  $h^*(\epsilon)$, is the proportion of sampled points
+  and $\frac{1}{h^*(\varepsilon)}$ is the 
+  number of points needed to approximate some function $x(t)$ within 
+  $\varepsilon$. Let $n$ be the total number of points 
+  in the initial sampling, then we denote the 
+  proportion of points needed for reconstruction with 
+  $\varepsilon$ 
+  \begin{align}
+     S(\cdot) \defeq \frac{n}{h^*(\varepsilon)}.
+   \end{align} 
+   \begin{defn}
+     The $\varepsilon-$complexity of a function 
+     given represented by a set of values sampled on 
+     a uniform grid is $-\log S(\cdot)$.
+   \end{defn}
+  It follows from defintion \ref{def:ecomplexity} that
+  \begin{prop}
+    \[
+      -\log S(\varepsilon, \mathcal{F}) \to \mathbb{S}_x(\varepsilon, \mathcal{F}) 
+    \]
+    as $n \to \infty$.
+  \end{prop}
+  For the discrete case, rearrangement of the relation \ref{eq:linear-ecomplex} gives and substitution of $\log S$ for $\mathbb{S}_x(\varepsilon, \mathcal{F})$ gives us the relation
+  \begin{align}\label{eq:discrete-ecomplexity}
+     \log \varepsilon  \approx A + B \log S.
+   \end{align} 
+  For practical computations, some set number of grid spacings 
+  $h$ corresponding to the proportion $S_h$ are used to 
+  estimate the linear relation in \ref{eq:discrete-ecomplexity}. 
+  For each spacing $h$ we find the minimum error approximation 
+  at that spacing.
+  The parameters of this linear relationship, $A, B$, are the 
+  $\varepsilon-$complexity coefficients or simply the  
+  complexity coefficients. 
+
+%-------------------------------- End edit
+  
+
+
+  In practical applications, a given function $x(t)$ is of some finite length $N$ and we assume the function has been sampled on some regular grid $\Z_h$.  The given initial sampling grid determined by $h_1$ is the densest resolution of the function and other grid spacings $h_2, h_3, ..., h_d$ are also taken at regular intervals.  
+  For each $h_k$ the function $x(t)$ is approximated 
+   with some family of methods
+    $\mathcal{F}$. For a given $h$ the minimum mean-squared error
+   is then added to the set of errors, 
+   $\varepsilon_{\mathcal{F}, h}$. 
+   Finally, setting $S_h = \frac{1}{h}$, a least squares linear model is fit to the set of errors   $ \{ \varepsilon_{\mathcal{F}, h} \}$ regressed on the proportion of function values 
+   $\{ S_h \} $:
+  \[
+      \log  \varepsilon_{\mathcal{F}, h} 
+      \sim A + B \log S_h.
+  \]
+  The parameters of the linear model $A, B$ are the 
+  $\varepsilon-$complexity coefficients or simply the  
+  complexity coefficients.
+
+   \begin{algorithm}[htb]
+    \label{alg:ecomplexity}
+  \caption{$\varepsilon-$complexity \label{alg:ecomplex}}
+  \DontPrintSemicolon
+  \SetAlgoLined
+  \SetKwInOut{Input}{Input}\SetKwInOut{Output}{Output}
+  \Input{$X$ a regularly sampled time series of length $N$.} 
+  \Input{$ \mathcal{F} $ a set of approximation methods $f$.}
+  \Input{$ \mathcal{H} $ the set of spacings $h$.}
+  \Output{The complexity coefficients $A,B$.}
+  % \tcp{initialize array}
+   % Initialize the array epsilons $\leftarrow [0]$   \;
+  \BlankLine 
+ \ForEach{$h$ in $H$} {    
+    % \tcp{initialize array}    
+    % mse $\leftarrow [0]$ \;
+    \ForEach{$f$ in $\mathcal{F}$} {
+      % \tcp{Compute the approximation error}
+        Compute the approximation error \\ 
+        $\varepsilon_{h,f} \leftarrow 
+       \frac{1}{N}\norm{f_h - X_{h} }^2$.  \;
+      % mse\leftarrow \varepsilon_{h,f}$
+    } 
+     Find minimium error over all $f$  \\
+     epsilons$_h$ $\leftarrow \min \varepsilon_{h,f}$. \;
+  }
+  Fit a least squares linear model \\
+   $A,B$ $\leftarrow$ lm($\{$ epsilons$_h$ $\}$ $ \sim \{ S_h \} $.) \;
+  \end{algorithm}
+
+% \caption{$\varepsilon-$complexity}
+
+%   \end{algorithm}
+% \usepackage[ruled,vlined]{algorithm2e}
+
+
+\section{Time series}
+  
+  % We now describe some basic properties of time series or stochastic processes. 
+  The theory 
+  of $\epsilon-$complexity as developed by in \cite{darkhovsky2013} for continuous and possibly vector-valued functions 
+  denoted $x(t)$. For the remainder of this thesis of our discussion will be restricted primarily to functions on $\R^1$, or univariate stochastic processes which we also refer to as time series. 
+  % which we will refer to as a time series.
+  % We touch briefly on more general random processes at the end of this section but will not go into the theory of more general processes in any detail. 
+
+  A time series is a stochastic process, or set of random 
+  variables, $X(t)$ or $X_t$, parametrized by time, 
+  $\{ X_t: t \in T = \{ 1,2,3,... \}\}$.  
+   We will denote realizations of a time series
+   with the lower case 
+  $x_t$ or $x(t)$. We also use $x(t)$ to refer to a continuous function or samples from the continuous function and we will not always distinguish between samples from a continuous function and observations of a random process. 
+
+  We will begin by defining several 
+  properties of time series 
+  We also introduce a number of time series model
+  that are used in the following chapters to 
+  generate time series on which we 
+   test the behavior of our implementation 
+  of the $\varepsilon$-complexity algorithm. 
+  Several of models we introduce have known 
+  properties such as H\"older class and fractal 
+  dimension and we test if and how the complexity coefficients
+   measure these properties in Chapter 4.
+
+  The ARMA model is a simple and widely used parametric time series model. It is a linear model
+  that combines autoregressive (AR) and moving average (MA)
+  models. The AR component expresses an observation at time 
+  $t$ as a linear combination
+  of preceding observations plus a random error component:
+  \begin{align}
+      X_t  = b_1 X_{t-1} + \cdots + b_p X_{t-p} + \varepsilon_t
+  \end{align}
+  
+  The number of previous observations $p$ is the order of the 
+  model, denoted $AR(p)$. The random error, $\varepsilon_t$, 
+  is assumed to be independent, identically distributed (IID) observations from white noise a standard normal distribution with 
+  mean 0, variance $\sigma^2$ and covariance 
+  $Cov(X_i, X_j) = 0, i \neq j$. The latter is called 
+  white noise and the errors are said to be 
+  drawn from a white noise process 
+  $\{ \varepsilon_{t_i}, \varepsilon_{t_j}\} \sim WN(0, \sigma^2)$. 
+
+  The moving average(MA) process of order $q$ models
+  the observation $x_t$ as a linear combination of $q$
+  samples $\{ \varepsilon_t \} \sim WN(0, \sigma^2)$  
+  \begin{align}
+      X_t = \varepsilon_t + a_1 \varepsilon_{t-1} + 
+    \cdots + a_q \varepsilon_{t-q}.
+  \end{align}
+
+  Depending on the parameters $p,q$ of an 
+  ARMA$(p,q)$ process, 
+  the resulting time series may or may not be 
+   \textit{stationary}. A strictly stationary 
+   time series is one 
+   whose distribution independent of time $t$. 
+   We will be using the term to indicate 
+   a \textit{weakly stationary} time series, or 
+   a time series whose first two moments do not 
+   depend on time.
+  %  A \textit{strongly stationary} 
+  % have the same joint distribution $\{X_t, X_{t+ k} \}$ for 
+  % all $k$. First, we define the following terms:
+  % [check]
+  % \begin{defn}\label{eq:mean_function}
+  % [Notes : correllation -> standardized covariance make explicit.]
+  % A \textit{weakly stationary} time series. 
+  \begin{defn}\label{def:stationary}{\textbf{Weak stationarity} }
+   A  \textit{time series} with finite variance and a 
+  mean $\mu_t$ that does not depend on time is called 
+   \textit{weakly stationary}: 
+  \begin{align*}
+    &\mathop{E}(X_t^2) < \infty \\
+    &\mathop{E}(X_t)  = \mu \hspace{1em} \text{is a constant 
+    independent of t }\hspace{1em} \\
+    &\text{Cov}(X_t, X_{t+ h }) \hspace{1em}\text{ is independent
+    of } t \text{ for each } h\hspace{1em}.
+  \end{align*}   
+  \end{defn}
+   Where it exists, let $\mathop{E}(X_t)  = \mu_{t}$ be the mean function of a time series.
+  %   \begin{align*}
+  %      = \int_{-\infty}^{\infty} X f_t(X) dt.
+  %   \end{align*}
+  %  where $\mathop{E}$ is the expected value operator. 
+  % \end{defn}
+  \begin{defn}{\textbf{Covariance function.}} 
+  \label{eq:auto_covariance}
+  The  \textit{autocovariance or covariance} of a time series with mean $\mu$ 
+  is then defined
+  \begin{align*}
+    \sigma(h) = \text{Cov}(X_{t}, X_{t + h})
+                = E[(X_{t}-\mu_t)(X_{t + h} - \mu_{t + h})]  
+   \end{align*}
+   In the case of a zero mean function this simplifies
+   \begin{align*}
+      \sigma(h) = E[(X_{t})(X_{t + h}]).  
+   \end{align*}
+    The \textit{autocorrelation} function of $X_t$ is
+    \begin{align*}
+       \rho(h) \equiv \sigma(h)/\sigma(0) \equiv \text{Corr}(X_{t + h}, X_t), 
+       \hspace{2em} h \in \{ 1,2,3,... \}.
+     \end{align*} 
+  \end{defn} 
+  For a stationary, mean zero stochastic process with 
+  $\sigma^2 = 1$ the autocorrelation and autocovariance function 
+   are equivalent. Some stochastic
+  processes, like the Cauchy process we introduce later, 
+  can be specified by entirely by their autocorrelation function. 
+  
+  If a stationary process has an absolutely summable 
+  autocovariance function
+  \[
+  \sigma(h), \sum_{-\infty}^{\infty}|\sigma(h)| < \infty
+  \] then the
+   \textit{spectral density function} of the process 
+   is the Fourier transform of the $\sigma(h)$
+   \begin{align}
+      f(\omega) =  \sum_{-\infty}^{\infty} e^{2 \pi i \omega h} f(\omega)d \omega \hspace{1em}  -1/2 \leq \omega \leq 1/2.
+    \end{align}
+  Conversely, $\sigma(h)$ can be represented as
+   the inverse transform of 
+  the spectral density function. In either case, the two 
+  representations carry the same information about the process.
+
+  A stationary ARMA process has an autocorrelation  
+  function $\rho(h)$ that decays at an exponential rate 
+  as $|h| \to \infty$ \cite{fan2003}. A slowly decaying 
+  autocorrelation function is characteristic of 
+  a non-stationary process with long-range dependence. 
+  We include three functions in our set of simulations that can have long-range dependence -- fractional Brownian motion, the Cauchy process and the fractionally integrated ARMA or FARIMA process. 
+  The first two of these we discuss in the next section. 
+  The ARIMA process is model whose integral 
+  differences $d$ are a ARMA(p,q) processes,
+  denoted ARIMA$(p,d,q)$.  
+  The FARIMA model is a modifies ARIMA process
+  allowing for fractional values $d$\cite{fan2003}.
+
+   
+  % The combined ARMA model of order $p,q$, ARMA$(p,q)$, is
+  % thena
+  % \begin{align*}
+  %   X_t = b_1 x_{t-1} + \cdots + b_p x_{t-p} + 
+  %   \varepsilon_t + a_1 \varepsilon_{t-1} + 
+  %   \cdots + a_q \varepsilon_{t-q}.
+  % \end{align*}
+  % % def
+  % The \textit{backshift operator} $B$ is defined 
+  % \begin{align}\label{eq:backshift}
+  %   B^kX-t = X_{t-k}, \hspace{2em} k \in \{ 1,2,3, ... \}
+  % \end{align}   
+  % and the polynomials AR and MA polynomials 
+  % $a(\cdot)$ and $b(\cdot)$
+  % \begin{align}\label{eq:arma_polynomials}
+  %   b(a) = 1 - b_1z - \cdots - b_p z^p, \hspace{.5em} 
+  %   a(z) = 1 + a_1z + \cdots + a_qz^1. 
+  % \end{align}
+  % \begin{defn}\label{defn:arma}
+  %  A time series $X_t$ is defined to be an ARMA$(p,q)$ process 
+  %  \begin{align*}
+  %     b(B)Z_t = a(B)\eps_t.
+  %   \end{align*} 
+  % where $b(\cdot)$ and $a(\cdot)$ are the AR and MA polynomials
+  % respectively. 
+  % \end{defn}
+
+  %  The ARIMA model 
+  % has first differences, $x_t - x_{t-1}$, that come 
+  % from an ARMA model. Before defining an ARIMA process we introduce 
+  % some notation and present a simple example of a non-stationary 
+  % time series.
+   
+  % A random walk defined
+  % \begin{align*}
+  %     Y_t & = Y_{t-1} + \eps_t \hspace{2em} \eps_t 
+  %     \sim WN(0, \sigma^2)
+  % \end{align*}
+  % is not stationary. We define the differencing operator
+  % \begin{align}\label{eq:difference}
+  %   \nabla^dX_t &= (1 - B)^dX_t
+  % \end{align}
+  % where $B$ is the backshift operator. Then taking 
+  % the first difference of the random walk $Y_t$
+  % results in a stationary time series
+  % \[
+  %   \nabla^d Y_t =  (1 - B)x_t =  x_t - x_t - \eps_t = \eps_t,
+  % \]
+  % since $\eps \sim WN(0, \sigma^2)$.  
+
+  %  The \textit{autoregressive integrated moving 
+  % average}(ARIMA) \textit{process} is a model of time series
+  % whose first or higher order differences are ARMA$(p,q)$ 
+  % processes.
+  % \begin{defn}\label{defn:arima}
+  %   A time series $X_t$ is an ARIMA$(p,d,q)$ process if 
+  % \begin{align*}
+  %   \nabla^dX_t &= (1-B)^d X_t \hspace{1em} d \in \{ 1,2,3, ... \}.
+  % \end{align*}
+  % \end{defn}
+  
+  % An ARIMA model with  $d\in (-0.5, 0.5)$. 
+  % \[
+  %    \nabla^dX_t = \eps_t, \hspace{2em} \{ \eps_t \} 
+  %    \sim WN(0, \sigma^2)
+  % \]
+  % is called  \textit{fractionally integrated noise} for 
+
+  % % (Example Picture)
+  % For a stationary ARMA processes, the observation 
+  % of the observation $x_t$ has a finite dependence 
+  % on previous observations 
+  % $\{ x_{t- 1}, x_{t- 2} , ... \}$. (The autocorrelation
+  % decays to zero relatively quickly):
+  % \[
+  %     |\rho(k)| \leq Cr^k, \hspace{1em} k = \{ 1,2,... \}.
+  % \]  
+  % These are termed short memory processes. A long 
+  % memory process .... 
+  % \[
+  %   \rho(k) \sim Ck^{2d -1} \hspace{1em}\text{as }\hspace{1em}
+  %   k \to \infty
+  % \]
+  % where $C$ is a positive constant and $d < 0.5$.
+  % Such processes whose ACF are not absolutely 
+  % summable are called  \textit{long memory processes}. 
+  % (Such processes are found in biology, (famously the stock market)).  
+
+
+% (DELETE)
+%   (FARIMA definition).
+
+%   A simple example of a non-stationary time series is one with a linear trend, but time series can exhibit more complex types of non-stationarity. For example, 
+%   the mean of the time series may vary in some non-linear
+%   fashion or the variance (or higher moments) of the time series may be time-dependent. An MA process of finite order is stationary since it is a weighted sum of white noise with mean 0. However, whether an AR model of finite order is stationary depends on its parameters. 
+
+
+  % For ARMA models 
+  % in particular, the parameters of an ARMA model 
+  % can specify a non-stationary model. For example, 
+  % if the sum of the coefficients of a moving average
+  % model is not finite, then 
+
+ % Other nonlinear 
+ %  features are non-normality of the observed data, 
+ %  nonlinear dependence of the observed values on past
+ %  values, transient or asymmetric cycles and sensitivity
+ %  of a model to its initial conditions. 
+ %  % Example
+ %  \cite{fan2003}\cite{pirya2009} 
+  % There is some ambiguity, 
+  % however, in the terms ''nonlinear'' or ''complex'' are 
+  % used, as they may refer to either property of 
+  % an observed time series, the probabilistic model 
+  % of the time series, or of a mathematical model 
+  % of the underlying process.
+
+
+  % In a range of parametric models have been created that
+  % capture these more complex or nonlinear features of 
+  % a time series. For example, ARIMA models modify the 
+  % ARMA model to capture trends, ARCH models are 
+  % used to model time-dependent variance and a FARIMA 
+  % process models large-range dependence or a\textit{long memory}
+  % processes. 
+  
+  % We have introduced these models to define some terminology and present the ARMA model that will be used later in a simulation study of the performance of $\varepsilon-$complexity in classifying time series. We are also presenting the motivating context for the development of time series features like $\varepsilon-$complexity. When a time series is modeled by some parametric process assumptions are made about the nature of the stochastic process. These assumptions may be based on an understanding of the physical process generating the time series or on past modeling performance. In some cases, however, properties of either the physical process may not be well-understood, or a time series may exhibit complex features that aren't easily captured by a parametric model. The
+  % $\varepsilon-$complexity feature is one among a number of features that have been developed to characterize time series that exhibit these complex features. A 
+  % number of other features were developed to quantify time series complexity in the context of the study of dynamic systems. In the next section describe some of these features why they were developed.
+  % % possibly add (FARIMA) 
+
+% MACKEY GLASS
+
+% In addition to these, the  \textit{Mackey-Glass}  equation and 
+% the random-phase Weierstrass function were used in the tests. 
+
+% The Mackey-Glass equation is a nonlinear delay 
+% differential equation 
+% \begin{align*}
+%    \frac{dx}{dt}  = \beta \frac{ x(t - \tau) }{1 + x(t - \tau)^n } - 
+%    \gamma x(t) \hspace{1em} \gamma, \beta, n > 0.
+% \end{align*}
+% where $\tau$ is the time delay of the system. The equation 
+% has been used to model physiologial processes with feedback with 
+% a feedback system. (See Scholarpedia -- infinite dimensional 
+% attractor ?  why it's been used as a system for algorithms 
+% that characterize dynamical systems.) 
+
+% \textit{Notes on Mackey-Glass.} A discrete differential equation
+% was used to approximate the Mackey-Glass equation. In our tests, 
+% noise was added to equation (SNR ratio) since the function 
+% simulated function was relatively smooth and was easily
+% differentiated by the $\varepsilon-$coefficients. 
+% [Revise]
+
+\section{Fractal dimension}
+
+In the following chapter, we test the 
+relationship between the H\"older continuity 
+of a function, estimators of its fractional or fractal
+dimension and 
+the $\varepsilon-$complexity coefficients. Here we define 
+fractal dimension and introduce several 
+functions or stochastic processes with known fractal 
+dimension.
+
+Although fractal dimension is a general measure on sets
+we will be considering only those sets formed by the 
+graph of a function $f$ or a sample function 
+drawn from a stochastic process. Fractal dimension 
+coincides with the usual sense of 
+dimension for smooth manifolds such as the interval 
+$[0,1]$. Since we consider only graphs
+ $\Gamma:\{ (x, f(x)) \}$ in $\R^2$
+the fractal dimension of these graphs should take on 
+values between $[1,2)$.
+% Let $f$ be a function, $f: \R \to \R$, then the graph of the 
+% function is defined $\Gamma:\{ (x, f(x)) \} \in \R^2$. 
+% Although we discuss two measures of fractal dimension in 
+% some cases we will not distinguish between the types of 
+% fractal dimension, for example, when we discuss estimators
+% fo fractal dimension. 
+
+The Hausdorff dimension of a set $E$, roughly speaking, 
+measures the size of covers of that set 
+as the diameter of covering elements
+$\{ U_i \}$ approaches zero. We define the diameter 
+of a set $U$ denoted $|U|$ as 
+$\sup \{ | x- y| : x, y \in U\}$, the greatest distance 
+between any two points in the set. A set collection 
+$ \{ U_i \}$ is 
+a cover of $E$ if $E \subset \bigcup_i^{\infty} U_i$
+where we assume $\{ U_i \}$ is countable. 
+
+\begin{defn}{\textbf{Hausdorff Dimension} }
+Let all elements in $ \{ U_i \}_{\delta}$ be a
+countable subset of $\{ U_i \}$ with diameter greater 
+than $\delta$ such that $\{ U_i \}_{\delta}$ cover 
+some set $E \subset \R^n$. The the Hausdorff dimension 
+$\mathcal{H}_{\delta}^{\alpha}$ for any $\delta > 0$ 
+is defined 
+\begin{align*}
+  \mathcal{H}_{\delta}^{\alpha} = \inf 
+    \left[ \sum_i | U_i |^{\alpha} : \{ U_i \} \hspace{0.5em}\text{ is  a cover of  }\hspace{0.5em} E \right].
+\end{align*}  
+Then 
+$$
+\mathcal{H}_{\alpha(E)}=\lim_{\delta\to 0} H^{\alpha(E)}_\delta
+$$
+
+% $\mathcal{H}^{\alpha}(E) = 
+%  \lim $ as $\delta \to 0$ of $ \mathcal{H}_{\delta}^{\alpha}$.
+\end{defn}
+
+For $0 < \alpha < 1$, $\mathcal{H}^{\alpha}$ is 
+either $0$ or $\infty$ and there exists a critical point 
+$\alpha$ at which $\mathcal{H}^{\alpha}$ switches from $0$ to 
+$\infty$. This point is the Hausdorff dimension of the set 
+which we denote $\dim_H E$ \cite{falconer2003}. 
+
+% We consider two version of fractal dimension below. 
+% When we discuss estimators of fractal dimension we 
+% assume that fractal dimension is an intrinsic property 
+% of a function and do not distinguish between estimators 
+% of one or the other measures of fractal dimension.
+
+The Hausdorff dimension of many sets is difficult to calculate and there are a number of related measures. 
+The box-counting dimension is one these and, for sets in $\R^2$, 
+it counts the number of squares of length $\delta$ required
+to cover a set. It therefore provides an upper bound for the 
+Hausdorff dimension of a graph. The box-counting dimension 
+is defined as
+\[
+  \dim_B E = \lim_{\delta \to 0} \frac{ \log N_{\delta}(F)}
+  {- \log \delta}
+\]
+where $N_{\delta}$ is the smallest number of sets 
+that cover $E$ of side length $\delta$. In what follows 
+we may refer to the fractal dimension of a graph of a function
+or of the function itself. In cases where we refer to 
+estimators of fractal dimension we generally will not specify
+a specific measure.
+
+A number of practical estimators of fractal dimension $D$
+exist. In Chapters 3 and 5 we use a fractal dimension 
+estimator based on the variogram of a stochastic process
+which we define here. 
+\begin{defn}{\textbf{Variogram} }\label{def:variogram}
+The increments of a stochastic process are defined 
+as $\{ X_t - X_{t+h} \}$.
+Let $X_t$ is a zero mean stochastic process with 
+stationary increments. The variogram of $X_t$ 
+is  defined
+\begin{align*}
+  \gamma^2(h) = \frac{1}{2}\mathbb{E}\left(X_t - X_{t + h} \right)^2.
+\end{align*}
+\end{defn}
+% For Gaussian processes, 
+The variogram relates to the the covariance function  $\sigma(h)$ via 
+\[
+  \gamma^2(h) = \sigma(0) - \sigma(h)
+\]
+\cite{gneiting2012}. Let $X_t$ be a Gaussian 
+process with variogram satisfying
+\begin{align}\label{eq:gauss-variogram}
+  \gamma(h) \sim|ch|^{\alpha},
+\end{align}  
+then $dim_H \Gamma(X_t)$ is almost surely $2 - \alpha$
+\cite{gneiting2012} \cite{orey1970}. 
+The estimator of fractal dimension in the next chapter 
+uses is based on the relation \ref{eq:gauss-variogram}
+and estimates fractal dimension by taking 
+log-log regression of the 
+the empirical variogram $\hat V(h)$ against increments
+$h$. This method is recommended by Gneiting in \cite{gneiting2012}.
+ 
+Brownian motion and fractional Brownian motion(FBM)
+are both Gaussian processes satisfying these conditions. In particular, both processes can be defined in terms of their increment process. 
+Brownian motion has normally, independently 
+distributed increments and fractal dimension 
+1 1/2. FBM has dependent increments with
+variogram 
+\[
+  E[(X_{t} - X_{t +h} )^2] = h^{2\alpha}.
+\]
+and the case when $\alpha (1/2)$ corresponds to 
+Brownian motion. The parameter $\alpha$ 
+corresponds in this case to the fractal dimension of 
+FBM \cite{falconer2003}. When $\alpha > 1/2$ FBM is a stochastic process with long-range dependence and $\alpha$ corresponds
+to the Hurst coefficient of the function.
+
+Orey remarks that for a Gaussian process $X_t$ the 
+parameter $\alpha$ also corresponds to the H\"older
+exponent of $\Gamma(X_t)$ \cite{orey1970}. This means 
+we can vary the parameter $\alpha$ to determine both 
+the fractal dimension and H\"older exponent of 
+FBM and we use this property in the following chapter 
+to test the behavior of the complexity coefficients 
+as the parameter $\alpha$ is varied.
+
+
+% As mentioned above, the Hurst coefficient characterizes
+% the long-term decay of the autocorrelation function 
+% $\sigma(h)$. 
+% For some process, if $\tau \in  (0,1)$ if the power law holds
+% \[
+%     \sigma(h) \sim | h |^{-\tau}  
+%     \hspace{1em}\text{as }\hspace{1em}|h | \to \infty 
+% \]
+% then the process is a long-memory process with hurst coefficient 
+% \[
+%      H  =   1 - \frac{\tau}{2}
+% \]\ref{gneiting2004}.
+
+
+
+% For $\gamma(h)$ satisfying 
+% \[
+%  \gamma(h) = |ct|^{\alpha}  + 
+%   \mathcal{O}\left(|t^{\alpha + \beta)|} \right)  
+%   \hspace{0.5em} \text{ as } \hspace{0.5em} h \to \infty
+% \]
+% for $\alpha \in (0, 1], \beta, c > 0$ the graph of the function in $\R^2$
+% has, almost surely, fractal dimension 
+% \[
+%    2 - \alpha.
+% \]
+
+% Orey remarks that for a process satifying these conditions 
+% the process is H\"older of order $\lambda$, $0 < \lambda < \alpha$
+% \cite{orey1970}. We have restricted this definition to 
+% Gaussian processes, that is, processes with samples drawn 
+% from normal distributions. Similar relations hold for broader 
+% classes of stochastic processes\cite{gneiting2012} \cite{alder} \cite{falconer2003}.
+
+\section{H\"older Continuous Functions} 
+
+In the 
+following section we present results from a
+number of simulations that explore the relationship 
+between the fractal dimension, H\"older class of 
+functions and the estimated $\varepsilon-$complexity coefficients
+of those functions. In addition to FBM, we use two
+other stochastic processes and one deterministic function 
+for which parameter of the models control the H\"older continuity
+or fractional dimension of the models or both. 
+
+The first of these is the \textit{Weierstrass} function, 
+a well-known example of a continuous but nowhere differentiable function. The Weierstrass can be written in several forms. Here we use the form that isolates the parameter $\alpha$ corresponding to the H\"older exponent of the function. 
+\begin{defn}\textbf{Weierstrass function.} \label{def:weierstrass}
+  The \textit{Weierstrass} function defined
+  \begin{align}
+    W_{\alpha}(x) 
+  \hspace{1em}= \sum_{n = 0}^{\infty} b^{-n \alpha} \cos(b^n \pi x)
+  \end{align}
+  is a continuous 
+  periodic nowhere differentiable the function with 
+  that is H\"older $\alpha$:  
+  \[
+  \left| W_{\alpha}(x) - W_{\alpha}(y) \right| 
+  \leq C \left| x - y \right|^{\alpha}.
+\]  
+\end{defn}
+%   An alternate form of the function is
+%   \begin{align*}
+%   f(x) =  \sum_{n = 0}^{\infty} a^n \cos(b^n \pi x)  \\ 
+%   \hspace{1em} 
+%   \end{align*}
+%   and setting $\alpha = -\ln(a)/\ln(b), f$ is 
+%   H\"older $\alpha$
+% \end{defn}
+%  \cite{falconer2003}.
+The parameter $\alpha$ determines both the fractal and 
+Hausdorff dimension of the Weierstrass function.
+The upper bound for the Hausdorff dimension of $W_{\alpha}$ 
+is $2-\alpha$ but it has not been proven to equal $2-\alpha$ 
+\cite{hunt1998}. On the other hand, the Weierstrass function has the box-counting dimension equal to $2-\alpha$, providing the upper bound for the Hausdorff dimension \cite{falconer2003}. 
+In fact, a more general relation between the 
+ H\"older condition and fractal dimension holds for 
+a continuous function on $\R$. The H\"older 
+condition provides bounds the box-counting dimension:
+\begin{prop}
+  Let $f:[0, 1] \to \R$ be a continuous function 
+  and 
+  \[  
+    |f(t) - f(t + h)| \leq ch^{\alpha} \hspace{1em} 
+    (c > 0, 0 \leq \alpha \leq 1)
+  \]
+  then $dim_B f \leq 2 - \alpha $\cite{falconer2003}.
+\end{prop}
+
+% First we show that the H\"older condition 
+% provides an upper bound for the box-counting 
+% dimension $dim_B$.We define $R_f[t_1, t_2] = 
+% \sup |f(t) - f(u)|$ for $t_1 \leq t, u \leq t_2$. 
+
+A variant of the Weierstrass function is the random-phase 
+Weierstrass function. It has the same property of being 
+ H\"older continuous with H\"older exponent 
+ $\alpha$ but has more complex 
+spectral characteristics\cite{hunt1998}.  
+The random phase function has the same equation as the 
+Weierstrass function with an added phase, $\phi$ drawn from 
+a uniform distribution:
+\[
+  W_{\alpha}(x) 
+   = b^{-n \alpha} \cos(b^n \pi x  + \phi_n), \hspace{1em} 
+   \phi_n \sim \hspace{1em} \text{unif}(0,1).
+\] 
+The Hausdorff dimension of the random phase variant Weierstrass function has been shown to equal $2- \alpha$ \cite{hunt1998}. 
+See Figure \ref{fig:weierstrass} in the following chapter 
+for illustrations of both Weierstrass functions.
+
+% [Image Weierstrass function, random weierstras]
+In the case of fractional Brownian motion the parameter 
+$\alpha$ controls both the fractal dimension and the
+long range dependence of the function. The Cauchy process, 
+on the other hand, has two parameters which separately control 
+the long-range dependence of the function 
+and its local behavior or fractal dimension \cite{gneiting2004}.
+The Cauchy is a stationary Gaussian process determined by
+ its autocorrelation function:
+\[
+   \rho(t) =  (1 - |ct|^{\alpha})^{-\beta/\alpha}, 
+   \hspace{1em} \alpha \in (0,2]; \beta > 0.
+\]
+% The parameter $\alpha$ determines the local behavior of 
+% the function and the fractal dimension, while $\tau$ 
+% varies the long-range dependence of the process. 
+The Cauchy process parameters determine the fractal 
+dimension $D$ of the  process 
+  \[
+    D = n + 1  - \frac{\alpha}{2},
+  \]
+  and if $\beta \in (0,1)$ the process has long-range 
+  dependence with Hurst coefficient 
+  \[
+    H  =   1 - \frac{\beta}{2}.
+  \]
+
+
+
+% \ref{gneiting2004}.
+
+% In the case of fractional Brownian motion the 
+% parameter $\alpha$ determined fractal dimension, 
+% the Hurst coefficient and the H\"older exponent of 
+% the graph of a sample function. The Cauchy process, 
+% on the other hand, allows the long-range dependence 
+% and fractal dimension to be isolated. 
+% The Cauchy process is determined by its covariance 
+% function
+
+
+
+
+% \[
+%     1 - \sigma(h)  \sim  |h|^{\alpha} 
+%     \hspace{1em}\text{as }\hspace{1em} \alpha \to 0.
+% \] 
+% holds the fractal dimension of the process graph is 
+% \[
+%     D = n + 1  - \frac{a}{2}
+% \]\ref{gneiting2004}.
+
+
+
+% \section{Change-point detection}
+
+%   Similar to other complexity measures for time series, 
+%   the $\varepsilon-$complexity coefficients are intended 
+%   to capture time-dependent or functional characteristics
+%   of a time series as opposed to purely 
+%   distributional features. For example, a 
+%   simple linear function sampled at $N$ points 
+%   would be approximated exactly our method given 
+%   any number of points greater than two. However, 
+%   a random reshuffling of the $N$ points would preserve
+%   the distributional features of the times series -- the mean and 
+%   variance, for example -- but would 
+%   change the complexity coefficients. 
+
+%   The change-point algorithm included in the \texttt{ecomplex}
+%   package detects distributional changes in the mean 
+%   of a time series. The algorithm uses a
+%    the diagnostic sequence of a length
+%   $N$, a parameter is chosen by the user,
+%   and successive sequences of length $N$ 
+%   are checked for change-points. A user determined
+%   threshold value $C$ is selected and a change-point 
+%   is recorded if a statistic
+%   $Y_N(n, \delta)$ is greater than the threshold $C$.
+%   The statistic tests a weighted difference of means 
+%   of the head and tail of the $k$th diagnostic sequence 
+%   $\mathcal{x}_k$. 
+%   The statistic is defined 
+%   \[
+%     Y_N(n, \delta) = \left[ \left(1 - \frac{n}{N}\right)
+%     \frac{n}{N} \right]^{\delta} 
+%     \left[ \frac{1}{n} \sum_{k=1}^{n}\mathcal{x}_k^N - 
+%     \frac{1}{N-n} \sum_{k=n+1}^{N}\mathcal{x}_k^N \right]
+%   \]
+%   %  The parameter $\delta$ is a ''false alarm''
+%   % parameter. The choice $\delta = 0$ sets the 
+%   % minimum false alarm probability and $\delta = 0.5$
+%   % guarantees the minimum false alarm error for 
+%   % piecewise stationary Gaussian noise \cite{pirya2009}.
+
+%   The function \texttt{palarm()} allows the user 
+%   to set the statistic threshold $C$, the diagnostic
+%   sequence length $N$ and the false alarm parameter
+%   $\delta$. In the next section we use the complexity
+%   feature along with the change detection algorithm 
+%   to analyze a neonate EEG signal.
+  
+
+
+  % approximation methods could included, and a larger set 
+  % of $\{ alpha_i \}$ could be used in approximating  
+  % $S_N(\varepsilon)$, but in there is a trade-off between 
+  % the accuracy of the estimation and the computational 
+  % complexity of adding additional functions or levels
+  % of approximation. 
+  % A couple of choices need to be made to for a practial  
+  % implementation. The approximation $\hat x(t)$ could be
+  % come from any number of approximation or interpolation 
+  % methods. In theory, finding the best approximant
+\section{Approximation methods}
+
+In calculating the complexity coefficients some set 
+number of approximation methods $\mathcal{F}$ are used.
+The initial implementation used piecewise polynomials of
+up to degree 5. In order to test the effects of
+other and possibly more accurate approximation methods, we added several additional methods to our implementation
+of the $\varepsilon-$complexity algorithm. In chapter 4 
+we test our implementation and compare their performance. 
+Here we briefly describe the implemented methods.  
+
+Splines are piecewise polynomials joined on some set of knots, or intersection points, where the additional constraint that the spline function of order $n$ has continuous derivatives of order
+$n-1$ at each knot. Three spline methods were used in our implementation, cubic splines, basis splines of order up to 5 and the lifting scheme, a spline-based iterative interpolation. 
+
+Basis or $B-$splines are piecewise polynomials of order $n$ 
+that form a basis for a linear space which we denote 
+ $S_{\triangle,n}$, where $n$ is the order of the 
+ polynomials and $\triangle$ defines the knot sequence
+\[
+  \triangle = {t_0 < t_1 < \cdots < t_m }.
+\]
+We denote the basis spline $B_{i,n}$ of order $n$ on segment $i$ 
+and span$ \{ B_{i,n} \} = S_{\triangle, n}$. 
+The space $S_{\triangle, n}$ contains 
+$C^{n-1}$ functions that are polynomials on the segments 
+$[ \triangle_i, \triangle_{i + 1}]$ \cite{unser1999}. 
+
+The basis splines $B_{i,n}$ can be defined recursively, with 
+$B_{i, 0}$ a step function on the segment $i$.
+\begin{align*}
+     B_{i,0}(x) &= \begin{cases} 1 & \text{if } 
+     t_i \leq x \leq t_{i+1} \\
+          0  & \text{otherwise.}
+     \end{cases} \\ 
+   B_{i,n + 1}(x) &= \alpha_{i, n + 1}(x)B_{i, n}(x) +  
+  [1 - \alpha_{i+1, n + 1}(x)]B_{i +1, n}(x),  
+ \end{align*} 
+ where 
+ \[
+  \alpha_{i,j}(x) = \begin{cases}
+    \frac{x - t_i} {t_{i + n} - t_i}  & t_{i + n} \neq t_i \\
+    0 & \text{otherwise}.
+  \end{cases}
+ \]
+% The order $n$ basis spline can also be formed by 
+% $n + 1$ convolutions of the step function $B_{0,0}$ with
+% itself, 
+%   \[
+%     B_{\cdot, n}  = B_{\cdot, 0} \ast B_{\cdot, 0} \ast \cdots 
+%     B_{\cdot, 0} \hspace{1em} n + 1 \text{ times}.
+%   \]
+
+A spline $s(x)$ function of order $n$ 
+is then a linear combination of the basis functions 
+  \[
+    s(x) =  \sum_{i = -n + 1}^{m}\beta_{i,n}B_{i,n}.
+  \]
+  
+There are a number of numerical methods for implementing spline approximation. Each value of the spline function 
+$s(x_j) = f_j$ can be determined by
+  \[
+    s(x_j) =  \sum_{i = - n + 1 }^{m-1} \beta_{i,n}B_{i,n}, 
+    j = 1:m + n -1.
+  \]
+This forms a set of linear equation  
+which is over determined when the set of knots is smaller 
+than the number of points to interpolate. The problem 
+can be solved using a least squares approximation
+\[
+   \min_{\beta} \norm{ A\beta - f}
+\]
+where the entries in the matrix are  
+the spline basis functions evaluated 
+at each interpolation point $x_j$ 
+\cite{dahlquist08}. This matrix is banded with 
+an $n$ entries in each row for splines of order $n$. 
+We used the B-spline approximation method as 
+implemented in \texttt{R} package \texttt{spline} 
+ \cite{racine}\cite{baseR}.
+
+An additional spline method using only cubic splines for which the number of knots was limited to 200. The banded matrix $A$ is tridiagonal, having entries only on its diagonal and two off-diagonals. An
+LU type decomposition for tridiagonal matrices allows for fast cubic spline interpolation.  
+
+For a third method we implemented an interpolating 
+subdivision technique which we will refer to 
+as the lifting scheme after Sweldens, who gives
+a hands-on description in \cite{sweldens1996}. To 
+convey the basic approach we consider a very simple 
+example of repeated interpolation. Given a set 
+of regularly sampled points $\{ s_{0,k} \}$ with 
+$k \in \Z$ points a linear interpolation of the 
+point $x_{j+1, 2k + 1}$ is the average of the 
+adjacent points $s_{j,k}$ and $s_{j,k+1}$. A
+recursive formula for averaging and interpolating 
+mid-points at stage $j+1$ is given by
+\begin{align*}
+      s_{j+1, 2k} &= s_{j,k} \\
+      s_{j + 1, 2k+1} &= 1/2(s_{j,k} + s_{j,k+1}).
+ \end{align*}
+
+For regularly sampled points, the 
+same procedure repeated with an odd 
+$n-order$ polynomial takes the $n$ adjacent 
+points centered the point $x_{j,k}$ to be 
+interpolated. If a single position $s_{j,k}$ is
+set to 1 and the interpolating subdivision 
+the algorithm is run ad infinitum, the limiting function as 
+$j \to \infty$ is a scaling function. In the case 
+of linear interpolation, for example, the scaling
+the function is a tent function. For a given 
+order polynomial the scaling function generated 
+by interpolating subdivision on regular intervals,
+dilates and translates of the function
+form an orthonormal basis for functions in $L^2(\R)$
+\cite{sweldens1996}. 
+While this connects interpolating subdivision to the wide-ranging subject of wavelets, we only mention the connection in passing as it is not needed for later results. 
+
+Unlike wavelet based interpolation methods, the lifting scheme can be extended to interpolating
+irregularly spaced points since regular spacing is not a condition for polynomial interpolation. The same recursive subdivision scheme
+can be used but in this case, the resulting limiting function does not share the analytic properties of scaling functions. For example, the limiting function does not necessarily form a basis of some function space.
+
+For the $\varepsilon-$complexity algorithm the pattern of interpolation changes based on the grid spacing $h$ at which samples are taken. 
+However, for a set interpolation pattern the  
+polynomial interpolant needs to be computed 
+only once. Neville's algorithm is used 
+to compute a set of $n$ weights for a centered 
+$n-$order polynomial interpolation. To use the 
+simple example of linear interpolation above, 
+the weights to compute $x_{j+1, 2k}$ at the 
+mid-point of $s_{j, k}, s_{j, k+1}$ are 
+$(1/2, 1/2)$. That is 
+\[
+   \langle 1/2 , 1/2 \rangle \cdot 
+   \langle s_{j, k}, s_{j, k+1} \rangle = x_{j+1, 2k}.  
+\]
+These weights $(1/2, 1/2)$ can be thought of 
+as a time-domain filter. For our implementation 
+polynomials of orders ${1,3,5}$ were used for 
+interpolation and for each order polynomial 
+three filters were computed for each distinct
+interpolation pattern. Since these filters
+ needed only to be generated once, the interpolation
+method is $O(n)$ or linear in the number of inputs. 
+
+

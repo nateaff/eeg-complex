@@ -1,0 +1,25 @@
+name: eeg-complex
+output_dir: "../docs"
+include: [".nojekyll"]
+exclude: ["include"]
+navbar:
+  title: eeg-complex
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+    - text: "License"
+      href: license.html
+    - text: "Simulations"
+      href: sim-examples.html 
+  right:
+    - icon: fa-github
+      href: https://github.com/nateaff/eeg-complex
+  html_document:
+    toc: true
+    toc_float: true
+    theme: readable
+    highlight: monochrome
+    include:
+      after_body: include/footer.html

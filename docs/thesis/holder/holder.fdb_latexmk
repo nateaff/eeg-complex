@@ -1,0 +1,13 @@
+# Fdb version 3
+["pdflatex"] 1498708826 "holder.tex" "holder.pdf" "holder" 1498708827
+  "/usr/local/texlive/2014/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
+  "/usr/local/texlive/2014/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
+  "/usr/local/texlive/2014/texmf-dist/web2c/texmf.cnf" 1418473959 31908 9e60cc122a23ef93121ea6e29902081d ""
+  "/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1432586498 1640970 6e9d9b9d0fb86fadb6e255a8bafce781 ""
+  "/usr/local/texlive/2014/texmf-var/web2c/pdftex/pdflatex.fmt" 1432586525 3847283 1844e03a4c669d8c81f683b237add385 ""
+  "/usr/local/texlive/2014/texmf.cnf" 1432586481 455 5b996dcaa0eb4ef14a83b026bc0a008c ""
+  "holder.aux" 1498708658 5401 1780e797bfce101fa3ff1bca0c49f748 ""
+  "holder.tex" 1498708067 18512 711e6230ebc6fbf416163c04a3eb6cca ""
+  (generated)
+  "holder.pdf"
+  "holder.log"

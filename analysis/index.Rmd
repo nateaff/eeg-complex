@@ -1,0 +1,13 @@
+---
+title: "Home"
+output:
+  html_document:
+    toc: false
+---
+
+
+1.[Simulation and Approximation methods](sim-tests.html) 
+
+2.[Properties of the Complexity Coefficients](holder-tests.html)
+
+3.[Seizure Prediction](eeg-classification.html)

@@ -1,0 +1,59 @@
+This is BibTeX, Version 0.99d (TeX Live 2014)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: thesis.aux
+A level-1 auxiliary file: cmds/cmds.aux
+A level-1 auxiliary file: intro/intro.aux
+A level-1 auxiliary file: bg/bg.aux
+A level-1 auxiliary file: lift/lift.aux
+A level-1 auxiliary file: holder/holder.aux
+A level-1 auxiliary file: eeg/eeg.aux
+The style file: amsplain.bst
+Database file #1: thesis.bib
+Warning--missing pages in eeg
+Warning--missing journal name in darkhovsky2013
+Warning--missing pages in darkhovsky2013
+Warning--missing journal name in racine
+Warning--missing year in racine
+Warning--missing pages in racine
+You've used 20 entries,
+            2213 wiz_defined-function locations,
+            635 strings with 6653 characters,
+and the built_in function-call counts, 5671 in all, are:
+= -- 506
+> -- 227
+< -- 0
++ -- 96
+- -- 72
+* -- 492
+:= -- 935
+add.period$ -- 20
+call.type$ -- 20
+change.case$ -- 97
+chr.to.int$ -- 0
+cite$ -- 26
+duplicate$ -- 224
+empty$ -- 504
+format.name$ -- 72
+if$ -- 1144
+int.to.chr$ -- 0
+int.to.str$ -- 20
+missing$ -- 43
+newline$ -- 70
+num.names$ -- 40
+pop$ -- 116
+preamble$ -- 1
+purify$ -- 76
+quote$ -- 0
+skip$ -- 117
+stack$ -- 0
+substring$ -- 380
+swap$ -- 28
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 72
+warning$ -- 6
+while$ -- 64
+width$ -- 22
+write$ -- 181
+(There were 6 warnings)

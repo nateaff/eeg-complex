@@ -1,0 +1,24 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Sample functions from each simulation group. \relax }}{28}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Least squares fits used to compute the complexity coefficients using the lifting scheme.\relax }}{29}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Functions from the two simulation groups plotted in the complexity coefficient space.\relax }}{31}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Computational time in seconds as function of the $\qopname \relax o{log}$ of the inputs.\relax }}{34}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Simple linear and sinusoidal functions with and without added noise.\relax }}{37}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces The log-log linear fit of the approximation errors against the proprotion of points $\mathbb {S}_h$ used to approximate the functions 4.1\hbox {}\relax }}{38}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces The Weierstrass and random-phase Weierstrass function for $\alpha = \{ 0.20, 0.42, 0.80 \}$\relax }}{43}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Complexity coefficients and fractal dimension plotted against the Weierstrass functions $\alpha $ parameter. \relax }}{44}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Complexity coefficients and fractal dimension plotted against the $\alpha $ parameters of the random-phase Weierstrass function. \relax }}{45}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Fractional Brownian motion and the Cauchy process with $\alpha = \{ 0.20, 0.42, 0.80 \}$. The Cauchcy $\beta $ parameter was held constant.\relax }}{46}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Complexity coefficients and fractal dimension plotted against the $\alpha $ coefficients of fractional Brownian motion.\relax }}{46}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Complexity coefficients and fractal dimension plotted against the Cauchy process $\alpha $ coefficient.\relax }}{47}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces The mean value of the complexity coefficients and fractal dimension plotted against the Cauchy process $\alpha $ coefficient.\relax }}{48}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces The mean value of the omplexity coefficients and fractal dimension plotted against the Cauchy process $\beta $ coefficient.\relax }}{49}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Spectral features segmented on changes in the B complexity coefficient.\relax }}{57}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Classification diagnostic values for each partition method for LFP channel 1.\relax }}{59}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces ROC curves and smoothed ROC curves for classification on channel 1 using partitions on coefficient B and a regular partition into 8 segments.\relax }}{61}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Variable importance for partition methods normalized to a $[0,1]$ interval for each channel.\relax }}{63}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Feature distribution for channels 1 and 3.\relax }}{64}
