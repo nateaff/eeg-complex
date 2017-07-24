@@ -1,6 +1,7 @@
 
 boxplot_panel <- function(df, response, addbee = TRUE, cex = 0.5){
 
+  # FIXME : use layout and add title as parameter
   par(mfrow = c(1,7), mar = c(4,0.05,0.05,0.05), cex.lab = 1.5, cex.axis = 1.2)
 
   # dfin <- chdf[[ch]]

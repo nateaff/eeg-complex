@@ -23,7 +23,6 @@ from_cache = FALSE
 window    = 240
 len = window/2
 
-
 # Derived features. 30 Trials : 6 channels : 15 features
 feature_df <-readRDS(cache_file("mod_all_features", prefix))
 # Load meta data 
@@ -47,6 +46,7 @@ means_df <- segment_on_cols(df, ch,
                           cols = c("ecomp.cspline_B","ecomp.cspline_A"), 
                           new_vec = F)
 res <- run_cv(means_df, df$response, ch, colnums, from_cache=TRUE)
+save_cache(res, "cv_results_ch_1", prefix)
 
 # Split using a numeric vector instead of a column
 means_df <- segment_on_cols(df, ch, vec = (1:120),
@@ -54,7 +54,6 @@ means_df <- segment_on_cols(df, ch, vec = (1:120),
                           new_vec = TRUE, m = 10)
 
 res <- run_cv(means_df, df$response, ch, colnums, from_cache=TRUE)
-save_cache(res, "cv_results_ch_1", prefix)
 
 #----------------------------------------------------------
 # Run non bandpower features on each channel 50 times 

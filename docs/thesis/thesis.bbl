@@ -7,6 +7,12 @@
 \providecommand{\href}[2]{#2}
 \begin{thebibliography}{10}
 
+\bibitem{alotaiby2014}
+Turkey~N Alotaiby, Saleh~A Alshebeili, Tariq Alshawi, Ishtiaq Ahmad, and Fathi
+  E~Abd El-Samie, \emph{Eeg seizure detection and prediction algorithms: a
+  survey}, EURASIP Journal on Advances in Signal Processing \textbf{2014}
+  (2014), no.~1, 183.
+
 \bibitem{breiman2001}
 Leo Breiman, \emph{Random forests}, Machine learning \textbf{45} (2001), no.~1,
   5--32.
@@ -28,6 +34,10 @@ Boris Darkhovsky and Alexandra Piryatinska, \emph{Epsilon-complexity of
 Kenneth Falconer, \emph{Fractal geometry}, second ed., John Wiley \& Sons,
   Inc., Hoboken, NJ, 2003, Mathematical foundations and applications.
 
+\bibitem{friedman2001}
+Jerome Friedman, Trevor Hastie, and Robert Tibshirani, \emph{The elements of
+  statistical learning}, vol.~1, Springer series in statistics New York, 2001.
+
 \bibitem{gneiting2004}
 Tilmann Gneiting and Martin Schlather, \emph{Stochastic models that separate
   fractal dimension and the {H}urst effect}, SIAM Rev. \textbf{46} (2004),
@@ -48,20 +58,10 @@ Susumu Ito, Ikuo Ogiwara, Kazuyuki Yamada, Hiroyuki Miyamoto, Takao~K Hensch,
   haploinsufficiency, a model for dravet syndrome, exhibits lowered sociability
   and learning impairment}, Neurobiology of disease \textbf{49} (2013), 29--40.
 
-\bibitem{lorenz2006}
-Edward~N. Lorenz, \emph{Regimes in simple systems}, J. Atmospheric Sci.
-  \textbf{63} (2006), no.~8, 2056--2073.
-
 \bibitem{orey1970}
 Steven Orey, \emph{Gaussian sample functions and the {H}ausdorff dimension of
   level crossings}, Z. Wahrscheinlichkeitstheorie und Verw. Gebiete \textbf{15}
   (1970), 249--256. \MR{0279882}
-
-\bibitem{pirya2009}
-Alexandra Piryatinska, Gyorgy Terdik, Wojbor~A Woyczynski, Kenneth~A Loparo,
-  Mark~S Scher, and Anatoly Zlotnik, \emph{Automated detection of neonate eeg
-  sleep stages}, Computer methods and programs in biomedicine \textbf{95}
-  (2009), no.~1, 31--46.
 
 \bibitem{fan2003}
 Jianqing Fan;~Yao Qiwei, \emph{Nonlinear time series}, Springer, New York,
@@ -74,6 +74,10 @@ Jianqing Fan;~Yao Qiwei, \emph{Nonlinear time series}, Springer, New York,
 \bibitem{racine}
 Jeffrey~S. Racine, \emph{A primer on regression splines}.
 
+\bibitem{shen2015}
+Weixiao Shen, \emph{Hausdorff dimension of the graphs of the classical
+  weierstrass functions}, arXiv preprint arXiv:1505.03986 (2015).
+
 \bibitem{sweldens1998}
 Wim Sweldens, \emph{The lifting scheme: a construction of second generation
   wavelets}, SIAM J. Math. Anal. \textbf{29} (1998), no.~2, 511--546.
@@ -81,10 +85,6 @@ Wim Sweldens, \emph{The lifting scheme: a construction of second generation
 \bibitem{sweldens1996}
 Wim Sweldens and Peter Schr{\"o}der, \emph{Building your own wavelets at home},
   Wavelets in the Geosciences (2000), 72--107.
-
-\bibitem{unser1999}
-Michael Unser, \emph{Splines: A perfect fit for signal and image processing},
-  IEEE Signal processing magazine \textbf{16} (1999), no.~6, 22--38.
 
 \bibitem{vitanyi1993}
 Paul Vitanyi and Ming Li, \emph{An introduction to kolmolgorov complexity and

@@ -238,7 +238,7 @@ shared across the workflowr files. -->
 <p><strong>Last updated:</strong> 2017-07-23</p>
 <!-- Insert the code version (Git commit SHA1) if Git repository exists and R
  package git2r is installed -->
-<p><strong>Code version:</strong> Unavailable. Initialize Git repository to enable.</p>
+<p><strong>Code version:</strong> ff35075</p>
 <pre class="r"><code>  devtools::load_all()
   knitr::read_chunk(&quot;../code/eegplot.R&quot;)</code></pre>
 <pre class="r"><code>  eeg &lt;- readRDS(cache_file(&quot;eegsnip&quot;, prefix = &quot;eeg&quot;))
@@ -411,6 +411,52 @@ Schematic of the trial time periods. A seizures is indicated as a ‘repsonse’
 </p>
 </div>
 <pre class="r"><code>  # dev.off()</code></pre>
+<pre class="r"><code>  knitr::read_chunk(&quot;../code/eeg-cv-ch1-plot.R&quot;)</code></pre>
+<pre class="r"><code>  library(ggplot2)
+  prefix = &quot;eeg&quot;
+  
+  palette(eegpalette())
+  
+  meta_df &lt;- readRDS(cache_file(&quot;windows2&quot;, &quot;meta&quot;))
+  predict &lt;- readRDS(cache_file(&quot;cv_results_ch_1&quot;, &quot;eeg&quot;) )
+  predict_df &lt;- predict$df
+  colkey &lt;- predict_df$trial_type &lt;- meta_df %&gt;% 
+            dplyr::filter(window == 240) %&gt;% 
+            dplyr::select(col_key)
+  colkey &lt;- colkey[[1]]
+  # colkey[colkey == 3] &lt;- 2
+  
+  thresholds &lt;- readRDS(cache_file(&quot;cvthresholds&quot;, prefix))
+  
+  
+  tnames &lt;- paste0(&quot;Trial &quot;, 1:26)
+  tnames &lt;- factor(tnames, levels = tnames)
+  
+  names(predict_df) &lt;- c(&quot;response&quot;,&quot;probability&quot;, &quot;trialnum&quot;, &quot;ground&quot;)
+  
+  # Edited : Seizure vs No seizure
+  ggplot(predict_df, aes( x = tnames, y = probability)) + 
+    geom_point(stat=&#39;identity&#39;, aes(col=as.factor(colkey)), size= 4) +
+    scale_color_manual(name=&quot;&quot;, 
+                       labels = c(&quot;No response&quot;, &quot;Seizure response&quot;, &quot;2nd response&quot;), 
+                       values = eegpalette()) +
+                       labs(y = &quot;Probability&quot;, x = &quot;&quot;) +
+                       coord_flip() + 
+                       geom_hline(yintercept=thresholds[[1]], colour = &quot;chartreuse3&quot;) +
+                       theme_bw() + 
+                       theme(text = element_text(size= 16),
+                         axis.text.x = element_text(size = 16),  
+                         panel.background = element_rect(fill = &quot;transparent&quot;, colour = NA), 
+                         # panel.background = element_blank(), 
+                        plot.background = element_blank(), 
+                        legend.background = element_rect(fill = &quot;transparent&quot;, colour = NA))</code></pre>
+<div class="figure" style="text-align: center">
+<img src="figure/eeg-classification.Rmd/cv-ch2-1.png" alt="Probability of seizure for model built on channel 1 using complexity coefficients." width="672" />
+<p class="caption">
+Probability of seizure for model built on channel 1 using complexity coefficients.
+</p>
+</div>
+<pre class="r"><code>  palette(&quot;default&quot;)</code></pre>
 </div>
 <div id="session-information" class="section level2">
 <h2>Session information</h2>
@@ -448,17 +494,18 @@ loaded via a namespace (and not attached):
 [16] stringr_1.2.0         timeDate_3012.100     munsell_0.4.3        
 [19] fBasics_3011.87       commonmark_1.2        gtable_0.2.0         
 [22] timeSeries_3022.101.2 devtools_1.13.2       gmwm_2.0.0           
-[25] memoise_1.1.0         evaluate_0.10.1       knitr_1.16           
-[28] highr_0.6             Rcpp_0.12.11          scales_0.4.1         
-[31] backports_1.0.5       abind_1.4-3           sapa_2.0-2           
-[34] gridExtra_2.2.1       fracdiff_1.4-2        digest_0.6.12        
-[37] stringi_1.1.5         grid_3.4.1            rprojroot_1.2        
-[40] fractaldim_0.8-4      quadprog_1.5-5        tools_3.4.1          
-[43] magrittr_1.5          ifultools_2.0-4       lazyeval_0.2.0       
-[46] pdc_1.0.3             tibble_1.3.3          randomForest_4.6-12  
-[49] pkgconfig_2.0.1       MASS_7.3-45           xml2_1.1.1           
-[52] assertthat_0.2.0      rmarkdown_1.6         roxygen2_6.0.1       
-[55] R6_2.2.2              git2r_0.18.0          compiler_3.4.1       </code></pre>
+[25] memoise_1.1.0         evaluate_0.10.1       labeling_0.3         
+[28] knitr_1.16            highr_0.6             Rcpp_0.12.11         
+[31] scales_0.4.1          backports_1.0.5       abind_1.4-3          
+[34] sapa_2.0-2            gridExtra_2.2.1       fracdiff_1.4-2       
+[37] digest_0.6.12         stringi_1.1.5         grid_3.4.1           
+[40] rprojroot_1.2         fractaldim_0.8-4      quadprog_1.5-5       
+[43] tools_3.4.1           magrittr_1.5          ifultools_2.0-4      
+[46] lazyeval_0.2.0        pdc_1.0.3             tibble_1.3.3         
+[49] randomForest_4.6-12   pkgconfig_2.0.1       MASS_7.3-45          
+[52] xml2_1.1.1            pROC_1.9.1            assertthat_0.2.0     
+[55] rmarkdown_1.6         roxygen2_6.0.1        R6_2.2.2             
+[58] git2r_0.18.0          compiler_3.4.1       </code></pre>
 </div>
 
 

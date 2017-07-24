@@ -1,52 +1,85 @@
 \chapter{Seizure Prediction}
 
-Electroencephalograms(EEG) capture the electromagnetic 
-potential of similarly aligned neurons firing in unison. Although a number of correlations between 
-EEG and physiological phenomena have been found the relation between EEG and neural circuitry dynamics are still not well-understood \cite{eeg}. 
-one difficulty is relating in vitro behavior of individual neural cells with in vivo behavior of both local and global neural dynamics.  
-For a neuropathological condition like epilepsy, 
-the challenge is to relate global spread of 
-synchronized firing to local cellular mechanisms.
+Electroencephalograms(EEGs) capture the electromagnetic 
+potential of aligned neurons firing in unison. 
+Although a number of correlations between 
+EEG and physiological phenomena have been found the relation between EEG and the dynamics of local neural circuitry are not well-understood \cite{eeg}. 
+One difficulty is relating in vitro behavior of individual neural cells or small clusters of cells with the more complex 
+large scale variations recorded by the EEG signal.  
+In the case of the epileptic neuropathology, 
+the challenge is to relate better known 
+local cellular mechanisms to 
+the spread synchronized neuronal firing associated with 
+epileptic seizures. Making this connection between 
+the larger scale electromagnetic phenomena recorded 
+by the EEG signal and local neural dynamics is 
+not the goal of this Chapter. Instead, this was 
+a preliminary study to determine whether 
+a seizure response to a locally applied stimulus
+could be predicted based EEG recorded prior to the stimulus.
+An additional aim of this chapter is to compare 
+classification models based on the segmentation of 
+EEG features based on the $\varepsilon$-complexity
+coefficients.
 
-In this chapter, we analyze EEG data gathered 
-from a group of mice afflicted with a genetic 
-mutation that causes early onset epilepsy similar to 
-Dravet syndrome. This was an exploratory study to assess how well stimulus-induced seizures could be predicted and to find those features correlated with the likelihood of a seizure. 
+% The results, on the other hand, were intended to 
+% inform additional studies of the dynamics 
+Using a 4 minute window of EEG taken from an 
+epilepsy prone mouse we predict whether a stimulus
+will induce a seizure response.  
+A small set of spectral and non-linear 
+features are calculated on six EEG channels. 
+Change points in the $\varepsilon-$complexity coefficients
+are used to segment the features and the results 
+are compared to other segmentation methods.
+We also compare the features and 
+channels predictive of seizure outcomes with 
+the variation in feature distributions of trials with
+seizure and non-seizure outcomes. Because predictions are 
+made on a channel-by-channel basis, we also able to compare 
+how features predictive of seizure outcomes vary 
+by channel and brain region.
 
-The study of complex biological signals like EEG 
-was one of the motivations for developing the 
-$\varepsilon-$complexity feature. EEG are non-stationary
-signals that exhibit transient waveforms and apparent regime changes over relatively short periods of times. In the context of dynamical systems, a regime change describes an alternation between semi-stable states 
-\cite{lorenz2006}. While we do not assume the brain dynamics can be described as a non-linear dynamical system, the term is useful for characterizing the
-observed behavior of EEG signals. 
 
-A common method of analyzing EEG is to compute some set of features on the raw signal and use averages of the features over fixed windows. The procedure 
-serves as a way of reducing the high-dimensional 
-EEG signal and extracting a more interpretable
-feature set. One drawback of this method is that the process of averaging over arbitrary windows may obscure important features associated with the varying dynamics of the brain. 
+\section{Introduction}
 
-Previous studies have used a change-point detection algorithm applied to the raw EEG signal 
-to segment and cluster these varying brain states, 
-for example, the sleep states of neo-nates\cite{pirya2009}.
-The $\varepsilon-$complexity feature is meant to capture an intrinsic feature of the signal. As shown in 
-Chapter 4, the feature may also be related to the 
-fractal dimension of a signal which Gneiting describes
-as a second order statistical property of 
-a signal through its relation to the variogram or 
-correlation function\cite{gneiting2012}. 
+EEG are non-stationary signals 
+marked by transient waveforms and 
+apparent regime changes over relatively short periods of times.
+A common method of analyzing EEG is to compute 
+some set of features on the raw signal EEG signal
+and use these features as input to one or more classifiers. 
+These features often combine a decomposition 
+of the signal, for example, spectral, wavelet, principal component(PCA) or independent component(ICA) decompositions, with 
+some linear or non-linear features\cite{alotaiby2014}.
+Signal decomposition and feature selection
+serve to reduce the high-dimensional 
+EEG signal to a more interpretable feature set by 
+averaging feature values over a sliding window.
+One drawback of this method is that the process of averaging over arbitrary windows may obscure important 
+features associated with the varying dynamics of the brain. 
 
-In this chapter, we design a classifier that modifies
-the typical feature extraction method segmenting the signal based on the $\varepsilon-$complexity coefficients. 
-We compare classification accuracy on a dynamically segmented
-set of features to several models that uniformly segment the feature set. For each of these models, we 
-attempt to predict seizures based on features 
-extracted from individual EEG channels rather than from the full set of six. The set of EEG channels correspond to specific functional regions of the brain.  
+
+Here, we use a set of spectral features and 
+non-linear features to predict seizure outcomes. 
+However, instead of segmenting the signal on uniform partitions
+the segmentation is based on changes in the $\varepsilon-$complexity coefficients.
+The $\varepsilon-$complexity coefficients were designed to 
+capture discontinuities or regime changes in a signal. By 
+partitioning the feature space at changes in the 
+complexity coefficients we hope to capture features are 
+more homogeneous segments. 
+
+We compare classification performance based on 
+several segmentation schemes, using both the complexity coefficients 
+and a set of uniform break points to partition the features.
+For each of these models, the prediction of seizure outcomes 
+is based on features computed on single EEG channels.
 Feature extraction and classification based on individual channels allows us to make more fine-grained inferences about the combination of feature and region that are associated with a seizure response.
-
 
 % The $\varepsilon-$complexity feature was develope with 
 
-% The ECoG -- which I will refer to simply as EEG --
+% The iEEG -- which I will refer to simply as EEG --
 % signal captures changes in field potential caused by large 
 % groups of aligned neurons firing synchronously. The LFP sensors
 % capture a signal from a smaller cluster of neurons.
@@ -59,15 +92,16 @@ Feature extraction and classification based on individual channels allows us to 
 
 \section{EEG Data}
 
-The EEG data gathered from 4 mice with a genetic 
-mutation in the voltage-gated sodium channel gene Scn1a 
-a similar mutation to that causing Dravet syndrome 
-The mutation results in early onset epileptic seizures \cite{ito2013}.
-The mice were equipped with 4 electrocortical(ECoG) sensors --intracranial sensors placed directly on the brain cortex --  
-along with 2 local field potential (LFP) sensors located 
- in the thalamus.  
-The mice were genetically modified to produce a light sensitive protein, an opsin, allowing for direct stimulation of neurons with a laser pulse train. 
-
+The EEG data were gathered from 4 mice with a genetic 
+mutation in the voltage-gated sodium channel gene Scn1a. 
+A similar mutation is responsible for the Dravet syndrome 
+and the mutation results in early onset epileptic seizures \cite{ito2013}.
+The mice were equipped with 4 intracranial(iEEG) electrodes ---intracranial sensors placed directly on the brain cortex ---  
+along with 2 local field potential (LFP) electrodes located 
+ in the thalamus. The mice were genetically modified to produce a 
+ light sensitive protein, an opsin. This allows for direct 
+ stimulation of neurons with a laser pulse train. The stimulus is designed to induce a seizure in the mouse.
+ 
 % \begin{figure}[!htbp]
 %   \begin{center}
 %   % \begin{picture}(60,60)
@@ -81,22 +115,24 @@ The mice were genetically modified to produce a light sensitive protein, an opsi
 %            vertical bars indicate applications of the stimulus.}
 % \end{figure}
 
-Data was gathered from 13 distinct time periods during which the was applied one to four times. 
-4-minute segments preceding the stimulus were used as the final set of 26 trials. The results of each 
-trial was were coded as either a seizure, which 
-we refer to as a positive response, or no seizure. 
+Data was gathered from 13 distinct time periods during which the 
+stimulus was applied between one to four times. 
+The 4-minute segments preceding the stimulus was used 
+to predict outcomes and there were 26 trials in total.
+ The result of each trial was were coded as either a seizure 
+ or no seizure and we refer to a seizure as a positive response. 
 Coding was based on the visible response of the 
 mouse. The EEG signals around the stimulus period were also visually examined to check the accuracy of the coding.
-
-The EEG was sampled at 1220.7 Hz and
+The iEEG and LFP signals was sampled at 1220.7 Hz and
 a bandpass filter removed frequencies below 0.5 Hz and greater
 than 300 Hz. A notch filter was applied at 60 Hz and its harmonic frequencies. 
 
 
 \section{EEG Features}
-We selected a feature set consisting of standard 
-spectral characteristics along with a few additional 
-features. The power in frequency bands 
+
+The features consisted of windowed spectral band power
+estimates, variance and two non-linear features.
+The power in frequency bands 
 delta, theta, alpha, beta, and gamma was calculated 
 as the integral of the spectral density $f(\lambda)$ 
 computed as a smoothed periodogram. For example, 
@@ -104,24 +140,37 @@ delta band power, $\delta B$, corresponds to
 the frequency band $0.5-4Hz$ and integrates  
 $f(\lambda)$ over over this interval
 \[
-  \B = \int_{0.5}^{4} f(\lambda) d\lambda. 
+  \delta B = \int_{0.5}^{4} f(\lambda) d\lambda. 
 \]
-The frequency bins corresponding to the remaining bands are, 
-in order,$ 4-8Hz, 8-12Hz, 12-30Hz, 30-100Hz$. 
+The frequency bins corresponding to the remaining
+the theta, alpha, beta and gamma frequency bands are 
+$ 4-8Hz, 8-12Hz, 12-30Hz, 30-100Hz$. Relative 
+band power, band power divided by total power, 
+was used as the final feature.
 
-Additional features were selected based on two tests.
-A set of non-linear features including sample entropy,
+A smaller set of non-linear features was chosen 
+based on their ability to 
+classify the simulation groups used in Chapter 3. 
+Features that did not increase the performance of a random 
+forest classifier were omitted from the final feature set.
+The initial set of features were sample entropy,
 and permutation entropy, spectral entropy, a Hurst 
-parameter estimator and fractal dimension along with wavelet coefficients  and variance were tested for their ability to discriminate between the same two groups of simulations used in Chapter 3 to test the approximation methods used in estimating complexity coefficients. Based on these results, spectral entropy, fractal dimension, the Hurst parameter and the wavelet coefficients, along with the spectral band power features and the complexity coefficients were computed on the EEG. In informal testing
-with a baseline classification model, the wavelet coefficients did not improve classification results and were removed from the final feature set. Given more data, feature selection might have been better performed through cross-validation on a training set. On the other hand, one of our goals was to work with a reduced feature set that was more readily interpretable. 
+parameter estimator, wavelet variance, a fractal dimension estimator and signal variance. Of these, variance, spectral entropy and the Hurst parameter were used in our final classifier.
 
-We have defined most of the features used in classification in Chapter 2. Spectral Entropy is a measure of the distribution in the spectrum of a signal. 
+%  were tested for their ability to discriminate between the same two groups of simulations used in Chapter 3 to test the approximation methods used in estimating complexity coefficients. Based on these results, spectral entropy, fractal dimension, the Hurst parameter and the wavelet coefficients, along with the spectral band power features and the complexity coefficients were computed on the EEG. In informal testing
+% with a baseline classification model, the wavelet coefficients did not improve classification results and were removed from the final feature set. Given more data, feature selection might have been better performed through cross-validation on a training set. On the other hand, one of our goals was to work with a reduced feature set that was more readily interpretable. 
+
+
+ \textit{Spectral entropy} is a measure of the distribution of 
+ power in the spectrum of a signal. 
 \[  
   SE = - \int_{-\pi}^{\pi} f_x(\lambda) \log f(\lambda) d \lambda.
 \]
-The Hurst parameter was estimated using the corrected empirical Hurst exponent\cite{weron2002}.  
- 
-All features were calculated on non-overlapping 2-second intervals. The final list of feature used in classification was 
+We have defined the Hurst parameter, a measure of long-range 
+dependence, in Chapter 2. The Hurst parameter was estimated using the corrected empirical Hurst exponent\cite{weron2002}.  
+
+
+All features were calculated on non-overlapping 2 second intervals. The final list of feature used in classification was 
 \begin{enumerate}
 \item Delta, theta, alpha, beta, gamma 
 \item Spectral entropy 
@@ -129,40 +178,24 @@ All features were calculated on non-overlapping 2-second intervals. The final li
 \item Variance
 \end{enumerate}
 
-The complexity coefficients were used in our segmentation 
-classifier but not as a feature. The variogram estimator of fractal dimension, $\hat D$ was also computed but was omitted from the final models as the feature appeared closely correlated with the complexity coefficient $B$. 
+The complexity coefficients were used to segment the features
+but were not included as features in the final set of 
+classifiers.
+All features were computed on 2 second non-overlapping windows.
+% The variogram estimator of fractal dimension, $\hat D$ was also computed but was omitted from the final models as the feature appeared closely correlated with the complexity coefficient $B$. 
 
-% Figure \ref{fig:trialplot}
-% is a schematic picture of the trial periods. 
-% There are several trials that did not follow a previous 
-% seizure, and below we compare whether the features
-% for these trials appear to come from a distribution 
-% similar to the seizure response trials that followed 
-% a previous seizure.
 
-% Segmentation on the complexity coefficients is a 
-% depends on the 
-% Initially, the features were computed on 4 second intervals but at this resolution no change points were detec
+\section{Classification Procedure}
 
-\section{Segment Classifier}
-
-% Although raw EEG time series values are used in some classification approaches, when using neural-network based classifiers for example,
-%  a common approach is to compute a set of features on the time series and use 
-% these features as predictors. Using features rather than raw time series 
-% serves to reduce the dimensionality of the data. 
-Whether it is spectral features or $\varepsilon-$complexity 
-features, the mapping of the raw data to the 
-features results both in a dimensionality 
-reduction and an averaging over some variation and structure 
-in the data. That is, there is a trade-off between losing 
-important variation in the data and reducing the dimension
-of the raw input. In our approach, we compute features 
-in three basic steps. Features are computed at a relatively 
-fine resolution for each EEG channel. Given an 
-individual channel, the time series formed by the features
-is segmented based on changes in the complexity coefficients. 
-The weighted averages of the features set on these segments is
-used as a training set for the classifier. 
+The classification procedure takes place in four main 
+steps.
+For each channel, the features are computed on 2 second 
+intervals. The resulting set of features is segmented based on changes in the complexity coefficients. 
+The weighted averages of the features on these segments is
+then used as training set for the classifier. Classifier
+performance was evaluated using 5-fold cross-validation
+and positive responses were even spread across the 
+5 test sets.
 
 
 % We selected a small set of features for our classifier. 
@@ -236,19 +269,32 @@ used as a training set for the classifier.
          a classifier.
    \item Train a classifier on the means of the 
          segments. 
-  \item  For the means of the segmented test set,
+  \item  Using the held-out test set, 
          compute the class probability of each 
-       segment using the trained 
+       segment of the test trial using the trained 
          classifier. 
-  \item  For each trial use the prediction probabilities of each segment weighted by segment length to compute the final class probability.
+  \item  For each trial the sum of the prediction probabilities of each segment, weighted by segment length, determine the final class probability.
 \end{enumerate} \label{alg:segment-alg}
 
 In the case of a uniform partition of the features, this
 the method is equivalent to simply using the average class probability for each segment to classify the trial.
 
-In theory, any classifier, or several classifiers could be used in steps 5 and 6. We used a random forest classifier. The random forest is constructed from a large number of individual decision trees. For numeric data, the decision trees partition the feature space into $d-$dimensional rectangles each labeled with a class. The decision trees branches correspond to partitions of the feature space. For each branch, a subset of the features are chosen and the split is made in order to increase the class purity of each partition. The final prediction is based on the combined vote of the individual trees.  In addition to random selection of features, a random subset of observations are used to build each tree. This allows for an out-of-bag(OOB) estimate of the classifier 
+% \subsection{Random Forest Classifier}
+
+In theory, any classifier, or several classifiers could be used in steps 5 and 6. We used a random forest classifier. The random forest is constructed from a large number of individual decision trees. For numeric data, the decision trees partition the feature space into $d-$dimensional rectangles each labeled with a class\cite{friedman2001}. The decision trees branches correspond to partitions of the feature space. For each branch, a subset of the features are chosen and the split is made in order to increase the class purity of each partition. The final prediction is based on the combined vote of the individual trees.  In addition to random selection of features, a random subset of observations are used to build each tree. This allows for an out-of-bag(OOB) estimate of the classifier 
 accuracy which is calculated by classifying each observations using the set of trees which were built without seeing that observation \cite{breiman2001}.
 
+The effect of individual features on the classification outcomes
+can be less transparent for non-linear classifiers like random forest
+when compared to regression-based classifiers. However, the 
+importance of the variable in discriminating classes can 
+be recovered from the classification trees. 
+We report the mean variable importance of the random forest classifiers determined by the mean decrease in the 
+Gini index across all branches
+\cite{breiman2001}. The Gini index measures node purity, or 
+the homogeneity of a class in a given node resulting from 
+some division of the feature space. Informally, for binary 
+classification variable importance measures how well a feature divides two classes into homogeneous cells.
 \begin{figure}[!htbp]
   \begin{center}
   % \begin{picture}(60,60)
@@ -269,19 +315,30 @@ is an accurate prediction of a seizure while a
  \textit{true negative} is an accurate prediction of a non-response. 
 The  \textit{sensitivity} of the classifier is then 
 defined as the proportion of true positives to total 
-positive and  \textit{specificity} is the total of true 
-negatives to total negatives. We use the term accuracy to refer to balanced accuracy
+positives
+\[
+  \frac{\text{True positives}}{\text{Total Positives}}
+\]
+ and  \textit{specificity} is the total of true 
+negatives to total negatives:
+\[
+  \frac{\text{True Negatives}}{\text{Total Negatives}}.
+\] 
+We use the term accuracy to refer to balanced accuracy
 \[
   \text{Balanced Accuracy} = \frac{\text{Sensitivity + Specificity}}{2}.
 \] 
-We also report AUC, or area under the ROC curve, see 
-Figure \ref{fig:eegroc} for an example from two 
+We also report AUC, or area under the ROC curve: see 
+Figure \ref{fig:eegroc} for an example ROC curve from two 
 of the classifiers tested. The 'curve' is the plot 
-of the sensitivty against the false positive rate or 
-$1 - $specificity and a higher AUC indicates a better performing classifier.
+of the sensitivity against the false positive rate or 
+$1 - $specificity and a higher AUC corresponds to a better performing classifier. An AUC of 1 indicates the correct classification of 
+all observations.
 
-We created a simple baseline classification model to compare to the segmented classifiers. The feature set for this model was the mean of each of the 8 features on the six channel resulting in 48 features. A random forest classifier was trained on these features and the out-of-bag classification results are reported in table \ref{tab:baseline}.
-
+A baseline classification model was built using the mean of each of the 8 features on the six channel resulting in 48 features. A random forest classifier was trained on these features and the out-of-bag classification results are reported in table \ref{tab:baseline}.
+This baseline model classifies the over represented class, 
+the negative or no-seizure responses, with 93\% accuracy but 
+classification of a seizure response was no better than random.
 % Asymptotically this is an unbiased estimate the error on a
 
  \begin{table}[!htbp] \centering 
@@ -313,18 +370,22 @@ We created a simple baseline classification model to compare to the segmented cl
 
 We compared six models to this baseline model. For each 
 model a different partition scheme was used. For the models
-using complexity coefficients we denote $A, B, A+B$ where 
-each trial was partitioned based 
-on change points detected in the corresponding complexity 
-coefficients and the $A + B$ model is simply the union 
-of the change points of both complexity coefficients. 
-Three other models used regular partitions.   
-Each trial was uniformly segmented into $8, 15$ or $30$ segments and we refer
-to these models by the partition number. 
+using complexity coefficients we label the models $A, B, A+B$,
+ where the label corresponds to the complexity coefficient 
+ or coefficients whose change points determined the
+ partition. For example, the $A + B$ model partitions
+ features based on the union 
+of the change points of both complexity coefficients $A$ and 
+$B$. 
+For three other models we partitioned features into regular 
+segments of length $8, 15$ or $30$. We refer to these models
+by the number of partitions.
 
 The performance of these models was assessed using 
-5-fold cross-validation where balanced sets were used for the hold-out set for each fold. The reported results are based on 10 repetitions or bootstrap samples. Results for a larger number of repetitions, 50, were similar. We report to smaller sample to emphasize the relative sizes of the confidence intervals of the reported performance measures. In general, all models performed best on the LFP channels, 
-here labeled channel 1 and 2. These sensors are located in the thalamus and measure the electrical potential of a small set of neurons. The best performing model was the regularly partitioned model with 8 segments followed by the model $A+B$.
+5-fold cross-validation where balanced sets were used for the hold-out set for each fold. The reported results are based on 50 bootstrap samples and the confidence intervals give the range 
+of the middle 95\% of the model samples.
+In general, all models performed best on the LFP channels, 
+here labeled channel 1 and 2. The best performing model was model $8$ followed by the $B$ model.
 
 \begin{figure}[!htbp]
   \begin{center}
@@ -333,72 +394,66 @@ here labeled channel 1 and 2. These sensors are located in the thalamus and meas
   \includegraphics[width = \textwidth, keepaspectratio]{./figs/eeg-partition-diagnostic.pdf}
   % \end{picture}
   \end{center}
-  \caption{Classification diagnostic values for each partition method for LFP channel 1.}
+  \caption{Classification diagnostic values for each classifier using
+   features LFP channel 1.}
   \label{fig:eeg-diagnostic} 
 \end{figure}
 
-The performance measures for each classifier on channel 
-1 are shown in figure \ref{fig:eeg-diagnostic}. The 
-mean and 95\% confidence interval based on 10 
-bootstrap classifications are reported.  All methods classified 
-non-response trials well but the two better performing
- models -- model 8  and model $A+B$ -- 
-had relatively high accuracy in classifying seizure responses: 76\% for model $A+B$ and 79\% for model 8. 
+The mean and 95\% confidence intervals for the 
+performance measures for each classifier using features
+computed on channel are shown in Figure \ref{fig:eeg-diagnostic}.
+All methods classified non-response trials well but the two better performing
+ models --- model 8  and model $B$ --- 
+had relatively high accuracy in classifying seizure responses: 76\% for model $B$ and 79\% for model 8. 
 
-Classification is generally more difficult 
-when classes are unbalanced, that is, when there are 
-significantly fewer observations in the training 
-set of one class compared to the other. Other 
-than performing cross-validation on a balanced 
-hold-out set, no other adjustments were made in 
-the underlying random forest model or the 
-threshold probability for selecting a class.  
-
-% \begin{minipage}{0.45\textwidth}
+% Table created by stargazer v.5.2 by Marek Hlavac, Harvard Unaiversity. E-mail: hlavac at fas.harvard.edu
+% Date and time: Tue, Jul 11, 2017 - 02:07:16 AM
 \begin{table}[!htbp] \centering 
-\begin{tabular}{@{\extracolsep{1pt}} ccccccc} 
+\begin{tabular}{@{\extracolsep{-5pt}} ccccccccccccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
- & Ch1 & Ch2 & Ch3 & Ch4 & Ch5 & Ch6 \\ 
+ & CH1 & (sd1) & CH2 & (sd2) & CH3 & (sd3) & CH4 & (sd4) & CH5 & (sd5) & CH6 & (sd6) \\ 
 \hline \\[-1.8ex] 
-A & $0.76$ & $0.76$ & $0.70$ & $0.71$ & $0.57$ & $0.60$ \\ 
-B & $0.78$ & $0.77$ & $0.70$ & $0.69$ & $0.60$ & $0.64$ \\ 
-A+B & $0.84$ & $0.70$ & $0.69$ & $0.71$ & $0.59$ & $0.61$ \\ 
-8 & $0.85$ & $0.81$ & $0.69$ & $0.71$ & $0.68$ & $0.82$ \\ 
-15 & $0.79$ & $0.79$ & $0.73$ & $0.71$ & $0.73$ & $0.73$ \\ 
-30 & $0.78$ & $0.80$ & $0.72$ & $0.71$ & $0.72$ & $0.84$ \\ 
+A & 0.82 & (0.04) & 0.77 & (0.04) & 0.69 & (0.02) & 0.71 & (0.04) & 0.57 & (0.04) & 0.63 & (0.03) \\ 
+B & 0.83 & (0.03) & 0.77 & (0.04) & 0.71 & (0.03) & 0.71 & (0.03) & 0.61 & (0.05) & 0.65 & (0.06) \\ 
+A+B & 0.81 & (0.03) & 0.73 & (0.03) & 0.70 & (0.04) & 0.72 & (0.03) & 0.57 & (0.09) & 0.63 & (0.07) \\ 
+8 & 0.83 & (0.05) & 0.82 & (0.04) & 0.74 & (0.04) & 0.72 & (0.02) & 0.75 & (0.05) & 0.74 & (0.06) \\ 
+15 & 0.82 & (0.05) & 0.84 & (0.04) & 0.73 & (0.04) & 0.73 & (0.02) & 0.77 & (0.05) & 0.78 & (0.06) \\ 
+30 & 0.79 & (0.07) & 0.77 & (0.05) & 0.76 & (0.04) & 0.76 & (0.03) & 0.73 & (0.08) & 0.75 & (0.04) \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
-  \caption{Balanced accuracy for each model and channel} 
+  \caption{Mean and s.d. of balanced accuracy for all models.} 
   \label{tab:all-accuracy} 
 \end{table} 
-% \end{minipage}
-% \hfill
-
-% \begin{minipage}{0.45\textwidth}
-\begin{table}[!htbp] \centering  
-\begin{tabular}{@{\extracolsep{1pt}} ccccccc} 
+% Table created by stargazer v.5.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: Tue, Jul 11, 2017 - 02:06:02 AM
+\begin{table}[!htbp] \centering 
+\begin{tabular}{@{\extracolsep{-5pt}} ccccccccccccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
- & Ch1 & Ch2 & Ch3 & Ch4 & Ch5 & Ch6 \\ 
+ & CH1 & (sd1) & CH2 & (sd2) & CH3 & (sd3) & CH4 & (sd4) & CH5 & (sd5) & CH6 & (sd6) \\ 
 \hline \\[-1.8ex] 
-A & $0.64$ & $0.58$ & $0.46$ & $0.49$ & $0.23$ & $0.28$ \\ 
-B & $0.66$ & $0.59$ & $0.48$ & $0.53$ & $0.36$ & $0.34$ \\ 
-A+B & $0.76$ & $0.46$ & $0.46$ & $0.52$ & $0.28$ & $0.30$ \\ 
-8 & $0.79$ & $0.68$ & $0.48$ & $0.51$ & $0.50$ & $0.69$ \\ 
-15 & $0.69$ & $0.63$ & $0.52$ & $0.50$ & $0.62$ & $0.53$ \\ 
-30 & $0.62$ & $0.67$ & $0.51$ & $0.49$ & $0.57$ & $0.76$ \\ 
+A & 0.73 & (0.06) & 0.60 & (0.08) & 0.46 & (0.04) & 0.52 & (0.05) & 0.26 & (0.07) & 0.33 & (0.05) \\ 
+B & 0.76 & (0.07) & 0.59 & (0.07) & 0.51 & (0.06) & 0.53 & (0.05) & 0.37 & (0.09) & 0.38 & (0.11) \\ 
+A+B & 0.69 & (0.07) & 0.51 & (0.06) & 0.49 & (0.08) & 0.53 & (0.05) & 0.23 & (0.17) & 0.32 & (0.12) \\ 
+8 & 0.77 & (0.11) & 0.70 & (0.07) & 0.59 & (0.07) & 0.54 & (0.04) & 0.62 & (0.11) & 0.57 & (0.11) \\ 
+15 & 0.71 & (0.09) & 0.73 & (0.08) & 0.57 & (0.06) & 0.56 & (0.00) & 0.68 & (0.12) & 0.62 & (0.12) \\ 
+30 & 0.64 & (0.14) & 0.60 & (0.09) & 0.60& (0.08) & 0.61 & (0.06) & 0.59 & (0.15) & 0.58 & (0.09) \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
-  \caption{Specificity for all models and channels.} 
-  \label{tab:specificity}
-\end{table} 
-% \end{minipage}
+  \caption{Mean and s.d. of specificity for all models.} 
+  \label{tab:all-specificity} 
+\end{table}
 
-The balanced accuracy all models for each channel is shown in Table \ref{tab:all-accuracy}. All partition
+
+The balanced accuracy of all models for each channel is
+reported in Table \ref{tab:all-accuracy}. All partition
 schemes resulted in fairly high rates of accuracy for channels 1 and 2. The models with a higher number of 
 partitions performed significantly better on the 
-ECoG channels 3-6. On the other hand, accurate classification of seizures tailed off sharply for all ECoG channels as seen in Table \ref{tab:specificity}. 
+iEEG channels 3-6. Accurate classification of seizures tailed off sharply for all iEEG channels as seen in Table \ref{tab:all-specificity}. In particular, specificity was greater than 70\% for only 
+a few models, all of which used channels 1 or 2. The ROC and smoothed ROC curves in Figure \ref{fig:eegroc}
+for are similar for both the model $A + B$ and model $8$. 
+
 
 \begin{figure}[!htbp]
   \begin{center}
@@ -407,22 +462,14 @@ ECoG channels 3-6. On the other hand, accurate classification of seizures tailed
   \includegraphics[width = \textwidth, keepaspectratio]{./figs/eegroc-comb.pdf}
   % \end{picture}
   \end{center}
-  \caption{ROC curves and smoothed ROC curves
-           for classification on channel 1 using 
-           partitions on coefficient B and a regular partition into 
-           8 segments.}
+  \caption{Best ROC curves for classifiers $B$ and $8$.}
 \end{figure}
 \label{fig:eegroc} 
-\section{Feature Importance}
 
-As mentioned above, with only a small set of observations, 
-improved classification on one or two instances
-would affect the performance of the classifier.
-Whether the model used here --
-partitions based on complexity coefficients -- would be successful in other contexts remains to be seen. 
-One of our assumptions was that arbitrary partitioning would average over changes variations in the features that corresponded to transient states. 
-But whether the complexity coefficients capture significant
-changes in the underlying dynamics that are useful for classfication might depend on both feature selection and the classification task. 
+
+
+
+\section{Feature Importance}
 
 % \begin{table}[!htbp]
 % \begin{center}
@@ -446,15 +493,24 @@ changes in the underlying dynamics that are useful for classfication might depen
 % Table created by stargazer v.5.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
 % Date and time: Sun, Jun 25, 2017 - 10:27:00 PM
  
-A goal of our study was to determine features  
-predictive of seizures. The selection of a reduced
-the feature set and prediction on isolated channels
-allow us to measure the feature importance for 
-classification for each sensor location.
-The distributions of features for response and non-response trials are looked
-at below. Examining the one-dimensional distribution of the feature may not reveal interactions between the features in higher dimensions. 
-On the other hand, decision trees divide up the feature space in complex ways and the final ensemble votes are what determines the classification outcome. 
-In theory, those features found to be useful in classification will not necessarily be identifiable with basic summary statistics such as the mean, median or variance. However, for our data, the features used by the best predictors were associated with significant distributional differences across classes.
+
+The classification results show that seizures could with 
+a relatively high degree of accuracy for some model 
+and channel combinations. Apart from the baseline 
+model, each of these models used features calculated 
+on individual channels. This allows us to look at 
+the combination of feature and channel 
+associated with accurate predictions. Here 
+we compare the variable importance of the more successful 
+models to the difference in feature distributions 
+between trials with a seizure and non-seizure response.
+Random forests build multiple decision trees that divide up the feature space in complex ways and the final classification is
+tallied from the votes of individual trees. This means there 
+may be now clear relation between feature distribution and 
+random forest variable importance. Nevertheless, we find that 
+features associated with the best predictors were associated
+with clear differences in distributions between trial classes.
+
 %  in particular 
 % the features trained on predictors trained on the LFP channels 1 and 2. 
 
@@ -470,21 +526,19 @@ In theory, those features found to be useful in classification will not necessar
   % \includegraphics[width = 0.9\linewidth, height = 3in]{./figs/coeff-interp-simple-functions1.pdf}
     % \caption{Functions without added noise.}
       \end{subfigure}
-  \caption{Variable importance for
-   partition methods normalized to 
-  a $[0,1]$ interval for each channel.}
+  \caption{Normalized variable importance for
+     each partition method and channel.}
     \label{fig:corrplot}
 \end{figure}
 
-We report the mean variable importance of the random forest classifiers trained during cross-validation. Variable importance is determined by the mean decrease in the
-class Gini index when branches are made on a given feature
-\cite{breiman2001}. Informally, variable importance
-measures how well a feature divides response trials from non-response
-trials. In Figure \ref{fig:corrplot} we show the variable 
-importance for the two best performing models $A+B$ and the 
+In Figure \ref{fig:corrplot} we show the variable 
+importance for the two best performing models $B$ and the 
 model $8$. We have normalized variable importance to a $[0,1]$ interval for each model and
-channel so the figure shows the relative importance of the variable for each model. There is a common pattern in the variable importance across the two models. Gamma and theta bands have the highest importance for the best performing models, those trained on the LFP channels 1 and 2. 
-Both partition methods also show increased importance for beta on channels 4 and 5 and increase the importance of the Hurst coefficient for channels 3 and 4. 
+channel so the figure shows the relative importance of the variable for each model. There is a common pattern in the variable importance across the two models. Gamma and theta bands have the highest importance for the best performing models, those trained on the LFP channels 1 and 2. Both partition methods also show increased importance for beta on channels 4 and 5 and increase the importance of the Hurst coefficient for channels 3 and 4. However, no model 
+was able to accurately predict seizures using these channels 
+in isolation. The maximum specificty among all models trained 
+on these channels was 68\% and for the two models depicted 
+in \ref{fig:corrplot} this number was 59\%. 
 
 \begin{figure}[!htbp]
   \begin{subfigure}[b]{ \textwidth}
@@ -524,14 +578,16 @@ Both partition methods also show increased importance for beta on channels 4 and
 
 Variable importance as measured by the random forest classifiers 
 was also reflected in distributional differences in the features. 
-The boxplots in figure \ref{fig:boxplot} show the distribution 
+The box plots in figure \ref{fig:boxplot} show the distribution 
 and features for channels 1 and 3.  For channel 1, the relative 
 power of gamma is higher and theta lower for trials with 
 seizure responses. The median of theta and gamma fall outside the inter-quartile range and a similar distribution was similar for channel two.  For channel three, the relative power of theta
 and gamma are reversed with gamma lower and theta higher. 
 On the other hand, the distribution of beta for channels 1 and 2 
 were similar while beta was significantly lower for channels 3 and 4. Table \ref{tab:pvals}
-shows the p-value determined by the Wilcox rank-sum test. While a large number of data points guarantees that even small differences will be statistically significant, the table does highlight the non-significant values. 
+shows the p-value determined by the unpaired 
+Wilcox rank-sum test, a nonparametric test of
+the difference between two distributions. While a large number of data points guarantees that even small differences will be statistically significant, the table does highlight the non-significant values. 
 
 
 % Table created by stargazer v.5.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
@@ -553,7 +609,8 @@ Hurst & $< .0001$ & $< .0001$ & $< .0001$ & $< .0001$ & $< .0001$ & $< .0001$ \\
 Spectral Entropy & $< .0001$ & $< .0001$ & $< .0001$ & $< .0001$ & $0.0003$ & $< .0001$ \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
-  \caption{Wilcox rank sum test p-values for difference of medians.} 
+  \caption{P-values fo Wilcox rank sum test 
+   for difference of distribution} 
   \label{tab:pvals} 
 \end{table} 
 
@@ -562,15 +619,17 @@ Spectral Entropy & $< .0001$ & $< .0001$ & $< .0001$ & $< .0001$ & $0.0003$ & $<
 While we were able to predict a seizure result 
 with relatively high accuracy using several 
 classification methods, there are some 
-limitations to the study. Several mice 
-were used in the experiments but the 
-trials resulting in seizures came from a single mouse. 
-Additional data from other mice would be needed 
-to know whether the results reported here generalize. 
-In addition, most of the seizures 
-came from stimuli applied within two trials. This means
-several seizures occured after a previous seizure. 
-The features found predictive of a seizure may  
+limitations to the study. There were 4 mice 
+used in the experiments but the 
+trials resulting in seizures came from a single mouse.
+Data from other mice would be 
+required to know whether the features associated 
+with seizures held more generally. In addition, 
+most of the seizures 
+came from stimuli applied within two trials. 
+Several of the seizures responses, then, 
+occurred after a previous seizure. 
+Therefore, features found predictive of a seizure may  
 be conflated with features that are a result of a seizure. 
 % As mentioned in the limitations section, the seizure responses 
 % came in all cases from a single mouse and most of those 
@@ -578,21 +637,44 @@ be conflated with features that are a result of a seizure.
 % seizure. Whether the predictive model generalizes to other cases
 % and whether the differences in features that were predictive of 
 % a seizure are similar for other subjects remains open. 
-Because of the small number of trials, we did not 
+Due to the small number of trials, we did not 
 have a hold-out data set. The lab from which produced this 
-set of data is currently collecting additional data which will 
-enable us to test how well the predictive models generalize 
-and whether the observed differences in features hold for other 
-subjects. 
+set of data is collecting additional data.  
+Testing the predicitive models described here against 
+new data would better indicate whether the predictive power 
+generalize well.
 
 % Although feature importance seemed robust to changes 
 % in the partitions comparing feature performance across other 
 % predictive models 
-The segmentation model based on the complexity coefficients performed as well or somewhat better than two of the models with regular partitions. However, the regular partition models tended to perform more consistently across channels and the partition model with 8 segments outperformed the models segmented on the complexity coefficients. All models classified negative responses well so differences in model performance were based
-mostly on the classification of seizure responses of which there were only 9. The partition based on complexity coefficients is based on a change point algorithm which is somewhat sensitive to the number of data points. Using an increased number of data points, 
-for example, by taking measurements on an overlapping sliding window rather than on non-overlapping windows, may reduce the variability in how a time series is segmented based on the complexity coefficients. Tests of the model on simulated data sets or a wider range of time series would be needed to assess the performance of the model in more general contexts. 
+The segmentation model based on the complexity coefficients performed as the models with regular partitions for some channels.  However, the regular partition models tended to perform more consistently across channels. The models built using channels 
+the iEEG electrodes, channels 3-6, the models using features 
+partitioned at regular intervals performed better than the 
+models partitioned on change points in
+$\varepsilon-$complexity. The algorithm used to detect
+changes points in the complexity coefficients was sensitive to 
+the density at which the features were computed. For example, 
+computing the features, including the complexity coefficients 
+on an overlapping set of windows would increase the density at 
+which features were calculated. A finer resolution may 
+improve the detection of change points the complexity coefficients. 
+On average, the uniform partitions created divided the 
+trials into more segments. It may also simply be that a somewhat 
+finer segmentation than that given by the complexity coefficients
+is what improved the consistency of the models with uniform 
+partitions. 
+Tests of this segmentation model on simulated data sets or a wider range of time series would be needed to assess the performance of the model in more general contexts.  
 
 
+% One of our assumptions was that arbitrary partitioning would average over changes variations in the features that corresponded to transient states. 
+% But whether the complexity coefficients capture significant
+% changes in the underlying dynamics that are useful for classification might depend on both feature selection and the classification task. 
+
+% As mentioned above, with only a small set of observations, 
+% improved classification on one or two instances
+% would affect the performance of the classifier.
+% Whether the model used here --
+% partitions based on complexity coefficients -- would be successful in other contexts remains to be seen. 
 
 
 

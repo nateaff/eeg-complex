@@ -206,6 +206,8 @@ INPUT ./figs/sim_jitter_plot-sim-fits.pdf
 INPUT ./figs/ecomplex_approx-feature-space.pdf
 INPUT ./figs/ecomplex_approx-feature-space.pdf
 INPUT ./figs/ecomplex_approx-feature-space.pdf
+INPUT ./figs/ecomplex_approx-feature-space.pdf
+INPUT ./figs/ecomplex_approx-feature-space.pdf
 INPUT ./figs/benchmark-benchmark.pdf
 INPUT ./figs/benchmark-benchmark.pdf
 INPUT ./figs/benchmark-benchmark.pdf
@@ -254,8 +256,6 @@ INPUT ./figs/cauchybeta-scatterplots.pdf
 OUTPUT eeg/eeg.aux
 INPUT eeg/eeg.tex
 INPUT eeg/eeg.tex
-INPUT /usr/local/texlive/2014/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
-INPUT /usr/local/texlive/2014/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm
 INPUT ./figs/eeg-segment-plot.pdf
 INPUT ./figs/eeg-segment-plot.pdf
 INPUT ./figs/eeg-segment-plot.pdf
@@ -299,7 +299,6 @@ INPUT /usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pf
 INPUT /usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
 INPUT /usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
 INPUT /usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb
-INPUT /usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb
 INPUT /usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
 INPUT /usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb
 INPUT /usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb

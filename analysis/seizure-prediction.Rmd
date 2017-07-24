@@ -48,6 +48,27 @@ knitr::read_chunk("chunks.R")
   <<eeg-segment-plot>>
 ```
 
+
+```{r eeg-tables1}
+  knitr::read_chunk("../code/eeg-tables.R")
+```
+
+
+```{r eeg-tables2}
+  <<eeg-tables>>
+```
+
+
+```{r eeg-import}
+  knitr::read_chunk("../code/eeg-classify-roc-import.R")
+```
+
+
+```{r eeg-import2,  fig.cap = "Variable importance (mean-decrease in GINI) for all model and channel combinations."}
+  <<importance-plot>>
+```
+
+
 ## Trial
 
 
@@ -66,8 +87,10 @@ knitr::read_chunk("chunks.R")
 
 
 ```{r cv-ch2, fig.cap = "Probability of seizure for model built on channel 1 using complexity coefficients."}
-  <<tcv-ch1-plot>>
+  <<cv-ch1-plot>>
 ```
+
+
 
 
 ## Session information

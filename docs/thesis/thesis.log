@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.25)  3 JUL 2017 16:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.25)  14 JUL 2017 11:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -386,8 +386,11 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@example=\count126
 \c@claim=\count127
  (./thesis.aux
-(./cmds/cmds.aux) (./intro/intro.aux) (./bg/bg.aux) (./lift/lift.aux)
-(./holder/holder.aux
+(./cmds/cmds.aux) (./intro/intro.aux) (./bg/bg.aux) (./lift/lift.aux
+
+LaTeX Warning: Label `fig:feature-space' multiply defined.
+
+) (./holder/holder.aux
 
 LaTeX Warning: Label `fig:weierstrass' multiply defined.
 
@@ -490,29 +493,35 @@ File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 
 
 {/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
- [4] [5]
-[6] (./thesis.toc [7])
+ [4]
+(./thesis.toc)
 \tf@toc=\write3
 \openout3 = `thesis.toc'.
 
- [8] (./thesis.lot)
+ [5] [6] (./thesis.lot)
 \tf@lot=\write4
 \openout4 = `thesis.lot'.
 
- [9] (./thesis.lof
-Overfull \hbox (50.96796pt too wide) in paragraph at lines 14--14
+ [7] (./thesis.lof
+Overfull \hbox (3.84888pt too wide) in paragraph at lines 14--14
+ [][] []\OT1/cmr/m/n/12 Complexity co-ef-fi-cients and frac-tal di-men-sion for
+ val-ues of the random- 
+ []
+
+
+Overfull \hbox (47.7041pt too wide) in paragraph at lines 15--15
  [][] []\OT1/cmr/m/n/12 Fractional Brow-n-ian mo-tion and the Cauchy pro-cess w
 ith $\OML/cmm/m/it/12  \OT1/cmr/m/n/12 = \OMS/cmsy/m/n/12 f\OT1/cmr/m/n/12 0\O
 ML/cmm/m/it/12 :\OT1/cmr/m/n/12 20\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 0\OML/cmm/
 m/it/12 :\OT1/cmr/m/n/12 42\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 0\OML/cmm/m/it/12
- :\OT1/cmr/m/n/12 80\OMS/cmsy/m/n/12 g$\OT1/cmr/m/n/12 . 
+ :\OT1/cmr/m/n/12 80\OMS/cmsy/m/n/12 g$ 
  []
 
-[10])
+[8])
 \tf@lof=\write5
 \openout5 = `thesis.lof'.
 
- [11])
+ [9])
 \openout2 = `cmds/cmds.aux'.
 
  (./cmds/cmds.tex
@@ -536,11 +545,15 @@ Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[2])
+[2]
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[3]
+[3])
+Overfull \vbox (7.73332pt too high) has occurred while \output is active []
+
+
+[4]
 \openout2 = `bg/bg.aux'.
 
  (./bg/bg.tex
@@ -549,15 +562,11 @@ Chapter 2.
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[4
+[5
 
 
 
 ]
-Overfull \vbox (7.73332pt too high) has occurred while \output is active []
-
-
-[5]
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
@@ -617,23 +626,11 @@ Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[20]
+[20])
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
 [21]
-Overfull \vbox (7.73332pt too high) has occurred while \output is active []
-
-
-[22]
-Overfull \vbox (7.73332pt too high) has occurred while \output is active []
-
-
-[23])
-Overfull \vbox (7.73332pt too high) has occurred while \output is active []
-
-
-[24]
 \openout2 = `lift/lift.aux'.
 
  (./lift/lift.tex
@@ -642,116 +639,123 @@ Chapter 3.
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[25
+[22
 
 
 
 ]
+Overfull \hbox (5.84212pt too wide) in paragraph at lines 16--38
+ [][] 
+ []
+
+
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[26]
-<./figs/sim_jitter_plot_jitter_timeseries.pdf, id=136, 504.88625pt x 504.88625p
+[23]
+<./figs/sim_jitter_plot_jitter_timeseries.pdf, id=119, 504.88625pt x 504.88625p
 t>
 File: ./figs/sim_jitter_plot_jitter_timeseries.pdf Graphic file (type pdf)
  <use ./figs/sim_jitter_plot_jitter_timeseries.pdf>
 Package pdftex.def Info: ./figs/sim_jitter_plot_jitter_timeseries.pdf used on i
-nput line 27.
+nput line 65.
 (pdftex.def)             Requested size: 426.39255pt x 426.39731pt.
 
-<./figs/sim_jitter_plot-sim-fits.pdf, id=137, 578.16pt x 433.62pt>
+<./figs/sim_jitter_plot-sim-fits.pdf, id=120, 578.16pt x 433.62pt>
 File: ./figs/sim_jitter_plot-sim-fits.pdf Graphic file (type pdf)
 
 <use ./figs/sim_jitter_plot-sim-fits.pdf>
 Package pdftex.def Info: ./figs/sim_jitter_plot-sim-fits.pdf used on input line
- 43.
+ 77.
 (pdftex.def)             Requested size: 426.39255pt x 319.79529pt.
 
-Overfull \vbox (7.73332pt too high) has occurred while \output is active []
-
-
-[27]
-Overfull \vbox (7.73332pt too high) has occurred while \output is active []
-
-
-[28 <./figs/sim_jitter_plot_jitter_timeseries.pdf>]
-Overfull \vbox (7.73332pt too high) has occurred while \output is active []
-
-
-[29 <./figs/sim_jitter_plot-sim-fits.pdf>]
-<./figs/ecomplex_approx-feature-space.pdf, id=164, 805.0075pt x 358.33875pt>
+<./figs/ecomplex_approx-feature-space.pdf, id=121, 805.0075pt x 358.33875pt>
 File: ./figs/ecomplex_approx-feature-space.pdf Graphic file (type pdf)
 
 <use ./figs/ecomplex_approx-feature-space.pdf>
 Package pdftex.def Info: ./figs/ecomplex_approx-feature-space.pdf used on input
- line 59.
+ line 88.
+(pdftex.def)             Requested size: 426.39255pt x 189.8038pt.
+File: ./figs/ecomplex_approx-feature-space.pdf Graphic file (type pdf)
+
+<use ./figs/ecomplex_approx-feature-space.pdf>
+Package pdftex.def Info: ./figs/ecomplex_approx-feature-space.pdf used on input
+ line 110.
 (pdftex.def)             Requested size: 426.39255pt x 189.8038pt.
 
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[30]
+[24]
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[31 <./figs/ecomplex_approx-feature-space.pdf>]
+[25 <./figs/sim_jitter_plot_jitter_timeseries.pdf>]
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[32]
+[26 <./figs/sim_jitter_plot-sim-fits.pdf>]
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[33] <./figs/benchmark-benchmark.pdf, id=189, 433.62pt x 289.08pt>
+[27 <./figs/ecomplex_approx-feature-space.pdf>]
+
+LaTeX Warning: Reference `tab:error-mse' on page 28 undefined on input line 137
+.
+
+
+Overfull \vbox (7.73332pt too high) has occurred while \output is active []
+
+
+[28]
+Overfull \vbox (7.73332pt too high) has occurred while \output is active []
+
+
+[29] <./figs/benchmark-benchmark.pdf, id=168, 433.62pt x 289.08pt>
 File: ./figs/benchmark-benchmark.pdf Graphic file (type pdf)
 
 <use ./figs/benchmark-benchmark.pdf>
-Package pdftex.def Info: ./figs/benchmark-benchmark.pdf used on input line 143.
+Package pdftex.def Info: ./figs/benchmark-benchmark.pdf used on input line 232.
 
 (pdftex.def)             Requested size: 426.39255pt x 284.2757pt.
 
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[34 <./figs/benchmark-benchmark.pdf>])
+[30 <./figs/benchmark-benchmark.pdf>])
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[35]
+[31]
 \openout2 = `holder/holder.aux'.
 
  (./holder/holder.tex
 Chapter 4.
-
-Overfull \vbox (7.73332pt too high) has occurred while \output is active []
-
-
-[36
-
-
-
-] <./figs/coeff-interp-simple-functions0.pdf, id=207, 505.89pt x 505.89pt>
+<./figs/coeff-interp-simple-functions0.pdf, id=184, 505.89pt x 505.89pt>
 File: ./figs/coeff-interp-simple-functions0.pdf Graphic file (type pdf)
 
 <use ./figs/coeff-interp-simple-functions0.pdf>
 Package pdftex.def Info: ./figs/coeff-interp-simple-functions0.pdf used on inpu
-t line 27.
+t line 42.
 (pdftex.def)             Requested size: 172.68733pt x 216.81056pt.
 
-<./figs/coeff-interp-simple-functions1.pdf, id=208, 505.89pt x 505.89pt>
+<./figs/coeff-interp-simple-functions1.pdf, id=185, 505.89pt x 505.89pt>
 File: ./figs/coeff-interp-simple-functions1.pdf Graphic file (type pdf)
 
 <use ./figs/coeff-interp-simple-functions1.pdf>
 Package pdftex.def Info: ./figs/coeff-interp-simple-functions1.pdf used on inpu
-t line 33.
+t line 48.
 (pdftex.def)             Requested size: 172.68733pt x 216.81056pt.
 
-<./figs/coeff-interp-simple-fits.pdf, id=209, 578.16pt x 216.81pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<./figs/coeff-interp-simple-fits.pdf, id=186, 578.16pt x 216.81pt>
 File: ./figs/coeff-interp-simple-fits.pdf Graphic file (type pdf)
 
 <use ./figs/coeff-interp-simple-fits.pdf>
 Package pdftex.def Info: ./figs/coeff-interp-simple-fits.pdf used on input line
- 46.
+ 61.
 (pdftex.def)             Requested size: 426.39255pt x 159.89763pt.
 
 
@@ -761,184 +765,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[37 <./figs/coeff-interp-simple-functions0.pdf> <./figs/coeff-interp-simple-fun
-ctions1.pdf>]
-Overfull \vbox (7.73332pt too high) has occurred while \output is active []
-
-
-[38 <./figs/coeff-interp-simple-fits.pdf>]
-Overfull \vbox (7.73332pt too high) has occurred while \output is active []
-
-
-[39]
-
-LaTeX Warning: Reference `thm:holder' on page 40 undefined on input line 158.
-
-
-Overfull \vbox (7.73332pt too high) has occurred while \output is active []
-
-
-[40]
-Overfull \vbox (7.73332pt too high) has occurred while \output is active []
-
-
-[41]
-<./figs/holder_notrandom-weier-notrandom.pdf, id=247, 505.89pt x 505.89pt>
-File: ./figs/holder_notrandom-weier-notrandom.pdf Graphic file (type pdf)
-
-<use ./figs/holder_notrandom-weier-notrandom.pdf>
-Package pdftex.def Info: ./figs/holder_notrandom-weier-notrandom.pdf used on in
-put line 245.
-(pdftex.def)             Requested size: 188.04091pt x 216.81056pt.
-
-<./figs/holder_coeffs-weier-random.pdf, id=248, 505.89pt x 505.89pt>
-File: ./figs/holder_coeffs-weier-random.pdf Graphic file (type pdf)
-
-<use ./figs/holder_coeffs-weier-random.pdf>
-Package pdftex.def Info: ./figs/holder_coeffs-weier-random.pdf used on input li
-ne 251.
-(pdftex.def)             Requested size: 188.04091pt x 216.81056pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-<./figs/holder_notrandom-param-plots-notrandom.pdf, id=249, 650.43pt x 289.08pt
->
-File: ./figs/holder_notrandom-param-plots-notrandom.pdf Graphic file (type pdf)
-
- <use ./figs/holder_notrandom-param-plots-notrandom.pdf>
-Package pdftex.def Info: ./figs/holder_notrandom-param-plots-notrandom.pdf used
- on input line 263.
-(pdftex.def)             Requested size: 426.39255pt x 189.51419pt.
-
-Overfull \vbox (7.73332pt too high) has occurred while \output is active []
-
-
-[42]
-Overfull \vbox (7.73332pt too high) has occurred while \output is active []
-
-
-[43 <./figs/holder_notrandom-weier-notrandom.pdf> <./figs/holder_coeffs-weier-r
-andom.pdf>]
-Overfull \vbox (7.73332pt too high) has occurred while \output is active []
-
-
-[44 <./figs/holder_notrandom-param-plots-notrandom.pdf>]
-<./figs/holder_coeffs-boxplots.pdf, id=278, 650.43pt x 289.08pt>
-File: ./figs/holder_coeffs-boxplots.pdf Graphic file (type pdf)
-
-<use ./figs/holder_coeffs-boxplots.pdf>
-Package pdftex.def Info: ./figs/holder_coeffs-boxplots.pdf used on input line 3
-55.
-(pdftex.def)             Requested size: 433.63216pt x 192.7254pt.
-
-Overfull \hbox (7.23961pt too wide) in paragraph at lines 355--356
- [] 
- []
-
-<./figs/fBm-coeffs-plot.pdf, id=279, 361.35pt x 289.08pt>
-File: ./figs/fBm-coeffs-plot.pdf Graphic file (type pdf)
-
-<use ./figs/fBm-coeffs-plot.pdf>
-Package pdftex.def Info: ./figs/fBm-coeffs-plot.pdf used on input line 373.
-(pdftex.def)             Requested size: 188.04092pt x 216.80946pt.
-
-<./figs/cauchy-plot.pdf, id=280, 361.35pt x 289.08pt>
-File: ./figs/cauchy-plot.pdf Graphic file (type pdf)
-
-<use ./figs/cauchy-plot.pdf>
-Package pdftex.def Info: ./figs/cauchy-plot.pdf used on input line 379.
-(pdftex.def)             Requested size: 188.04092pt x 216.80946pt.
-
-<./figs/fBm-coeffs-boxplots.pdf, id=281, 650.43pt x 289.08pt>
-File: ./figs/fBm-coeffs-boxplots.pdf Graphic file (type pdf)
-
-<use ./figs/fBm-coeffs-boxplots.pdf>
-Package pdftex.def Info: ./figs/fBm-coeffs-boxplots.pdf used on input line 392.
-
-(pdftex.def)             Requested size: 433.63216pt x 192.7254pt.
-
-Overfull \hbox (7.23961pt too wide) in paragraph at lines 392--394
- [] 
- []
-
-<./figs/cauchy-boxplots.pdf, id=282, 650.43pt x 289.08pt>
-File: ./figs/cauchy-boxplots.pdf Graphic file (type pdf)
-
-<use ./figs/cauchy-boxplots.pdf>
-Package pdftex.def Info: ./figs/cauchy-boxplots.pdf used on input line 402.
-(pdftex.def)             Requested size: 433.63216pt x 192.7254pt.
-
-Overfull \hbox (7.23961pt too wide) in paragraph at lines 402--404
- [] 
- []
-
-
-Overfull \vbox (7.73332pt too high) has occurred while \output is active []
-
-
-[45 <./figs/holder_coeffs-boxplots.pdf>]
-Overfull \vbox (7.73332pt too high) has occurred while \output is active []
-
-
-[46 <./figs/fBm-coeffs-plot.pdf> <./figs/cauchy-plot.pdf> <./figs/fBm-coeffs-bo
-xplots.pdf>]
-<./figs/cauchyalpha-scatterplots.pdf, id=313, 650.43pt x 289.08pt>
-File: ./figs/cauchyalpha-scatterplots.pdf Graphic file (type pdf)
-
-<use ./figs/cauchyalpha-scatterplots.pdf>
-Package pdftex.def Info: ./figs/cauchyalpha-scatterplots.pdf used on input line
- 421.
-(pdftex.def)             Requested size: 433.63216pt x 192.7254pt.
-
-Overfull \hbox (7.23961pt too wide) in paragraph at lines 421--423
- [] 
- []
-
-<./figs/cauchybeta-scatterplots.pdf, id=314, 650.43pt x 289.08pt>
-File: ./figs/cauchybeta-scatterplots.pdf Graphic file (type pdf)
-
-<use ./figs/cauchybeta-scatterplots.pdf>
-Package pdftex.def Info: ./figs/cauchybeta-scatterplots.pdf used on input line 
-431.
-(pdftex.def)             Requested size: 433.63216pt x 192.7254pt.
-
-Overfull \hbox (7.23961pt too wide) in paragraph at lines 431--433
- [] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Overfull \vbox (7.73332pt too high) has occurred while \output is active []
-
-
-[47 <./figs/cauchy-boxplots.pdf>])
-Overfull \vbox (7.73332pt too high) has occurred while \output is active []
-
-
-[48 <./figs/cauchyalpha-scatterplots.pdf>]
-Overfull \vbox (7.73332pt too high) has occurred while \output is active []
-
-
-[49 <./figs/cauchybeta-scatterplots.pdf>]
-\openout2 = `eeg/eeg.aux'.
-
- (./eeg/eeg.tex
-Chapter 5.
-
-Overfull \hbox (15.24744pt too wide) in paragraph at lines 3--10
-\OT1/cmr/m/n/12 Electroencephalograms(EEG) cap-ture the elec-tro-mag-netic po-t
-en-tial of sim-i-larly aligned
- []
-
-
-Overfull \vbox (7.73332pt too high) has occurred while \output is active []
-
-
-[50
+[32
 
 
 
@@ -946,26 +773,187 @@ Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[51]
+[33 <./figs/coeff-interp-simple-functions0.pdf> <./figs/coeff-interp-simple-fun
+ctions1.pdf>]
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[52]
+[34 <./figs/coeff-interp-simple-fits.pdf>]
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[53]
-Overfull \hbox (4.1016pt too wide) in paragraph at lines 121--123
-\OT1/cmr/m/n/12 The Hurst pa-ram-e-ter was es-ti-mated us-ing the cor-rected em
--pir-i-cal Hurst exponent[[]]. 
+[35]
+Overfull \vbox (7.73332pt too high) has occurred while \output is active []
+
+
+[36]
+<./figs/holder_notrandom-weier-notrandom.pdf, id=224, 505.89pt x 505.89pt>
+File: ./figs/holder_notrandom-weier-notrandom.pdf Graphic file (type pdf)
+
+<use ./figs/holder_notrandom-weier-notrandom.pdf>
+Package pdftex.def Info: ./figs/holder_notrandom-weier-notrandom.pdf used on in
+put line 278.
+(pdftex.def)             Requested size: 188.04091pt x 216.81056pt.
+
+<./figs/holder_coeffs-weier-random.pdf, id=225, 505.89pt x 505.89pt>
+File: ./figs/holder_coeffs-weier-random.pdf Graphic file (type pdf)
+
+<use ./figs/holder_coeffs-weier-random.pdf>
+Package pdftex.def Info: ./figs/holder_coeffs-weier-random.pdf used on input li
+ne 284.
+(pdftex.def)             Requested size: 188.04091pt x 216.81056pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+<./figs/holder_notrandom-param-plots-notrandom.pdf, id=226, 650.43pt x 289.08pt
+>
+File: ./figs/holder_notrandom-param-plots-notrandom.pdf Graphic file (type pdf)
+
+ <use ./figs/holder_notrandom-param-plots-notrandom.pdf>
+Package pdftex.def Info: ./figs/holder_notrandom-param-plots-notrandom.pdf used
+ on input line 296.
+(pdftex.def)             Requested size: 426.39255pt x 189.51419pt.
+
+<./figs/holder_coeffs-boxplots.pdf, id=227, 650.43pt x 289.08pt>
+File: ./figs/holder_coeffs-boxplots.pdf Graphic file (type pdf)
+
+<use ./figs/holder_coeffs-boxplots.pdf>
+Package pdftex.def Info: ./figs/holder_coeffs-boxplots.pdf used on input line 3
+42.
+(pdftex.def)             Requested size: 433.63216pt x 192.7254pt.
+
+Overfull \hbox (7.23961pt too wide) in paragraph at lines 342--343
+ [] 
  []
 
 
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[54]
-Overfull \hbox (29.41675pt too wide) in paragraph at lines 223--226
+[37] <./figs/fBm-coeffs-plot.pdf, id=231, 361.35pt x 289.08pt>
+File: ./figs/fBm-coeffs-plot.pdf Graphic file (type pdf)
+
+<use ./figs/fBm-coeffs-plot.pdf>
+Package pdftex.def Info: ./figs/fBm-coeffs-plot.pdf used on input line 355.
+(pdftex.def)             Requested size: 188.04092pt x 216.80946pt.
+
+<./figs/cauchy-plot.pdf, id=232, 361.35pt x 289.08pt>
+File: ./figs/cauchy-plot.pdf Graphic file (type pdf)
+
+<use ./figs/cauchy-plot.pdf>
+Package pdftex.def Info: ./figs/cauchy-plot.pdf used on input line 361.
+(pdftex.def)             Requested size: 188.04092pt x 216.80946pt.
+
+<./figs/fBm-coeffs-boxplots.pdf, id=233, 650.43pt x 289.08pt>
+File: ./figs/fBm-coeffs-boxplots.pdf Graphic file (type pdf)
+
+<use ./figs/fBm-coeffs-boxplots.pdf>
+Package pdftex.def Info: ./figs/fBm-coeffs-boxplots.pdf used on input line 372.
+
+(pdftex.def)             Requested size: 433.63216pt x 192.7254pt.
+
+Overfull \hbox (7.23961pt too wide) in paragraph at lines 372--374
+ [] 
+ []
+
+<./figs/cauchy-boxplots.pdf, id=234, 650.43pt x 289.08pt>
+File: ./figs/cauchy-boxplots.pdf Graphic file (type pdf)
+
+<use ./figs/cauchy-boxplots.pdf>
+Package pdftex.def Info: ./figs/cauchy-boxplots.pdf used on input line 383.
+(pdftex.def)             Requested size: 433.63216pt x 192.7254pt.
+
+Overfull \hbox (7.23961pt too wide) in paragraph at lines 383--385
+ [] 
+ []
+
+
+Overfull \vbox (7.73332pt too high) has occurred while \output is active []
+
+
+[38 <./figs/holder_notrandom-weier-notrandom.pdf> <./figs/holder_coeffs-weier-r
+andom.pdf> <./figs/holder_notrandom-param-plots-notrandom.pdf>]
+Overfull \vbox (7.73332pt too high) has occurred while \output is active []
+
+
+[39 <./figs/holder_coeffs-boxplots.pdf> <./figs/fBm-coeffs-plot.pdf> <./figs/ca
+uchy-plot.pdf>]
+Overfull \vbox (7.73332pt too high) has occurred while \output is active []
+
+
+[40 <./figs/fBm-coeffs-boxplots.pdf> <./figs/cauchy-boxplots.pdf>]
+<./figs/cauchyalpha-scatterplots.pdf, id=293, 650.43pt x 289.08pt>
+File: ./figs/cauchyalpha-scatterplots.pdf Graphic file (type pdf)
+
+<use ./figs/cauchyalpha-scatterplots.pdf>
+Package pdftex.def Info: ./figs/cauchyalpha-scatterplots.pdf used on input line
+ 417.
+(pdftex.def)             Requested size: 433.63216pt x 192.7254pt.
+
+Overfull \hbox (7.23961pt too wide) in paragraph at lines 417--419
+ [] 
+ []
+
+<./figs/cauchybeta-scatterplots.pdf, id=294, 650.43pt x 289.08pt>
+File: ./figs/cauchybeta-scatterplots.pdf Graphic file (type pdf)
+
+<use ./figs/cauchybeta-scatterplots.pdf>
+Package pdftex.def Info: ./figs/cauchybeta-scatterplots.pdf used on input line 
+427.
+(pdftex.def)             Requested size: 433.63216pt x 192.7254pt.
+
+Overfull \hbox (7.23961pt too wide) in paragraph at lines 427--429
+ [] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \vbox (7.73332pt too high) has occurred while \output is active []
+
+
+[41 <./figs/cauchyalpha-scatterplots.pdf>])
+Overfull \vbox (7.73332pt too high) has occurred while \output is active []
+
+
+[42 <./figs/cauchybeta-scatterplots.pdf>]
+Overfull \vbox (7.73332pt too high) has occurred while \output is active []
+
+
+[43]
+\openout2 = `eeg/eeg.aux'.
+
+ (./eeg/eeg.tex
+Chapter 5.
+
+Overfull \vbox (7.73332pt too high) has occurred while \output is active []
+
+
+[44
+
+
+
+]
+Overfull \vbox (7.73332pt too high) has occurred while \output is active []
+
+
+[45]
+Overfull \vbox (7.73332pt too high) has occurred while \output is active []
+
+
+[46]
+Overfull \vbox (7.73332pt too high) has occurred while \output is active []
+
+
+[47]
+Overfull \vbox (7.73332pt too high) has occurred while \output is active []
+
+
+[48]
+Overfull \hbox (29.41675pt too wide) in paragraph at lines 256--259
 []\OT1/cmr/m/n/12 For each chan-nel com-pute set of fea-tures on reg-u-lar in-t
 er-vals in-clud-ing $\OML/cmm/m/it/12 "\OMS/cmsy/m/n/12 ^^@$\OT1/cmr/m/n/12 com
 plexity. 
@@ -975,96 +963,98 @@ plexity.
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[55] <./figs/eeg-segment-plot.pdf, id=362, 650.43pt x 289.08pt>
+[49] <./figs/eeg-segment-plot.pdf, id=336, 650.43pt x 289.08pt>
 File: ./figs/eeg-segment-plot.pdf Graphic file (type pdf)
 
 <use ./figs/eeg-segment-plot.pdf>
-Package pdftex.def Info: ./figs/eeg-segment-plot.pdf used on input line 256.
+Package pdftex.def Info: ./figs/eeg-segment-plot.pdf used on input line 302.
 (pdftex.def)             Requested size: 426.39255pt x 189.51419pt.
 
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[56]
+[50]
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[57 <./figs/eeg-segment-plot.pdf>]
-Overfull \vbox (7.73332pt too high) has occurred while \output is active []
-
-
-[58] <./figs/eeg-partition-diagnostic.pdf, id=383, 585.18625pt x 295.1025pt>
+[51 <./figs/eeg-segment-plot.pdf>]
+<./figs/eeg-partition-diagnostic.pdf, id=353, 585.18625pt x 295.1025pt>
 File: ./figs/eeg-partition-diagnostic.pdf Graphic file (type pdf)
 
 <use ./figs/eeg-partition-diagnostic.pdf>
 Package pdftex.def Info: ./figs/eeg-partition-diagnostic.pdf used on input line
- 333.
+ 394.
 (pdftex.def)             Requested size: 426.39255pt x 215.03127pt.
 
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[59 <./figs/eeg-partition-diagnostic.pdf>]
-<./figs/eegroc-comb.pdf, id=393, 578.16pt x 289.08pt>
+[52]
+Overfull \hbox (9.05527pt too wide) in paragraph at lines 412--425
+ [][] 
+ []
+
+
+Overfull \hbox (9.05527pt too wide) in paragraph at lines 431--444
+ [][] 
+ []
+
+<./figs/eegroc-comb.pdf, id=358, 578.16pt x 289.08pt>
 File: ./figs/eegroc-comb.pdf Graphic file (type pdf)
 
 <use ./figs/eegroc-comb.pdf>
-Package pdftex.def Info: ./figs/eegroc-comb.pdf used on input line 407.
+Package pdftex.def Info: ./figs/eegroc-comb.pdf used on input line 462.
 (pdftex.def)             Requested size: 426.39255pt x 213.19685pt.
 
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[60]
+[53 <./figs/eeg-partition-diagnostic.pdf>]
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[61 <./figs/eegroc-comb.pdf>]
-<./figs/eeg-vec-corrplot.pdf, id=405, 361.35pt x 469.755pt>
+[54]
+Overfull \vbox (7.73332pt too high) has occurred while \output is active []
+
+
+[55 <./figs/eegroc-comb.pdf>]
+<./figs/eeg-vec-corrplot.pdf, id=379, 361.35pt x 469.755pt>
 File: ./figs/eeg-vec-corrplot.pdf Graphic file (type pdf)
 
 <use ./figs/eeg-vec-corrplot.pdf>
-Package pdftex.def Info: ./figs/eeg-vec-corrplot.pdf used on input line 463.
+Package pdftex.def Info: ./figs/eeg-vec-corrplot.pdf used on input line 519.
 (pdftex.def)             Requested size: 191.87534pt x 249.43488pt.
 
-<./figs/eeg-AB-corrplot.pdf, id=406, 361.35pt x 469.755pt>
+<./figs/eeg-AB-corrplot.pdf, id=380, 361.35pt x 469.755pt>
 File: ./figs/eeg-AB-corrplot.pdf Graphic file (type pdf)
 
 <use ./figs/eeg-AB-corrplot.pdf>
-Package pdftex.def Info: ./figs/eeg-AB-corrplot.pdf used on input line 469.
+Package pdftex.def Info: ./figs/eeg-AB-corrplot.pdf used on input line 525.
 (pdftex.def)             Requested size: 191.87534pt x 249.43488pt.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[62]
-Overfull \vbox (7.73332pt too high) has occurred while \output is active []
-
-
-[63 <./figs/eeg-vec-corrplot.pdf> <./figs/eeg-AB-corrplot.pdf>]
-<./figs/eeg-boxplot1.pdf, id=426, 650.43pt x 289.08pt>
+[56 <./figs/eeg-vec-corrplot.pdf> <./figs/eeg-AB-corrplot.pdf>]
+<./figs/eeg-boxplot1.pdf, id=396, 650.43pt x 289.08pt>
 File: ./figs/eeg-boxplot1.pdf Graphic file (type pdf)
 
 <use ./figs/eeg-boxplot1.pdf>
-Package pdftex.def Info: ./figs/eeg-boxplot1.pdf used on input line 491.
+Package pdftex.def Info: ./figs/eeg-boxplot1.pdf used on input line 545.
 (pdftex.def)             Requested size: 426.39255pt x 189.51419pt.
 
-<./figs/eeg-boxplotch3.pdf, id=427, 650.43pt x 289.08pt>
+<./figs/eeg-boxplotch3.pdf, id=397, 650.43pt x 289.08pt>
 File: ./figs/eeg-boxplotch3.pdf Graphic file (type pdf)
 
 <use ./figs/eeg-boxplotch3.pdf>
-Package pdftex.def Info: ./figs/eeg-boxplotch3.pdf used on input line 496.
+Package pdftex.def Info: ./figs/eeg-boxplotch3.pdf used on input line 550.
 (pdftex.def)             Requested size: 426.39255pt x 189.51419pt.
 
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[64 <./figs/eeg-boxplot1.pdf> <./figs/eeg-boxplotch3.pdf>]
-Overfull \hbox (4.654pt too wide) in paragraph at lines 541--556
+[57 <./figs/eeg-boxplot1.pdf> <./figs/eeg-boxplotch3.pdf>]
+Overfull \hbox (4.654pt too wide) in paragraph at lines 597--613
  [][] 
  []
 
@@ -1072,26 +1062,22 @@ Overfull \hbox (4.654pt too wide) in paragraph at lines 541--556
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[65]
+[58])
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[66])
+[59] (./thesis.bbl
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[67] (./thesis.bbl
-Overfull \vbox (7.73332pt too high) has occurred while \output is active []
-
-
-[68
+[60
 
 
 ])
 Overfull \vbox (7.73332pt too high) has occurred while \output is active []
 
 
-[69] (./thesis.aux (./cmds/cmds.aux) (./intro/intro.aux) (./bg/bg.aux)
+[61] (./thesis.aux (./cmds/cmds.aux) (./intro/intro.aux) (./bg/bg.aux)
 (./lift/lift.aux) (./holder/holder.aux) (./eeg/eeg.aux))
 
 LaTeX Warning: There were undefined references.
@@ -1101,13 +1087,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 6968 strings out of 493109
- 104235 string characters out of 6135010
- 199861 words of memory out of 5000000
+ 6966 strings out of 493109
+ 104237 string characters out of 6135010
+ 201840 words of memory out of 5000000
  10207 multiletter control sequences out of 15000+600000
- 11604 words of font info for 45 fonts, out of 8000000 for 9000
+ 10983 words of font info for 43 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 46i,16n,77p,923b,489s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 46i,16n,77p,841b,487s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
 </usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
@@ -1115,19 +1101,18 @@ Here is how much of TeX's memory you used:
 sr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr
 /local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/l
 ocal/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loc
-al/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/
-texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/tex
-live/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texli
-ve/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texliv
-e/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/
-2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/20
-14/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/201
-4/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014
-/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (80 pages, 2730049 bytes).
+al/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/
+texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/te
+xlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/tex
+live/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texli
+ve/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive
+/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/
+2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2
+014/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on thesis.pdf (70 pages, 2714389 bytes).
 PDF statistics:
- 520 PDF objects out of 1000 (max. 8388607)
- 370 compressed objects within 4 object streams
+ 483 PDF objects out of 1000 (max. 8388607)
+ 344 compressed objects within 4 object streams
  0 named destinations out of 1000 (max. 500000)
  121 words of extra memory for PDF output out of 10000 (max. 10000000)
 

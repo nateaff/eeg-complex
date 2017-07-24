@@ -5,14 +5,14 @@ exclude: ["include"]
 navbar:
   title: eeg-complex
   left:
-    - text: "Home"
-      href: index.html
-    - text: "About"
-      href: about.html
+    - text: "Simulations"
+      href: simulations.html
+    - text: "Complexity Coefficients"
+      href: complexity-coefficients.html
+    - text: "Seizure Prediction"
+      href: seizure-prediction.html
     - text: "License"
       href: license.html
-    - text: "Simulations"
-      href: sim-examples.html 
   right:
     - icon: fa-github
       href: https://github.com/nateaff/eeg-complex
@@ -20,6 +20,6 @@ navbar:
     toc: true
     toc_float: true
     theme: readable
-    highlight: monochrome
+    highlight: zenburn
     include:
       after_body: include/footer.html

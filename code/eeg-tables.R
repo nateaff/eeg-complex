@@ -1,4 +1,4 @@
-library(stargazer)
+## @knitr eeg-tables
 library(dplyr)
 
 prefix = "eeg"
@@ -19,17 +19,18 @@ row.names(combacc) <- methods
 combacc <- apply(combacc, 2, round, digits = 2)
 
 names(combacc) <- paste0("Channel ", 1:6)
-knitr::kable(combacc)
+knitr::kable(combacc, caption = "Balanced accuracy of each models and channel combination.")
 
+## @knitr baseline
+basedf <- readRDS(cache_file("basestats", prefix))
+
+names(basedf) <- c("Sensitivity", "Specificity", "Accuracy")
+stargazer::stargazer(basedf, summary = FALSE, label = "fig:example", 
+                 title = "Prediction performance of baseline classifier")
+
+## @knitr comb-sd
 # sd 
 res_vec <- readRDS(cache_file("res_vec", prefix))
 resAB <- readRDS(cache_file("resAB", prefix)) 
 
 #
-
-# baseline
-basedf <- readRDS(cache_file("basestats", prefix))
-
-names(basedf) <- c("Sensitivity", "Specificity", "Accuracy")
-stargazer(basedf, summary = FALSE, label = "fig:example", 
-                 title = "Prediction performance of baseline classifier")

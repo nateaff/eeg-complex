@@ -1,13 +1,14 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Mean of the approximation errors of each method summed over each downsampling level. Errors were computed on 30 simulations of each model. \relax }}{32}
-\contentsline {table}{\numberline {3.2}{\ignorespaces Classification errors using complexity coefficients $A$ and $B$ for each approximation method using a random forest classifier.\relax }}{32}
-\contentsline {table}{\numberline {3.3}{\ignorespaces Classification error using a random forest classifier and three different loss functions.\relax }}{35}
+\contentsline {table}{\numberline {3.1}{\ignorespaces Simulation parameters for each group.\relax }}{23}
+\contentsline {table}{\numberline {3.2}{\ignorespaces Mean total approximation error for 30 samples of each simulation. \relax }}{28}
+\contentsline {table}{\numberline {3.3}{\ignorespaces Classification errors using complexity coefficients $A$ and $B$ for each approximation method using a random forest classifier.\relax }}{29}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Complexity coefficients and fractal dimension, $\mathaccentV {hat}05ED$, estimates for a linear and several sinusoidal functions.\relax }}{39}
+\contentsline {table}{\numberline {4.1}{\ignorespaces Complexity coefficients and fractal dimension estimates for linear and sinusoidal functions.\relax }}{34}
+\contentsline {table}{\numberline {4.2}{\ignorespaces Complexity coefficients and fractal dimension estimates for Gaussian noise.\relax }}{35}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Classification performance of baseline classifier.\relax }}{58}
-\contentsline {table}{\numberline {5.2}{\ignorespaces Balanced accuracy for each model and channel\relax }}{60}
-\contentsline {table}{\numberline {5.3}{\ignorespaces Specificity for all models and channels.\relax }}{61}
-\contentsline {table}{\numberline {5.4}{\ignorespaces Wilcox rank sum test p-values for difference of medians.\relax }}{65}
+\contentsline {table}{\numberline {5.1}{\ignorespaces Classification performance of baseline classifier.\relax }}{52}
+\contentsline {table}{\numberline {5.2}{\ignorespaces Mean and s.d. of balanced accuracy for all models.\relax }}{54}
+\contentsline {table}{\numberline {5.3}{\ignorespaces Mean and s.d. of specificity for all models.\relax }}{54}
+\contentsline {table}{\numberline {5.4}{\ignorespaces P-values fo Wilcox rank sum test for difference of distribution\relax }}{58}

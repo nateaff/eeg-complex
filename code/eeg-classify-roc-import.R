@@ -1,18 +1,12 @@
+
+## @knitr importance-plot
 library(ggplot2)
 library(dplyr)
 library(ecomplex)
 library(randomForest)
 library(tssegment)
 library(caret)
-#----------------------------------------------------------
-# 1. Load derived features
-# 2. Plot ecomplexity coefficients for each channel
-# 3. Get combined complexity coefficients
-# 4. Run palarm on combined coefficients A, B
-# 4. Segment derived features based on the palarm 
-#    features  
-# 5. Classify on means of segments with 5-fold cross validation
-#----------------------------------------------------------
+
 prefix    = "eeg"
 seed      = 2017
 chs       = 1:6
@@ -50,20 +44,6 @@ run_on_feat <- function(df_, ch, feat, m = 5, byname = TRUE){
   cm <- run_cv(means_df, df$response, ch, colnums, TRUE)
 }
 
-ch = 1
-colnums = c(5:9,  13:18)
-# Split on a feature
-means_df <- segment_on_cols(df, ch, 
-                          cols = c("ecomp.cspline_B"), 
-                          new_vec = FALSE)
-res <- run_cv(means_df, df$response, ch, colnums, from_cache=TRUE)
-
-
-# Split using a numeric vector instead of a column
-means_df <- segment_on_cols(df, ch, vec = (1:120), new_vec = TRUE, m = 10)
-
-run_cv(means_df, df$response, ch, colnums, from_cache=TRUE)
-
 
 
 library(corrplot) 
@@ -78,6 +58,7 @@ for(ch in 1:6){
   resAB[[ch]]  <- run_on_feat(df, ch, feat, m = 3, byname = TRUE)
   resvec[[ch]] <- run_on_feat(df, ch, (1:120), m = 10, byname = FALSE)
 }
+
 ABimport <- lapply(resAB, function(x) x$importance) %>% 
             do.call(rbind, .) %>% 
             data.frame
@@ -87,32 +68,30 @@ vecimport <- lapply(resvec, function(x) x$importance) %>%
 names(ABimport) <- varnames
 names(vecimport) <- varnames
 
-ABnorm <- apply(ABimport, 1, normalize)
-vecnorm <- apply(vecimport, 1, normalize)
+ABnorm <- apply(ABimport, 1, ecomplex::normalize)
+vecnorm <- apply(vecimport, 1, ecomplex::normalize)
 
-pdf(file.path(getwd(), paste0("figures/", prefix, "-AB-corrplot.pdf")), 
-    width = 5, height = 6.5)
-c1 <- corrplot::corrplot(as.matrix(ABnorm), method = "circle", 
-               col = gray.colors(10, start = 0.9, end = 0),
+c1 <- corrplot::corrplot(
+               as.matrix(ABnorm),
+               method = "circle", 
+               # col = viridis::viridis(60)[55:2],
+               # col = gray.colors(10, start = 0.9, end = 0),
                is.corr = FALSE, 
-               tl.col = "Black")
-mtext("Parition on coefficient B", side = 1) 
-               # title = "Partition on B")
-# corrplot(as.matrix(ABimport), is.corr = FALSE)
-dev.off()
+               tl.col = "Black"
+               )
+mtext("Parition on coefficient B change points.", side = 3, line = 3) 
 
-pdf(file.path(getwd(), paste0("figures/", prefix, "-vec-corrplot.pdf")), 
-    width = 5, height = 6.5)
-corrplot::corrplot(as.matrix(vecnorm), method = "circle", 
-               col = gray.colors(10, start = 0.9, end = 0),
+corrplot::corrplot(
+               as.matrix(vecnorm), 
+               method = "circle", 
+               # col = gray.colors(10, start = 0.9, end = 0),
                is.corr = FALSE, 
-               tl.col = "Black") 
-               # title = "Regular Partition 8")
-mtext("8 regular partition ", side = 1)
-# corrplot(as.matrix(ABimport), is.corr = FALSE)
+               tl.col = "Black"
+               ) 
+mtext("Uniform partition into 8 segments.", side = 3, line = 3)
 
-dev.off()
 
+## @ knitr ROC-plot
 
 #----------------------------------------------------------
 # ROC, Importance

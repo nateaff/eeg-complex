@@ -1,0 +1,13 @@
+# Fdb version 3
+["pdflatex"] 1499975348 "intro.tex" "intro.pdf" "intro" 1499975349
+  "/usr/local/texlive/2014/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
+  "/usr/local/texlive/2014/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
+  "/usr/local/texlive/2014/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm" 1136768653 768 1321e9409b4137d6fb428ac9dc956269 ""
+  "/usr/local/texlive/2014/texmf-dist/web2c/texmf.cnf" 1418473959 31908 9e60cc122a23ef93121ea6e29902081d ""
+  "/usr/local/texlive/2014/texmf-var/web2c/pdftex/pdflatex.fmt" 1432586525 3847283 1844e03a4c669d8c81f683b237add385 ""
+  "/usr/local/texlive/2014/texmf.cnf" 1432586481 455 5b996dcaa0eb4ef14a83b026bc0a008c ""
+  "intro.aux" 1499975272 1337 55a41c321892f0f4a19fade94452daad ""
+  "intro.tex" 1499975347 13523 d832e7d7abcfc93eaa4554d233046671 ""
+  (generated)
+  "intro.pdf"
+  "intro.log"

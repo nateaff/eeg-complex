@@ -1,24 +1,25 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Sample functions from each simulation group. \relax }}{28}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Least squares fits used to compute the complexity coefficients using the lifting scheme.\relax }}{29}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Functions from the two simulation groups plotted in the complexity coefficient space.\relax }}{31}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Computational time in seconds as function of the $\qopname \relax o{log}$ of the inputs.\relax }}{34}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Sample functions from each simulation group. \relax }}{25}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Linear regression plots for the lifting scheme.\relax }}{26}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces The two simulation groups plotted in the complexity coefficient space.\relax }}{27}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Functions from the two simulation groups plotted in the complexity coefficient space.\relax }}{27}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Computational time as a function of the size of the input.\relax }}{30}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Simple linear and sinusoidal functions with and without added noise.\relax }}{37}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces The log-log linear fit of the approximation errors against the proprotion of points $\mathbb {S}_h$ used to approximate the functions 4.1\hbox {}\relax }}{38}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces The Weierstrass and random-phase Weierstrass function for $\alpha = \{ 0.20, 0.42, 0.80 \}$\relax }}{43}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Complexity coefficients and fractal dimension plotted against the Weierstrass functions $\alpha $ parameter. \relax }}{44}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Complexity coefficients and fractal dimension plotted against the $\alpha $ parameters of the random-phase Weierstrass function. \relax }}{45}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Fractional Brownian motion and the Cauchy process with $\alpha = \{ 0.20, 0.42, 0.80 \}$. The Cauchcy $\beta $ parameter was held constant.\relax }}{46}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Complexity coefficients and fractal dimension plotted against the $\alpha $ coefficients of fractional Brownian motion.\relax }}{46}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Complexity coefficients and fractal dimension plotted against the Cauchy process $\alpha $ coefficient.\relax }}{47}
-\contentsline {figure}{\numberline {4.9}{\ignorespaces The mean value of the complexity coefficients and fractal dimension plotted against the Cauchy process $\alpha $ coefficient.\relax }}{48}
-\contentsline {figure}{\numberline {4.10}{\ignorespaces The mean value of the omplexity coefficients and fractal dimension plotted against the Cauchy process $\beta $ coefficient.\relax }}{49}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Linear and sinusoidal functions with and without added noise.\relax }}{33}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces The log-log linear regression of approximation errors against the proportion of sampled $S_h$ for simple linear and sinusoidal functions.\relax }}{34}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces The Weierstrass and random-phase Weierstrass function for $\alpha = \{ 0.20, 0.42, 0.80 \}$\relax }}{38}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Complexity coefficients and fractal dimension for values of the Weierstrass $\alpha $ parameter. \relax }}{38}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Complexity coefficients and fractal dimension for values of the random-phase Weierstrass $\alpha $ parameters. \relax }}{39}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Fractional Brownian motion and the Cauchy process with $\alpha = \{ 0.20, 0.42, 0.80 \}$ for a constant $\beta $ parameter.\relax }}{39}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Complexity coefficients and fractal dimension for values of the $\alpha $ parameter of fractional Brownian motion.\relax }}{40}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Complexity coefficients and fractal dimension for various $\alpha $ parameters for a constant $\beta $ parameter of the Cauchy process.\relax }}{40}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Mean value of the complexity coefficients and fractal dimension for each $\alpha $ value of the Cauchy process.\relax }}{41}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces The mean value of the complexity coefficients and fractal dimension for each $\beta $ value of the Cauchy process.\relax }}{42}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Spectral features segmented on changes in the B complexity coefficient.\relax }}{57}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Classification diagnostic values for each partition method for LFP channel 1.\relax }}{59}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces ROC curves and smoothed ROC curves for classification on channel 1 using partitions on coefficient B and a regular partition into 8 segments.\relax }}{61}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Variable importance for partition methods normalized to a $[0,1]$ interval for each channel.\relax }}{63}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Feature distribution for channels 1 and 3.\relax }}{64}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Spectral features segmented on changes in the B complexity coefficient.\relax }}{51}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Classification diagnostic values for each classifier using features LFP channel 1.\relax }}{53}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Best ROC curves for classifiers $B$ and $8$.\relax }}{55}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Normalized variable importance for each partition method and channel.\relax }}{56}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Feature distribution for channels 1 and 3.\relax }}{57}
