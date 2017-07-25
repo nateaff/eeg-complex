@@ -3,7 +3,7 @@ eegPair <- function(alpha = 0.6){
    adjustcolor("darkcyan", alpha))  # response 1st
 }
 
-eegpalette <- function(alpha = 0.7){
+eegpalette <- function(alpha = 0.6){
   c(
     adjustcolor("gray10", alpha), 
     # adjustcolor(viridis::viridis(30)[2], alpha),
@@ -11,10 +11,6 @@ eegpalette <- function(alpha = 0.7){
     # adjustcolor(viridis::viridis(30)[20], alpha),
     adjustcolor(viridis::viridis(30)[12], alpha)
     ) 
-  # c(adjustcolor("gray10",  alpha),  # no response
-  #  adjustcolor("coral2", alpha),    # response 2nd
-  #  adjustcolor("darkcyan", alpha),       # response 1st
-  #  adjustcolor("gray40",  alpha))     # not used
 }
 
 viridisPalette <- function(){
@@ -33,8 +29,6 @@ cbPalette <- function(){
     "gray50")
 }
 
-
-
 # rearranged some colors
 cbPalette2 <- function(){
   c("grey50",
@@ -46,7 +40,6 @@ cbPalette2 <- function(){
     "#D55E00", 
     "#CC79A7")
 }
-
 
 # purple and gray, used in presentation
 sf_pair <- function(){
