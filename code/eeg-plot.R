@@ -11,7 +11,7 @@ plot_range <- function(a,b){
   for(k in 1:6){
    plot(eeg[k, a:b], 
          type = 'l', 
-         col = "gray20", 
+         col = "gray30", 
          lwd = 1.5,
          axes = FALSE,
          frame.plot = FALSE)

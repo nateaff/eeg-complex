@@ -222,13 +222,13 @@ $(document).ready(function () {
 shared across the workflowr files. -->
 <!-- Update knitr chunk options -->
 <!-- Insert the date the file was last updated -->
-<p><strong>Last updated:</strong> 2017-07-24 <!-- Insert the code version (Git commit SHA1) if Git repository exists and R
+<p><strong>Last updated:</strong> 2017-07-25 <!-- Insert the code version (Git commit SHA1) if Git repository exists and R
  package git2r is installed --></p>
 <ol style="list-style-type: decimal">
 <li><a href="simulations.html">Simulation and Approximation Methods</a></li>
 <li><a href="complexity-coefficients.html">Properties of the Complexity Coefficients</a></li>
 <li><a href="seizure-prediction.html">Seizure Prediction</a></li>
-<li><a href="ecomplexity-procedure.html">Computing the complexity coefficients</a></li>
+<li><a href="ecomplexity-procedure.html">Computing the Complexity Coefficients</a></li>
 </ol>
 <p>The <span class="math inline">\(\varepsilon\)</span>-complexity of a continuous function is, roughly speaking, the amount of information needed to reconstruct that function within an absolute error <span class="math inline">\(\varepsilon\)</span>. The theory and procedure for estimating <span class="math inline">\(\varepsilon\)</span>-complexity was introduced by Darkhovsky and Piryatinska<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. In previous work, the complexity coefficients have been shown to be useful features for the segmentation and classification of time series<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>.</p>
 <p>The purpose of these analyses was three-fold:</p>
@@ -274,6 +274,7 @@ knitr::read_chunk(&quot;../code/eeg-segment-plot.R&quot;)</code></pre>
                     col = adjustcolor(&quot;gray20&quot;, 0.6), 
                     lwd = 2,
                     lty = 1, 
+                    cex = 0.5,
                     ylim = c(0,2.2), 
                     xlim = c(0,120), 
                     xlab = &quot;Time&quot;,

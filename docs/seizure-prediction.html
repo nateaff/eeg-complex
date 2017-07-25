@@ -235,10 +235,10 @@ $(document).ready(function () {
 shared across the workflowr files. -->
 <!-- Update knitr chunk options -->
 <!-- Insert the date the file was last updated -->
-<p><strong>Last updated:</strong> 2017-07-24</p>
+<p><strong>Last updated:</strong> 2017-07-25</p>
 <!-- Insert the code version (Git commit SHA1) if Git repository exists and R
  package git2r is installed -->
-<p><strong>Code version:</strong> 5cf245a</p>
+<p><strong>Code version:</strong> e5a2a1d</p>
 <div id="introduction" class="section level3">
 <h3>Introduction</h3>
 <p>Electroencephalograms(EEG) are non-stationary and non-homogeneous signals. In other words, EEG signals exhibit abrupt changes in their statistical distribution and functional behavior. EEG signals can also be considered as points in a high-dimensional space. A common way of reducing the EEG signal to a more tractable, lower-dimensional space is by some combination of features extraction and signal decomposition – i.e., spectral, wavelet, principal component(PCA) or independent component(ICA) decomposition. Feature selection and decompositions of the raw signal entail an averaging over possibly inhomogeneous segments of the EEG signal.</p>
@@ -422,7 +422,7 @@ Segmentation of trial one based on the complexity coefficient <span class="math 
     for(k in 1:6){
      plot(eeg[k, a:b], 
            type = &#39;l&#39;, 
-           col = &quot;gray20&quot;, 
+           col = &quot;gray30&quot;, 
            lwd = 1.5,
            axes = FALSE,
            frame.plot = FALSE)

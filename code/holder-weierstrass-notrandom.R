@@ -43,7 +43,7 @@ cols = c(3, 8, 16)
 # alpha[cols]
 
 # Plot a single example from fbm with different parameters
-plot.ts(xs[,cols], main = "Weierstrass function", col = eegpalette(1)[1])
+plot.ts(xs[,cols], main = "Weierstrass function", col = viridis::viridis(30)[3])
 
 
 ## @knitr holder-coefficients

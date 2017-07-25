@@ -223,6 +223,7 @@ $(document).ready(function () {
 
 <div id="TOC">
 <ul>
+<li><a href="#introduction">Introduction</a></li>
 <li><a href="#diagnostic-plots">Diagnostic plots</a></li>
 <li><a href="#approximation-method-performance">Approximation method performance</a></li>
 <li><a href="#session-information">Session information</a></li>
@@ -236,7 +237,9 @@ shared across the workflowr files. -->
 <p><strong>Last updated:</strong> 2017-07-25</p>
 <!-- Insert the code version (Git commit SHA1) if Git repository exists and R
  package git2r is installed -->
-<p><strong>Code version:</strong> 5cf245a ### Introduction</p>
+<p><strong>Code version:</strong> e5a2a1d</p>
+<div id="introduction" class="section level3">
+<h3>Introduction</h3>
 <p>The <span class="math inline">\(\varepsilon-\)</span>complexity of a time series is computed by successively downsampling and approximating the original time series. The initial implementation of the <span class="math inline">\(\varepsilon-\)</span>complexity procedure used piecewise polynomials as the approximation method. We implemented the procedure in the <code>R</code> language using three approximation methods, B-splines, cubic splines, and interpolating subdivision. We implemented the latter method in <code>R</code> while the spline approximation methods used existing libraries.</p>
 <p>The purpose of adding additional approximation methods was to improve the performance of the complexity coefficients in segmentation and classification tasks. We found that improved approximation did not lead to improved classification performance. Cubic splines were used in later applications because of the computational efficiency of the method.</p>
 <pre class="r"><code>knitr::read_chunk(&quot;../code/sim-example.R&quot;)</code></pre>
@@ -301,6 +304,7 @@ Single time series from each simulation group.
 </p>
 </div>
 <pre class="r"><code>save_plot(&quot;jitter_timeseries&quot;, prefix)</code></pre>
+</div>
 <div id="diagnostic-plots" class="section level3">
 <h3>Diagnostic plots</h3>
 <p>In the theory developed by Piryatinska and Darkhovsky<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>, the <span class="math inline">\(log-log\)</span> regression of approximation errors taken at each downsampling level <span class="math inline">\(S\)</span> should be roughly linear. The two parameters defining this linear fit are the complexity coefficients.The implementation of the three approximation methods was checked to determine that this linear relationship held. Below is the plot for the interpolating subdivision method. Diagnostic plots for the other methods produced similar results.</p>

@@ -33,4 +33,4 @@ comps <- lapply(xs, function(x) tsfeats::get_features(x, tsfeats::ecomp_cspline)
 
 
 names(xs) <- paste0("Complexity 'B'=", comps[,2], " , ", "Hurst=", round(fh[,2], 2))
-plot_ts(xs, ncol = 3)
+plot_ts(xs, ncol = 3, col = viridis::viridis(30)[3])

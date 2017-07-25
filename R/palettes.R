@@ -5,9 +5,10 @@ eegPair <- function(alpha = 0.6){
 
 eegpalette <- function(alpha = 0.7){
   c(
-    # adjustcolor(viridis::viridis(30)[8], alpha),
     adjustcolor("gray10", alpha), 
-    adjustcolor("tomato4", alpha),
+    # adjustcolor(viridis::viridis(30)[2], alpha),
+    adjustcolor("tomato3", alpha),
+    # adjustcolor(viridis::viridis(30)[20], alpha),
     adjustcolor(viridis::viridis(30)[12], alpha)
     ) 
   # c(adjustcolor("gray10",  alpha),  # no response

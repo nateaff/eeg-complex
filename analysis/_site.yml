@@ -8,7 +8,7 @@ navbar:
     - text: "License"
       href: license.html
   right:
-    - icon: fa-github
+    - text: "Source"
       href: https://github.com/nateaff/eeg-complex
   html_document:
     toc: true

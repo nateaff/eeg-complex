@@ -6,7 +6,6 @@ output:
     code_folding: hide
 ---
 
-
 <!-- The file analysis/chunks.R contains chunks that define default settings
 shared across the workflowr files. -->
 
@@ -30,7 +29,7 @@ knitr::read_chunk("../analysis/chunks.R")
 1. [Simulation and Approximation Methods](simulations.html) 
 2. [Properties of the Complexity Coefficients](complexity-coefficients.html)
 3. [Seizure Prediction](seizure-prediction.html)
-4. [Computing the complexity coefficients](ecomplexity-procedure.html)
+4. [Computing the Complexity Coefficients](ecomplexity-procedure.html)
 
 The $\varepsilon$-complexity of a continuous function is, roughly speaking, the amount of information needed to reconstruct that function within an absolute error $\varepsilon$. The theory and procedure for estimating $\varepsilon$-complexity was introduced by Darkhovsky and Piryatinska[^1]. In previous work, the complexity coefficients have been shown to be useful features for the segmentation and classification of time series[^2]. 
 

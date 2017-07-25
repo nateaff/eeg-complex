@@ -174,7 +174,7 @@ plot_regression <- function(df, xlab, ylab, title,
 #' @param ylab ylab
 #' @param title title
 #' @param ncol grid columns
-plot_ts <- function(df, facet = TRUE, xlab = "", ylab = "", title ="", ncol = 2){
+plot_ts <- function(df, facet = TRUE, xlab = "", ylab = "", title ="", ncol = 2, col = "gray10"){
   
   len <- dim(df)[1]  
   width <- dim(df)[2]
@@ -183,7 +183,7 @@ plot_ts <- function(df, facet = TRUE, xlab = "", ylab = "", title ="", ncol = 2)
                     geom_line(size = 0.5, alpha = 0.85) +
                     labs(x = "", y = " ") 
   if(facet){
-    gp <- gp + geom_line(colour = "grey8") +
+    gp <- gp + geom_line(colour = col) +
                facet_wrap(~variable, scales = "free_y", ncol = ncol) 
   } else {
     gp <- gp + geom_line(aes(colour = variable), size = 0.8, alpha = 0.85) +
