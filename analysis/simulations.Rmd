@@ -32,7 +32,6 @@ knitr::read_chunk("../analysis/chunks.R")
 ```
 ### Introduction 
 
-
 The $\varepsilon-$complexity of a time series is computed by successively downsampling and approximating the original time series. The initial implementation of the $\varepsilon-$complexity procedure used piecewise polynomials as the approximation method. We implemented the procedure in the `R` language using three approximation methods, B-splines, cubic splines, and interpolating subdivision. We implemented the latter method  in `R` 
 while the spline approximation methods used existing libraries. 
 
