@@ -32,6 +32,23 @@ id <- factor(rep(rep(c(1,2), each = 200), 6))
 
 dfm <- df  %>%  tidyr::gather(variable, value) 
 dfm$variable <- factor(dfm$variable)
+
+plot_fit <- function(res, fname){
+  xlab = "log( S )"; ylab = "log( epsilons )"
+  plot(
+       log(res$S), 
+       log(res$epsilons),
+       yaxt = "n", 
+       pch = 2, 
+       ylab = ylab, 
+       xlab = xlab, 
+       main = fname       
+       )
+  abline(res$fit, lwd = 1.6, col = eegpalette()[3])
+
+}
+
+## @knitr sim-series
 gp <- ggplot(dfm, aes(x = rep((1:len), nsims), y = value)) + 
               labs(x = "", y = " ")
 
@@ -46,24 +63,33 @@ save_plot("jitter_timeseries", prefix)
 ## @knitr sim-example-plot
 # Plot example fit for each function
 
-plot_fit <- function(res, fname){
-  # cat(names(res), "\n")
-  xlab = "log( S )"; ylab = "log( epsilons )"
-  plot(log(res$S), log(res$epsilons), pch = 2, ylab = ylab, xlab = xlab, 
-    main = fname)
-  # title = fname
-  abline(res$fit, lwd = 1.5, col = eegpalette()[3])
-}
-
-# pdf(file.path(getwd(), paste0("figures/", prefix, "-fits.pdf")), 
-#     width = 8, height = 6)
 
 par(mfrow = c(2,3))
 fits <- apply(df[1:6], 2, ecomplex::ecomplex, method = "lift") 
 names(fits) <- c("ARMA", "Logistic", "Weierstrass", "Cauchy", "FARIMA", "FBM")
 out <- Map(plot_fit, fits, names(fits))
+  
+## @knitr sim-half-example
 
-# dev.off()
+plot_fit <- function(res, fname){
+  xlab = "log( S )"; ylab = "log( epsilons )"
+  plot(
+       log(res$S), 
+       log(res$epsilons),
+       yaxt = "n", 
+       pch = 2, 
+       ylab = ylab, 
+       xlab = xlab, 
+       main = fname,
+       xaxt = "n"
+      )
 
+  abline(res$fit, lwd = 1.5, col = eegpalette()[3])
+}
+
+par(mfrow = c(1,3))
+fits <- apply(df[4:6], 2, ecomplex::ecomplex, method = "lift") 
+names(fits) <- c( "Cauchy", "FARIMA", "FBM")
+out <- Map(plot_fit, fits, names(fits))
 
 

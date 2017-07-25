@@ -48,7 +48,7 @@ cv_one <- function(df, train, test, thresholds){
               select(-trial, -weights)
     traindf$response <- as.factor(traindf$response)
       
-    mod <- segmentRF(response ~., traindf)
+    mod <- tssegment::segmentRF(response ~., traindf)
     
   test_one <- function(k){
       testdf <- dplyr::filter(df, trial == k) 
@@ -112,7 +112,7 @@ cv_segments <- function(df, thresholds, colnums, ...){
 #
 run_cv <- function(df_, ground, ch, colnums, from_cache){
   # Cross validation functions in eeg-rf-cv.R
-  threshs <- readRDS(cache_file("cvthresholds", prefix))
+  threshs <- readRDS(cache_file("cvthresholds", "eeg"))
   thresh <- c(1 - threshs[[ch]], threshs[[ch]])
   cat(sprintf("Threshold %f, channel %d \n", round(threshs[[ch]],2), ch))  
   
@@ -128,8 +128,8 @@ run_cv <- function(df_, ground, ch, colnums, from_cache){
   which(ground != pred)
 
   if(!from_cache){
-    save_cache(res, paste0("cv_results_ch_", ch), prefix) 
-    save_cache(cm, paste0("cv_confusion_mat_ch_", ch), prefix) 
+    save_cache(res, paste0("cv_results_ch_", ch), "eeg") 
+    save_cache(cm, paste0("cv_confusion_mat_ch_", ch), "eeg") 
   }
   list(cm = cm, df = res$df, importance = res$import)
 }

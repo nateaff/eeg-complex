@@ -43,7 +43,7 @@ cols = c(3, 8, 16)
 # alpha[cols]
 
 # Plot a single example from fbm with different parameters
-plot.ts(xs[,cols], main = "Weierstrass function")
+plot.ts(xs[,cols], main = "Weierstrass function", col = eegpalette(1)[1])
 
 
 ## @knitr holder-coefficients
@@ -51,18 +51,21 @@ par(mfrow = c(1, 3))
 plot(alpha[1:19],  emeans[1:19, 1], 
    xlab = "Alpha", 
      ylab = "A", 
-     cex = 1.2 
+     cex = 1.2,
+     col = eegpalette(1)[1]
      )
 
 plot(alpha[1:19], emeans[1:19, 2], 
      xlab = "Alpha", 
      ylab = "B", 
-     cex = 1.3 
+     cex = 1.3,
+     col = eegpalette(1)[2]
      )
 plot(alpha[1:19], fdmeans[1:19, 1], 
      xlab = "Alpha", 
      ylab = "Fractal Dimension", 
      cex = 1.3, 
+     col = eegpalette(1)[3]
      )
 
 ## @knitr weierstrass-save-plots
@@ -74,7 +77,8 @@ par(mfrow = c(1, 3))
 plot(alpha[1:19],  emeans[1:19, 1], 
    xlab = "Alpha", 
      ylab = "A", 
-     cex = 1.2 
+     cex = 1.2, 
+     col = eegpalette(1)[1]
      # pch = 16, 
      # col = adjustcolor("gray10", 0.8)
      )
@@ -82,14 +86,16 @@ plot(alpha[1:19],  emeans[1:19, 1],
 plot(alpha[1:19], emeans[1:19, 2], 
      xlab = "Alpha", 
      ylab = "B", 
-     cex = 1.3 
+     cex = 1.3,
+     col = eegpalette(1)[2] 
      # pch = 16, 
      # col = adjustcolor("gray10", 0.8)
      )
 plot(alpha[1:19], fdmeans[1:19, 1], 
      xlab = "Alpha", 
      ylab = "Fractal Dimension", 
-     cex = 1.3, 
+     cex = 1.3,
+     col = eegpalette(1)[3] 
      # pch = 16, 
      # col = adjustcolor("gray10", 0.8)
      )

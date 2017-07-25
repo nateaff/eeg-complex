@@ -1,4 +1,4 @@
-## @knitr eeg-segment-plot
+## @knitr eeg-segment-create
 library(ggplot2)
 library(dplyr)
 library(viridis)
@@ -22,7 +22,7 @@ ch = 1; colnums = c(5:9,  13:15); tnum = 8
 dfch <- df[[ch]][[tnum]]
 res <- palarm(dfch$ecomp.cspline_B)
 
-seg_plot <- function(startn, stopn, title =""){
+seg_plot <- function(startn, stopn, title ="", ...){
   segcol = adjustcolor("tomato3", 0.9)
   pal  = c("gray20", segcol, viridis::viridis(256)[c(1, 30, 60, 90, 120)])
 
@@ -31,12 +31,14 @@ seg_plot <- function(startn, stopn, title =""){
                   col = adjustcolor("gray20", 0.6), 
                   lwd = 2,
                   lty = 1, 
+                  cex = 0.5,
                   ylim = c(0,2.2), 
                   xlim = c(0,120), 
                   xlab = "Time",
-                  yaxt = "n", 
+                  yaxt = "n",
                   ylab = "", 
-                  main = title)
+                  main = title,
+                  ...)
   lines(res$means + 3, type = 'l', xlim=c(0,120), col=segcol, lwd=2, lty= 1 )
   for(k in startn:stopn) lines(dfch[ , 4 + k] + 0.5*(k-startn), 
                      lwd = 2, 
@@ -47,8 +49,11 @@ seg_plot <- function(startn, stopn, title =""){
 # pdf(file.path(getwd(), paste0("figures/", prefix, "-segment-plot.pdf")), 
 #     width = 9, height = 4)
 
-par(mfrow = c(1,2), mar = c(2,1,2,1))
+## @knitr eeg-segment-plot
+par(mfrow = c(1,2), mar = c(2,2,2,2), cex.main =  .9)
 seg_plot(1,2, "Segmentation of Delta, Theta")
 seg_plot(3,5, "Segmentation of Alpha, Beta, Gamma")
 
-# dev.off() 
+## @knitr eeg-segment-plot2
+par(mfrow = c(1,1), mar = c(1,1,1,1))
+seg_plot(3,5, xaxt = "n")

@@ -188,15 +188,6 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="simulations.html">Simulations</a>
-</li>
-<li>
-  <a href="complexity-coefficients.html">Complexity Coefficients</a>
-</li>
-<li>
-  <a href="seizure-prediction.html">Seizure Prediction</a>
-</li>
-<li>
   <a href="license.html">License</a>
 </li>
       </ul>
@@ -230,16 +221,24 @@ $(document).ready(function () {
 
 </div>
 
+<div id="TOC">
+<ul>
+<li><a href="#diagnostic-plots">Diagnostic plots</a></li>
+<li><a href="#approximation-method-performance">Approximation method performance</a></li>
+<li><a href="#session-information">Session information</a></li>
+</ul>
+</div>
 
 <!-- The file analysis/chunks.R contains chunks that define default settings
 shared across the workflowr files. -->
 <!-- Update knitr chunk options -->
 <!-- Insert the date the file was last updated -->
-<p><strong>Last updated:</strong> 2017-07-23</p>
+<p><strong>Last updated:</strong> 2017-07-25</p>
 <!-- Insert the code version (Git commit SHA1) if Git repository exists and R
  package git2r is installed -->
-<p><strong>Code version:</strong> ff35075</p>
-<p>The <span class="math inline">\(\varepsilon-\)</span>complexity coefficients are computed by sucessively downsampling and approximating or interpolating the original function. The initial implementation of the <span class="math inline">\(\varepsilon-\)</span>complexity computation used piecewise polynomials as the approximation method. For our <code>R</code> implementation we used three approximation methods, B-splines, cubic splines and interpolating subdivision. The latter method coded in <code>R</code> while existing libraries were used for the two spline methods.</p>
+<p><strong>Code version:</strong> 5cf245a ### Introduction</p>
+<p>The <span class="math inline">\(\varepsilon-\)</span>complexity of a time series is computed by successively downsampling and approximating the original time series. The initial implementation of the <span class="math inline">\(\varepsilon-\)</span>complexity procedure used piecewise polynomials as the approximation method. We implemented the procedure in the <code>R</code> language using three approximation methods, B-splines, cubic splines, and interpolating subdivision. We implemented the latter method in <code>R</code> while the spline approximation methods used existing libraries.</p>
+<p>The purpose of adding additional approximation methods was to improve the performance of the complexity coefficients in segmentation and classification tasks. We found that improved approximation did not lead to improved classification performance. Cubic splines were used in later applications because of the computational efficiency of the method.</p>
 <pre class="r"><code>knitr::read_chunk(&quot;../code/sim-example.R&quot;)</code></pre>
 <pre class="r"><code>library(ggplot2)
 library(dplyr)
@@ -273,6 +272,21 @@ id &lt;- factor(rep(rep(c(1,2), each = 200), 6))
 
 dfm &lt;- df  %&gt;%  tidyr::gather(variable, value) 
 dfm$variable &lt;- factor(dfm$variable)
+
+plot_fit &lt;- function(res, fname){
+  xlab = &quot;log( S )&quot;; ylab = &quot;log( epsilons )&quot;
+  plot(
+       log(res$S), 
+       log(res$epsilons),
+       yaxt = &quot;n&quot;, 
+       pch = 2, 
+       ylab = ylab, 
+       xlab = xlab, 
+       main = fname       
+       )
+  abline(res$fit, lwd = 1.6, col = eegpalette()[3])
+
+}
 gp &lt;- ggplot(dfm, aes(x = rep((1:len), nsims), y = value)) + 
               labs(x = &quot;&quot;, y = &quot; &quot;)
 
@@ -287,20 +301,12 @@ Single time series from each simulation group.
 </p>
 </div>
 <pre class="r"><code>save_plot(&quot;jitter_timeseries&quot;, prefix)</code></pre>
-<p>In theory developed by Piryatinska and Darkhovsky<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>, the <span class="math inline">\(log-log\)</span> regression of approximation errors taken at each downsampling level <span class="math inline">\(S\)</span> should be roughly linear. The implementation of the three approximation methods were checked to determine that the relationship held. Below is the plot for the interpolating subdivision method.</p>
+<div id="diagnostic-plots" class="section level3">
+<h3>Diagnostic plots</h3>
+<p>In the theory developed by Piryatinska and Darkhovsky<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>, the <span class="math inline">\(log-log\)</span> regression of approximation errors taken at each downsampling level <span class="math inline">\(S\)</span> should be roughly linear. The two parameters defining this linear fit are the complexity coefficients.The implementation of the three approximation methods was checked to determine that this linear relationship held. Below is the plot for the interpolating subdivision method. Diagnostic plots for the other methods produced similar results.</p>
+<p>(An outline of the estimation procedure is <a href="ecomplexity-procedure.html">here</a>)</p>
 <pre class="r"><code># Plot example fit for each function
 
-plot_fit &lt;- function(res, fname){
-  # cat(names(res), &quot;\n&quot;)
-  xlab = &quot;log( S )&quot;; ylab = &quot;log( epsilons )&quot;
-  plot(log(res$S), log(res$epsilons), pch = 2, ylab = ylab, xlab = xlab, 
-    main = fname)
-  # title = fname
-  abline(res$fit, lwd = 1.5, col = eegpalette()[3])
-}
-
-# pdf(file.path(getwd(), paste0(&quot;figures/&quot;, prefix, &quot;-fits.pdf&quot;)), 
-#     width = 8, height = 6)
 
 par(mfrow = c(2,3))
 fits &lt;- apply(df[1:6], 2, ecomplex::ecomplex, method = &quot;lift&quot;) 
@@ -312,7 +318,11 @@ out &lt;- Map(plot_fit, fits, names(fits))</code></pre>
 Diagnostic plots for interpolating subdivision.
 </p>
 </div>
-<pre class="r"><code># dev.off()</code></pre>
+</div>
+<div id="approximation-method-performance" class="section level3">
+<h3>Approximation method performance</h3>
+<p>We hypothesized that lowering approximation error would improve classification accuracy when the complexity coefficients were used as features.</p>
+<p>A plot of the simulations in the feature space of the two complexity coefficients shows that the complexity coefficient generated by each method lie in roughly the same area in the coefficient space. The plot of the simulations in the complexity coefficient space shows that the same process – ARMA, logistic map, and fBM – appear separable for each method. That is, for those three processes the two groups of simulations could be separated by a line in the coefficient space.</p>
 <pre class="r"><code>knitr::read_chunk(&quot;../code/ecomplex-plot-feature-space.R&quot;)</code></pre>
 <pre class="r"><code>devtools::load_all()
 library(ggplot2)
@@ -328,7 +338,7 @@ sim_df1 &lt;- sim_df1 %&gt;% dplyr::filter(variable != &quot;ecomp_all_B&quot;)
 sim_df1$id2 &lt;- as.factor(rep(c(1,2,1,3,1,4,1,5,1,6,1,7), each = 30))
 
 # pal &lt;- c(&quot;gray10&quot;, viridis::viridis(60)[c(5,10,15,20,25,30)])
-pal &lt;- eegpalette(0.9)[c(1,3)]
+pal &lt;- eegpalette(0.7)[c(1,3)]
 gp &lt;- ggplot(data = sim_df1, aes(x  = value, y = yvalue))  
 
 gp + facet_grid(~ variable, scales = &quot;free_y&quot;) +
@@ -338,10 +348,7 @@ gp + facet_grid(~ variable, scales = &quot;free_y&quot;) +
      labs(x = &quot;A&quot;, y = &quot;B&quot;)</code></pre>
 <p><img src="figure/simulations.Rmd/sim-features1-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code># save_plot(&quot;approx-feature-space&quot;, prefix)</code></pre>
-<div id="approximation-method-performance" class="section level2">
-<h2>Approximation method performance</h2>
-<p>The purpose of adding addtional approximation methods was to improve the performance of the complexity coefficients in classification and segmentation tests. We hypothesized that lowering approximation error would improve the performance of the complexity coefficients in classification and segmentation tasks.</p>
-<p>For the following test the two groups consisted of 30 simulations generated by randomly perturbing the parameters of each process of function within a small window about its initial parameters. A plot of the simulations in the feature space of the two complexity coefficients shows that the complexity coefficient generated by each method lie in roughly the same area in the coefficient space.</p>
+<p>For the following test two groups were formed consisting of 30 simulations of each random process or function. Each process had an initial set of parameters and samples of the process were generated by randomly perturbing these parameters within a small window.</p>
 <p>The B-spline produced the lowest approximation error for all methods but did not out perform the other methods in the classification task.</p>
 <pre class="r"><code>  devtools::load_all()
   prefix = &quot;ecomplex&quot;
@@ -469,8 +476,8 @@ gp + facet_grid(~ variable, scales = &quot;free_y&quot;) +
 <p>The complexity coefficients were used as features in a random forest classifier, the same classifier we used in later applications. No approximation method was clearly dominant but the methods with higher approximation errors performed as well or better than the B-spline method. While all three approximation methods are similar – essentially, they all use lower order polynomial approximation – the results do indicate improved approximation doesn’t lead to improved performance in classification.</p>
 <p>For later applications, the cubic splines method was used because of the computational efficiency of the implementation.</p>
 </div>
-<div id="session-information" class="section level2">
-<h2>Session information</h2>
+<div id="session-information" class="section level3">
+<h3>Session information</h3>
 <!-- Insert the session information into the document -->
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>R version 3.4.1 (2017-06-30)
@@ -499,35 +506,36 @@ other attached packages:
 [10] ggthemes_3.4.0        dplyr_0.7.1           ggplot2_2.2.1        
 
 loaded via a namespace (and not attached):
- [1] reshape2_1.4.1           splines_3.4.1           
- [3] lattice_0.20-35          colorspace_1.2-6        
- [5] htmltools_0.3.6          yaml_2.1.14             
- [7] rlang_0.1.1              pracma_2.0.7            
- [9] ForeCA_0.2.4             glue_1.1.1              
-[11] withr_1.0.2              sp_1.2-5                
-[13] splus2R_1.2-1            bindr_0.1               
-[15] plyr_1.8.4               stringr_1.2.0           
-[17] commonmark_1.2           munsell_0.4.3           
-[19] gtable_0.2.0             devtools_1.13.2         
-[21] gmwm_2.0.0               evaluate_0.10.1         
-[23] memoise_1.1.0            labeling_0.3            
-[25] knitr_1.16               highr_0.6               
-[27] Rcpp_0.12.11             scales_0.4.1            
-[29] backports_1.0.5          abind_1.4-3             
-[31] sapa_2.0-2               fracdiff_1.4-2          
-[33] digest_0.6.12            stringi_1.1.5           
-[35] grid_3.4.1               rprojroot_1.2           
-[37] fractaldim_0.8-4         quadprog_1.5-5          
-[39] tools_3.4.1              magrittr_1.5            
-[41] ifultools_2.0-4          lazyeval_0.2.0          
-[43] pdc_1.0.3                tibble_1.3.3            
-[45] randomForest_4.6-12      tidyr_0.6.3             
-[47] pkgconfig_2.0.1          MASS_7.3-45             
-[49] xml2_1.1.1               RandomFieldsUtils_0.3.25
-[51] RandomFields_3.1.50      roxygen2_6.0.1          
-[53] assertthat_0.2.0         rmarkdown_1.6           
-[55] R6_2.2.2                 git2r_0.18.0            
-[57] compiler_3.4.1          </code></pre>
+ [1] Rcpp_0.12.11             sapa_2.0-2              
+ [3] lattice_0.20-35          tidyr_0.6.3             
+ [5] splus2R_1.2-1            assertthat_0.2.0        
+ [7] rprojroot_1.2            digest_0.6.12           
+ [9] R6_2.2.2                 plyr_1.8.4              
+[11] RandomFields_3.1.50      backports_1.0.5         
+[13] evaluate_0.10.1          ForeCA_0.2.4            
+[15] pracma_2.0.7             highr_0.6               
+[17] rlang_0.1.1              lazyeval_0.2.0          
+[19] gmwm_2.0.0               fracdiff_1.4-2          
+[21] rmarkdown_1.6            labeling_0.3            
+[23] devtools_1.13.2          splines_3.4.1           
+[25] stringr_1.2.0            munsell_0.4.3           
+[27] compiler_3.4.1           pkgconfig_2.0.1         
+[29] htmltools_0.3.6          tibble_1.3.3            
+[31] gridExtra_2.2.1          roxygen2_6.0.1          
+[33] quadprog_1.5-5           randomForest_4.6-12     
+[35] withr_1.0.2              MASS_7.3-45             
+[37] commonmark_1.2           grid_3.4.1              
+[39] gtable_0.2.0             git2r_0.18.0            
+[41] magrittr_1.5             pdc_1.0.3               
+[43] scales_0.4.1             fractaldim_0.8-4        
+[45] stringi_1.1.5            reshape2_1.4.1          
+[47] viridis_0.3.4            sp_1.2-5                
+[49] xml2_1.1.1               tools_3.4.1             
+[51] glue_1.1.1               abind_1.4-3             
+[53] yaml_2.1.14              colorspace_1.2-6        
+[55] memoise_1.1.0            knitr_1.16              
+[57] bindr_0.1                RandomFieldsUtils_0.3.25
+[59] ifultools_2.0-4         </code></pre>
 </div>
 <div class="footnotes">
 <hr />

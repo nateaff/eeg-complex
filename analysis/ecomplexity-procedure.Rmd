@@ -1,0 +1,63 @@
+---
+title: "Epsilon-complexity Procedure"
+author: "Nathanael Aff"
+date: 2017-07-15
+output: html_document
+---
+
+<!-- The file analysis/chunks.R contains chunks that define default settings
+shared across the workflowr files. -->
+```{r read-chunk, include=FALSE, cache=FALSE}
+knitr::read_chunk("chunks.R")
+```
+
+<!-- Update knitr chunk options -->
+```{r knitr-opts-chunk, include=FALSE}
+```
+
+<!-- Insert the date the file was last updated -->
+```{r last-updated, echo=FALSE, results='asis'}
+```
+
+<!-- Insert the code version (Git commit SHA1) if Git repository exists and R
+ package git2r is installed -->
+```{r code-version, echo=FALSE, results='asis'}
+```
+
+<!-- Add your analysis here -->
+
+The practical estimation of $\varepsilon$-complexity uses some set of approximation methods to successively downsample and approximation a function. At each $h$th step, only some proportion of the initial samples, $S_h$, are used finding the minimum approximation error,  $\varepsilon_h$. A least squares fit 
+\[
+  \log(S) \approx A + B\log(\varepsilon)
+\]
+determines the two parameters $A$ and $B$ which characterize the $\varepsilon-$complexity of the function. 
+
+<hr>
+### $\varepsilon$-complexity algorithm
+
+<hr>
+**Input**: $X$ a regularly sampled time series of length $N$. <br>
+**Input**: $\mathcal{F}$ a set of approximation methods $f$. <br>
+**Input**: $\mathcal{H}$ the set of spacings $h$. <br>
+**Output**: The complexity coefficients $A,B$. <br>
+<hr>
+
+**foreach** $h$ in $\mathcal{H}$ **do** 
+<br>
+<p style="margin-left: 20px">**foreach** $f$ in $\mathcal{F}$ **do** 
+</p>
+<p style="margin-left: 40px">Compute the approximation error <br> 
+        $\varepsilon_{h,f} \leftarrow \frac{1}{N}
+         \left|f_h - X_{h} \right|^2$ 
+        <br>
+</p>
+<p style="margin-left: 20px">**end** <br>
+     Find minimium error over all $f$  <br>
+     epsilons$_h$ $\leftarrow \min \varepsilon_{h,f}$. 
+</p>
+**end** <br>
+Fit a least squares linear model <br>
+$A,B$ $\leftarrow$ lm$\left(\{ S_h \} \sim \{ \varepsilon_h \} \right)$.
+<br>
+
+<hr>

@@ -188,15 +188,6 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="simulations.html">Simulations</a>
-</li>
-<li>
-  <a href="complexity-coefficients.html">Complexity Coefficients</a>
-</li>
-<li>
-  <a href="seizure-prediction.html">Seizure Prediction</a>
-</li>
-<li>
   <a href="license.html">License</a>
 </li>
       </ul>
@@ -230,49 +221,35 @@ $(document).ready(function () {
 
 </div>
 
+<div id="TOC">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#classification-models">Classification models</a></li>
+<li><a href="#data">Data</a></li>
+<li><a href="#feature-importance">Feature importance</a></li>
+<li><a href="#session-information">Session information</a></li>
+</ul>
+</div>
 
 <!-- The file analysis/chunks.R contains chunks that define default settings
 shared across the workflowr files. -->
 <!-- Update knitr chunk options -->
 <!-- Insert the date the file was last updated -->
-<p><strong>Last updated:</strong> 2017-07-23</p>
+<p><strong>Last updated:</strong> 2017-07-24</p>
 <!-- Insert the code version (Git commit SHA1) if Git repository exists and R
  package git2r is installed -->
-<p><strong>Code version:</strong> ff35075</p>
-<pre class="r"><code>  devtools::load_all()
-  knitr::read_chunk(&quot;../code/eegplot.R&quot;)</code></pre>
-<pre class="r"><code>  eeg &lt;- readRDS(cache_file(&quot;eegsnip&quot;, prefix = &quot;eeg&quot;))
-  
-  # dim(eeg)
-  fs &lt;- 1220.703
-  
-  plot_range &lt;- function(a,b){
-    oldpar = par() 
-    par(mfrow = c(6,  1), mar = c(1, 1, 1, 1))
-    for(k in 1:6){
-     plot(eeg[k, a:b], 
-           type = &#39;l&#39;, 
-           col = &quot;gray20&quot;, 
-           lwd = 1.5,
-           axes = FALSE,
-           frame.plot = FALSE)
-    }
-    
-  }
-  
-  secs = 8
-  a = 37000
-  b = a + fs*secs
-  plot_range(a,b)</code></pre>
-<div class="figure" style="text-align: center">
-<img src="figure/seizure-prediction.Rmd/egg-plot2-1.png" alt="8 second window of EEG inclduing the start appplication of a laser stimulus." width="672" />
-<p class="caption">
-8 second window of EEG inclduing the start appplication of a laser stimulus.
-</p>
+<p><strong>Code version:</strong> 5cf245a</p>
+<div id="introduction" class="section level3">
+<h3>Introduction</h3>
+<p>Electroencephalograms(EEG) are non-stationary and non-homogeneous signals. In other words, EEG signals exhibit abrupt changes in their statistical distribution and functional behavior. EEG signals can also be considered as points in a high-dimensional space. A common way of reducing the EEG signal to a more tractable, lower-dimensional space is by some combination of features extraction and signal decomposition – i.e., spectral, wavelet, principal component(PCA) or independent component(ICA) decomposition. Feature selection and decompositions of the raw signal entail an averaging over possibly inhomogeneous segments of the EEG signal.</p>
+<p>The theory of the <span class="math inline">\(\varepsilon-\)</span>complexity of continuous functions was developed as a model free way of capturing inhomogeneity in a source signal. With that in mind, we used changes points in the complexity coefficients to segment the raw signal. The spectral decomposition of the EEG signal along with a small set of nonlinear features were segmented based on changes in the complexity coefficients and averages on these segments were used as features in the final classifier.</p>
+<p>Segmentation based on complexity coefficients was compared to several models that used uniform partitions of the signal. Segmentation based on complexity coefficients did not perform better than the uniform partition schemes.</p>
 </div>
-<div id="classifier" class="section level2">
-<h2>Classifier</h2>
-<pre class="r"><code>  knitr::read_chunk(&quot;../code/eeg-segment-plot.R&quot;)</code></pre>
+<div id="classification-models" class="section level3">
+<h3>Classification models</h3>
+<p>The plot below illustrates a partition of spectral features based on change points in the complexity coefficient <span class="math inline">\(B\)</span>. In total, 6 segmentation models were used: segmentation based on complexity coefficients <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, individually and combined, and three models using uniform partitions.</p>
+<pre class="r"><code> devtools::load_all()
+  knitr::read_chunk(&quot;../code/eeg-segment-plot.R&quot;)</code></pre>
 <pre class="r"><code>  library(ggplot2)
   library(dplyr)
   library(viridis)
@@ -296,7 +273,7 @@ shared across the workflowr files. -->
   dfch &lt;- df[[ch]][[tnum]]
   res &lt;- palarm(dfch$ecomp.cspline_B)
   
-  seg_plot &lt;- function(startn, stopn, title =&quot;&quot;){
+  seg_plot &lt;- function(startn, stopn, title =&quot;&quot;, ...){
     segcol = adjustcolor(&quot;tomato3&quot;, 0.9)
     pal  = c(&quot;gray20&quot;, segcol, viridis::viridis(256)[c(1, 30, 60, 90, 120)])
   
@@ -305,12 +282,14 @@ shared across the workflowr files. -->
                     col = adjustcolor(&quot;gray20&quot;, 0.6), 
                     lwd = 2,
                     lty = 1, 
+                    cex = 0.5,
                     ylim = c(0,2.2), 
                     xlim = c(0,120), 
                     xlab = &quot;Time&quot;,
-                    yaxt = &quot;n&quot;, 
+                    yaxt = &quot;n&quot;,
                     ylab = &quot;&quot;, 
-                    main = title)
+                    main = title,
+                    ...)
     lines(res$means + 3, type = &#39;l&#39;, xlim=c(0,120), col=segcol, lwd=2, lty= 1 )
     for(k in startn:stopn) lines(dfch[ , 4 + k] + 0.5*(k-startn), 
                        lwd = 2, 
@@ -320,8 +299,8 @@ shared across the workflowr files. -->
   
   # pdf(file.path(getwd(), paste0(&quot;figures/&quot;, prefix, &quot;-segment-plot.pdf&quot;)), 
   #     width = 9, height = 4)
-  
-  par(mfrow = c(1,2), mar = c(2,1,2,1))
+
+  par(mfrow = c(1,2), mar = c(2,2,2,2), cex.main =  .9)
   seg_plot(1,2, &quot;Segmentation of Delta, Theta&quot;)
   seg_plot(3,5, &quot;Segmentation of Alpha, Beta, Gamma&quot;)</code></pre>
 <div class="figure" style="text-align: center">
@@ -330,7 +309,9 @@ shared across the workflowr files. -->
 Segmentation of trial one based on the complexity coefficient <span class="math inline">\(B\)</span>. Only spectral features are shown.
 </p>
 </div>
-<pre class="r"><code>  # dev.off() </code></pre>
+<p>We discuss the data in more detail below. In short, there were 26 trials with 9 seizure responses. The underlying classifier is a random forest which produces some random variation in classification results. The classification performance reported in the table below is the mean balanced accuracy based on 30 iterations of 5-fold cross-validation. Within individual folds classes were relatively balanced but no other class balancing procedure was used. The final prediction probability is a sum of the outcome probabilities weighted by partition length.</p>
+<p>Models were built separately for each EEG channel. The mean balanced accuracy for each model and channel is reported below. All models performed better on channels 1 and 2: these are local field potential(LFP) channels which record the activity of a small set of neurons in the thalamus. The regular partition models of 8 and 15 partitions performed better across most channels. In particular, the performance of the models based on the complexity coefficients dropped for channels 5 and 6.</p>
+<p>Because of the small number of trials and some inherent flaws in the data, further tests would be needed to know if these results generalize to other conditions. In particular, the detection of change points in the complexity coefficients is sensitive to the resolution at which the feature is calculated.</p>
 <pre class="r"><code>  knitr::read_chunk(&quot;../code/eeg-tables.R&quot;)</code></pre>
 <pre class="r"><code>  library(dplyr)
   
@@ -423,37 +404,45 @@ Segmentation of trial one based on the complexity coefficient <span class="math 
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>  knitr::read_chunk(&quot;../code/eeg-classify-roc-import.R&quot;)</code></pre>
-<pre class="r"><code>  library(ggplot2)
-  library(dplyr)
-  library(ecomplex)
-  library(randomForest)
-  library(tssegment)
-  library(caret)
-  
-  prefix    = &quot;eeg&quot;
-  seed      = 2017
-  chs       = 1:6
-  from_cache = TRUE
-  window    = 240 
-  len = window/2
-  
-  
-  # Derived features. 30 Trials : 6 channels : 15 features
-  feature_df &lt;-readRDS(cache_file(&quot;mod_all_features&quot;, prefix))
-  # Load meta data 
-  trial_df &lt;- readRDS(cache_file(&quot;mod_trial_segments&quot;, &quot;eeg&quot;))
-  # tdf &lt;- trial_df[trial_df$window == window, ]
-  
-  # Select trials with 4 minute windows and 
-  # combine feature data frames with metadata
-  df &lt;- do.call(rbind, feature_df)
-  df &lt;- df %&gt;% cbind(trial_df) 
-  df &lt;- dplyr::filter(df, window == 240)
-  df$trial &lt;- 1:26</code></pre>
 </div>
-<div id="trial" class="section level2">
-<h2>Trial</h2>
+<div id="data" class="section level3">
+<h3>Data</h3>
+<p>The EEG come from mice with a genetic mutation similar to Dravet syndrome that makes them prone to epilepsy. The mice are also genetically modified to allow for direct stimulation of neurons by a laser pulse.</p>
+<p>Data was gathered from 13 distinct time periods during which a laser stimulus was applied between one to four times. There were 26 trials in total. The 4-minute segments preceding the stimulus was used to predict outcomes. Since the seizures are induced and not naturally occuring, features associated with seizure response may be different, and possibly harder to detect, than those associated with a spotaneous seizure.</p>
+<pre class="r"><code>  devtools::load_all()
+  knitr::read_chunk(&quot;../code/eeg-plot.R&quot;)</code></pre>
+<pre class="r"><code>  eeg &lt;- readRDS(cache_file(&quot;eegsnip&quot;, prefix = &quot;eeg&quot;))
+  
+  # dim(eeg)
+  fs &lt;- 1220.703
+  
+  plot_range &lt;- function(a,b){
+    oldpar = par() 
+    par(mfrow = c(6,  1), mar = c(1, 1, 1, 1))
+    for(k in 1:6){
+     plot(eeg[k, a:b], 
+           type = &#39;l&#39;, 
+           col = &quot;gray20&quot;, 
+           lwd = 1.5,
+           axes = FALSE,
+           frame.plot = FALSE)
+    }
+    
+  }
+  
+  secs = 8
+  a = 37000
+  b = a + fs*secs
+  plot_range(a,b)</code></pre>
+<div class="figure" style="text-align: center">
+<img src="figure/seizure-prediction.Rmd/egg-plot2-1.png" alt="8 second window of EEG inclduing the start appplication of a laser stimulus." width="672" />
+<p class="caption">
+8 second window of EEG inclduing the start appplication of a laser stimulus.
+</p>
+</div>
+<p>While we were able to prediction seizures on with a relatively high degree of accuracy – over 80% for some channels, there are significant limitations to the data. First and foremost, all seizures came from an individual mouse. We can only make limited inferences about features related to seizure responses without additional data. Variations in the features could be specific to the biology or measurement devices particular to that mouse.</p>
+<p>Seizures also occured mainly in the same series of trials. A plot below shows a shematic diagram of the trials. Each bar represents a single trial. Filled boxes indicate a trial period and green bars indicate an application of the stimulus. Most seizures occured in a trial following a previous seizure: these are indicated by cyan boxes.</p>
+<p>Again, features associated with seizures may simply be features that occur following a seizure, not preceeding it.</p>
 <pre class="r"><code>  knitr::read_chunk(&quot;../code/eeg-trial-plot.R&quot;)</code></pre>
 <pre class="r"><code>  library(dplyr)
   
@@ -531,6 +520,7 @@ Schematic of the trial time periods. A seizures is indicated as a ‘repsonse’
 </p>
 </div>
 <pre class="r"><code>  # dev.off()</code></pre>
+<p>The plot below shows the probability of seizure as estimated by a single model for each trial. Pink and cyan indicate seizure responses. For most trials the model separates seizure and non-seizure trials fairly well. However, the initial seizure responses are much closer to the threshold than the later seizure trials.</p>
 <pre class="r"><code>  knitr::read_chunk(&quot;../code/eeg-cv-ch1-plot.R&quot;)</code></pre>
 <pre class="r"><code>  library(ggplot2)
   prefix = &quot;eeg&quot;
@@ -578,8 +568,161 @@ Probability of seizure for model built on channel 1 using complexity coefficient
 </div>
 <pre class="r"><code>  palette(&quot;default&quot;)</code></pre>
 </div>
-<div id="session-information" class="section level2">
-<h2>Session information</h2>
+<div id="feature-importance" class="section level3">
+<h3>Feature importance</h3>
+<p>Despite variations in classification performance, variable importance was similar across models. The variable importance for two models plotted in the figure below. Both models were build on data from channel 1. On the left is the model segmented on the combined complexity coefficients A and B. On the right is a model with 8 uniform partitions.</p>
+<pre class="r"><code>  knitr::read_chunk(&quot;../code/eeg-classify-roc-import.R&quot;)</code></pre>
+<pre class="r"><code>  library(ggplot2)
+  library(dplyr)
+  library(ecomplex)
+  library(randomForest)
+  library(tssegment)
+  library(caret)
+  library(corrplot) 
+  
+  prefix    = &quot;eeg&quot;
+  seed      = 2017
+  chs       = 1:6
+  from_cache = TRUE
+  window    = 240 
+  len = window/2
+  
+  feature_df &lt;-readRDS(cache_file(&quot;mod_all_features&quot;, &quot;eeg&quot;))
+  trial_df &lt;- readRDS(cache_file(&quot;mod_trial_segments&quot;, &quot;eeg&quot;))
+  
+  # Select trials with 4 minute windows and 
+  # combine feature data frames with metadata
+  df &lt;- do.call(rbind, feature_df)
+  df &lt;- df %&gt;% cbind(trial_df) 
+  df &lt;- dplyr::filter(df, window == 240)
+  df$trial &lt;- 1:26
+  
+  # Run cross validation segmenting on a single feature and 
+  # channel.
+  run_on_feat &lt;- function(df_, ch, feat, m = 5, byname = TRUE){
+    colnums = c(5:9, 13:18)
+    if(byname){
+        means_df &lt;- segment_on_cols(df_, ch, cols = feat, m = m)
+      } else {
+        means_df &lt;- segment_on_cols(df_, ch, vec = feat, new_vec = TRUE, m = m) 
+      }  
+    cat(&quot;Number of segments: &quot;, dim(means_df)[1], &quot;\n&quot;)
+    cat(&quot;Using channel: &quot;, ch, &quot;\n&quot;)
+    cm &lt;- run_cv(means_df, df$response, ch, colnums, TRUE)
+  }
+  
+  # Compute importance
+  varnames &lt;- c(&quot;Delta&quot;, &quot;Theta&quot;, &quot;Alpha&quot;, &quot;Beta&quot;, &quot;Gamma&quot;, 
+                &quot;Variance&quot;, &quot;Hurst&quot;, &quot;Spectral Entropy&quot;)
+  if(!from_cache){
+  
+    feat &lt;-  c(&quot;ecomp.cspline_B&quot;)
+    resAB_raw &lt;- resvec_raw &lt;- list() 
+    for(ch in 1:6){
+      resAB_raw[[ch]]  &lt;- run_on_feat(df, ch, feat, m = 3, byname = TRUE)
+      resvec_raw[[ch]] &lt;- run_on_feat(df, ch, (1:120), m = 10, byname = FALSE)
+    }
+    save_cache(resAB_raw, &quot;resAB_raw&quot;, &quot;eeg&quot;)
+    save_cache(resvec_raw, &quot;resvec_raw&quot;, &quot;eeg&quot;)
+  } else {
+    resAB_raw &lt;- readRDS(cache_file(&quot;resAB_raw&quot;, &quot;eeg&quot;))
+    resvec_raw &lt;- readRDS(cache_file(&quot;resvec_raw&quot;, &quot;eeg&quot;))
+  }
+  
+  
+  ABimport &lt;- lapply(resAB_raw, function(x) x$importance) %&gt;% 
+              do.call(rbind, .) %&gt;% 
+              data.frame
+  vecimport &lt;- lapply(resvec_raw, function(x) x$importance) %&gt;% 
+               do.call(rbind, .) %&gt;% 
+               data.frame
+  names(ABimport) &lt;- varnames
+  names(vecimport) &lt;- varnames
+  
+  ABnorm &lt;- apply(ABimport, 1, ecomplex::normalize)
+  vecnorm &lt;- apply(vecimport, 1, ecomplex::normalize)
+  
+  layout(matrix(c(1,2), 2, 2, byrow = TRUE))
+  
+  c1  &lt;- corrplot::corrplot(
+                 as.matrix(ABnorm),
+                 method = &quot;circle&quot;, 
+                 col = viridis::viridis(30)[25:10],
+                 # col = gray.colors(10, start = 0.9, end = 0),
+                 is.corr = FALSE, 
+                 tl.col = &quot;Black&quot;
+                 )
+  # mtext(&quot;Parition on coefficient B change points.&quot;, side = 3, line = 3) 
+  
+  corrplot::corrplot(
+                 as.matrix(vecnorm), 
+                 method = &quot;circle&quot;, 
+                  col = viridis::viridis(30)[25:10],
+                 # col = gray.colors (10, start = 0.9, end = 0),
+                 is.corr = FALSE, 
+                 tl.col = &quot;Black&quot;
+                 ) </code></pre>
+<div class="figure" style="text-align: center">
+<img src="figure/seizure-prediction.Rmd/egg-importance2-1.png" alt="Variable importance (mean-decrease in GINI) for all model and channel combinations. On the left is the model segmented by complexity coefficients A+B. On the right is the model with 8 uniform partitions." width="672" />
+<p class="caption">
+Variable importance (mean-decrease in GINI) for all model and channel combinations. On the left is the model segmented by complexity coefficients A+B. On the right is the model with 8 uniform partitions.
+</p>
+</div>
+<pre class="r"><code>  # mtext(&quot;Uniform partition into 8 segments.&quot;, side = 3, line = 3)</code></pre>
+<p>Although the underlying random forest classifier can be highly non-linear, so differences in distributions of the features may not be obvious, the pattern of variable importance is reflected in the differences of distributions of the raw features. The boxplots below show clear differences in the distributions of the relative gamma and theta for channel 1.</p>
+<pre class="r"><code>  knitr::read_chunk(&quot;../code/eeg-boxplot-ch1.R&quot;)</code></pre>
+<pre class="r"><code>  library(dplyr) 
+  library(viridis)
+  prefix     = &quot;eeg&quot;
+  seed       = 2017
+  chs        = 1:6
+  segch      = 4
+  from_cache = TRUE
+  window     = 240 
+  len        = window/2
+  colnums    = c(5:9, 13:15, 21, 19)
+   
+  
+  feature_df &lt;-readRDS(cache_file(&quot;mod_all_features&quot;, prefix))
+  trial_df   &lt;- readRDS(cache_file(&quot;mod_trial_segments&quot;, &quot;eeg&quot;))
+  
+  df &lt;- do.call(rbind, feature_df)
+  df &lt;- df %&gt;% cbind(trial_df) 
+  df &lt;- filter(df, window == 240)
+  
+  palettte &lt;- eegpalette(0.9)[c(1,3)]
+  # Combine all observation for each channel 
+  # Returns list of 6 data frames, one for each channel
+  chdf &lt;- apply(df[1:6], 2, function(x) do.call(rbind, x))
+  colnums &lt;- c(5:9, 13:15)
+  # names(chdf[[1]])[colnums]
+  
+  # Add response column
+  response &lt;- rep(df$response, each = 120)
+  response_id &lt;- as.factor(c(1,1,1,1,1,2,3,1,
+                      1,1,1,1,1,1,1,1,1,1,1,1,1,
+                      2,3,3,2,3,3,2,3,3))
+  
+   
+  boxplot_panel(chdf[[1]], response, cex = 0.3)</code></pre>
+<div class="figure" style="text-align: center">
+<img src="figure/seizure-prediction.Rmd/egg-boxplot2-1.png" alt="Feature distribution for Channel 1" width="672" />
+<p class="caption">
+Feature distribution for Channel 1
+</p>
+</div>
+<p>Channel 1 represents an LFP or local field potential signal, captured from a smaller cluster of neurons in the thalamus. Channel 3 is an iEEG or external EEG sensor placed on the brain surface.</p>
+<p>For channel 3 direction of the difference for relative gamma and theta are reversed. Where differences in the beta distribution for seizure an non-seizure trials are not significant for channel 1, for channel three the differences are clear. The difference in distributions is also reflected in the variable importance in the previous plot, as are differences in Hurst and spectral entropy features.</p>
+<pre class="r"><code>  boxplot_panel(chdf[[3]], response, cex = 0.3)</code></pre>
+<div class="figure" style="text-align: center">
+<img src="figure/seizure-prediction.Rmd/egg-boxplot3-1.png" alt="Feature distribution for Channel 3" width="672" />
+<p class="caption">
+Feature distribution for Channel 3
+</p>
+</div>
+</div>
+<div id="session-information" class="section level3">
+<h3>Session information</h3>
 <!-- Insert the session information into the document -->
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>R version 3.4.1 (2017-06-30)
@@ -602,10 +745,10 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] caret_6.0-76         lattice_0.20-35      tssegment_0.0.0.9000
- [4] randomForest_4.6-12  bindrcpp_0.2         ecomplex_0.0.1      
- [7] viridis_0.3.4        dplyr_0.7.1          ggplot2_2.2.1       
-[10] eegcomplex_0.0.0.1  
+ [1] corrplot_0.77        caret_6.0-76         lattice_0.20-35     
+ [4] tssegment_0.0.0.9000 randomForest_4.6-12  eegcomplex_0.0.0.1  
+ [7] bindrcpp_0.2         ecomplex_0.0.1       viridis_0.3.4       
+[10] dplyr_0.7.1          ggplot2_2.2.1       
 
 loaded via a namespace (and not attached):
  [1] splines_3.4.1         foreach_1.4.3         assertthat_0.2.0     
@@ -622,18 +765,18 @@ loaded via a namespace (and not attached):
 [34] nnet_7.3-12           lazyeval_0.2.0        pbkrtest_0.4-6       
 [37] magrittr_1.5          memoise_1.1.0         evaluate_0.10.1      
 [40] nlme_3.1-128          MASS_7.3-45           xml2_1.1.1           
-[43] ggthemes_3.4.0        tools_3.4.1           stringr_1.2.0        
-[46] munsell_0.4.3         compiler_3.4.1        timeSeries_3022.101.2
-[49] fArma_3010.79         rlang_0.1.1           grid_3.4.1           
-[52] nloptr_1.0.4          iterators_1.0.8       labeling_0.3         
-[55] fractaldim_0.8-4      rmarkdown_1.6         gtable_0.2.0         
-[58] ModelMetrics_1.1.0    codetools_0.2-15      fracdiff_1.4-2       
-[61] gmwm_2.0.0            abind_1.4-3           roxygen2_6.0.1       
-[64] reshape2_1.4.1        R6_2.2.2              gridExtra_2.2.1      
-[67] knitr_1.16            bindr_0.1             commonmark_1.2       
-[70] fBasics_3011.87       rprojroot_1.2         stringi_1.1.5        
-[73] pdc_1.0.3             parallel_3.4.1        Rcpp_0.12.11         
-[76] splus2R_1.2-1        </code></pre>
+[43] beeswarm_0.2.3        ggthemes_3.4.0        tools_3.4.1          
+[46] stringr_1.2.0         munsell_0.4.3         compiler_3.4.1       
+[49] timeSeries_3022.101.2 fArma_3010.79         rlang_0.1.1          
+[52] grid_3.4.1            nloptr_1.0.4          iterators_1.0.8      
+[55] fractaldim_0.8-4      labeling_0.3          rmarkdown_1.6        
+[58] gtable_0.2.0          ModelMetrics_1.1.0    codetools_0.2-15     
+[61] fracdiff_1.4-2        gmwm_2.0.0            abind_1.4-3          
+[64] roxygen2_6.0.1        reshape2_1.4.1        R6_2.2.2             
+[67] gridExtra_2.2.1       knitr_1.16            bindr_0.1            
+[70] commonmark_1.2        fBasics_3011.87       rprojroot_1.2        
+[73] stringi_1.1.5         pdc_1.0.3             parallel_3.4.1       
+[76] Rcpp_0.12.11          splus2R_1.2-1        </code></pre>
 </div>
 
 

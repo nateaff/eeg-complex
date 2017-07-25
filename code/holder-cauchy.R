@@ -1,6 +1,8 @@
 ## @knitr cauchy-coefficients
 library(ecomplex)
 library(dplyr)
+library(ecomplex)
+library(tsfeats)
 
 seed = 2017
 from_cache = TRUE
@@ -40,6 +42,7 @@ hmean <- mc_stat(hmc, mean)
 cols = c(22, 25, 29)
 
 # Plot a single example from fbm with different parameters
+
 # pdf(file.path(getwd(), paste0("figures/", prefix, "-plot.pdf")), 
     # width = 5, height = 4)
 # plot.ts(xs[, cols, 1], main = "Cauchy process")
@@ -62,25 +65,24 @@ colnames(coeffB) <- paste0(rep(round(alpha, 2), 10))
 colnames(coeffFD) <- paste0(rep(round(alpha, 2),10))
 
 
-
 ab_df  <- cbind(emean, ab, fdmean, hmean, varmean)
 names(ab_df) <- c("A", "B", "Alpha", "Beta", "fd", "hurst")
 
 # pdf(file.path(getwd(), paste0("figures/", prefix, "alpha-scatterplots.pdf")), 
     # width = 9, height = 4)
 par(mfrow = c(1, 3))
-with(ab_df, plot(Alpha, A,  col = "gray20" , cex = 1.2))
-with(ab_df, plot(Alpha, B,  col = "gray20" , cex = 1.2))
-with(ab_df, plot(Alpha, fd, ylab = "Fractal Dimension", col = "gray20", cex = 1.2))
+with(ab_df, plot(Alpha, A,  col = eegpalette(1)[1], cex = 1.2))
+with(ab_df, plot(Alpha, B,  col = eegpalette(1)[2], cex = 1.2))
+with(ab_df, plot(Alpha, fd, ylab = "Fractal Dimension", col = eegpalette(1)[3], cex = 1.2))
 # dev.off()
 
 
 # pdf(file.path(getwd(), paste0("figures/", prefix, "beta-scatterplots.pdf")), 
 #     width = 9, height = 4)
 par(mfrow = c(1, 3))
-with(ab_df, plot(Beta, A,  col = "gray20") )
-with(ab_df, plot(Beta, B,  col = "gray20") )
-with(ab_df, plot(Beta, fd, ylab = "Fractal Dimension",  col = "gray20") )
+with(ab_df, plot(Beta, A,  col = eegpalette(1)[1]) )
+with(ab_df, plot(Beta, B,  col = eegpalette(1)[2]) )
+with(ab_df, plot(Beta, fd, ylab = "Fractal Dimension", col = eegpalette(1)[3]) )
 # dev.off() 
 
 

@@ -11,7 +11,7 @@
 
 
 
-<title>eeg-complex</title>
+<title>Project overview</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,6 +20,7 @@
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-1.1/highlight.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
@@ -158,6 +159,14 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
 
 
 
@@ -177,15 +186,6 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="simulations.html">Simulations</a>
-</li>
-<li>
-  <a href="complexity-coefficients.html">Complexity Coefficients</a>
-</li>
-<li>
-  <a href="seizure-prediction.html">Seizure Prediction</a>
-</li>
-<li>
   <a href="license.html">License</a>
 </li>
       </ul>
@@ -203,16 +203,113 @@ $(document).ready(function () {
 
 <div class="fluid-row" id="header">
 
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
 
 
-<h1 class="title toc-ignore">eeg-complex</h1>
+
+<h1 class="title toc-ignore">Project overview</h1>
 
 </div>
 
 
-<p>1.<a href="simulations.html">Simulation and Approximation methods</a></p>
-<p>2.<a href="complexity-coefficients.html">Properties of the Complexity Coefficients</a></p>
-<p>3.<a href="seizure-prediction.html">Seizure Prediction</a></p>
+<!-- The file analysis/chunks.R contains chunks that define default settings
+shared across the workflowr files. -->
+<!-- Update knitr chunk options -->
+<!-- Insert the date the file was last updated -->
+<p><strong>Last updated:</strong> 2017-07-24 <!-- Insert the code version (Git commit SHA1) if Git repository exists and R
+ package git2r is installed --></p>
+<ol style="list-style-type: decimal">
+<li><a href="simulations.html">Simulation and Approximation Methods</a></li>
+<li><a href="complexity-coefficients.html">Properties of the Complexity Coefficients</a></li>
+<li><a href="seizure-prediction.html">Seizure Prediction</a></li>
+<li><a href="ecomplexity-procedure.html">Computing the complexity coefficients</a></li>
+</ol>
+<p>The <span class="math inline">\(\varepsilon\)</span>-complexity of a continuous function is, roughly speaking, the amount of information needed to reconstruct that function within an absolute error <span class="math inline">\(\varepsilon\)</span>. The theory and procedure for estimating <span class="math inline">\(\varepsilon\)</span>-complexity was introduced by Darkhovsky and Piryatinska<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. In previous work, the complexity coefficients have been shown to be useful features for the segmentation and classification of time series<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>.</p>
+<p>The purpose of these analyses was three-fold:</p>
+<ol style="list-style-type: decimal">
+<li><p>To improve the estimation of the complexity coefficients by enlarging the set of approximation methods used in the estimation procedure.</p></li>
+<li><p>To explore the relation between the complexity coefficients, the Hölder condition and fractal dimension.</p></li>
+<li><p>An application of the complexity coefficients to the segmentation and classification of EEG.</p></li>
+</ol>
+<p>Along with an overview of the results of each of these analyses, we outline the procedure for estimating the complexity coefficients.</p>
+<pre class="r"><code>library(devtools)
+load_all()
+knitr::read_chunk(&quot;../code/eeg-segment-plot.R&quot;)</code></pre>
+<pre class="r"><code>  par(mar = c(0, 0, 2, 0))
+  library(ggplot2)
+  library(dplyr)
+  library(viridis)
+  library(ecomplex)
+  prefix    = &quot;eeg&quot;
+  seed      = 2017
+  
+  # Derived features. 30 Trials : 6 channels : 15 features
+  feature_df &lt;-readRDS(cache_file(&quot;mod_all_features&quot;, prefix))
+  # Load meta data 
+  trial_df &lt;- readRDS(cache_file(&quot;mod_trial_segments&quot;, &quot;eeg&quot;))
+  
+  df &lt;- do.call(rbind, feature_df) %&gt;% 
+        cbind(., trial_df) %&gt;% 
+        dplyr::filter(., window == 240)
+  
+  df$trial &lt;- 1:26
+  
+  ch = 1; colnums = c(5:9,  13:15); tnum = 8
+  
+  dfch &lt;- df[[ch]][[tnum]]
+  res &lt;- palarm(dfch$ecomp.cspline_B)
+  
+  seg_plot &lt;- function(startn, stopn, title =&quot;&quot;, ...){
+    segcol = adjustcolor(&quot;tomato3&quot;, 0.9)
+    pal  = c(&quot;gray20&quot;, segcol, viridis::viridis(256)[c(1, 30, 60, 90, 120)])
+  
+    plot(dfch$ecomp.cspline_B + 3, 
+                    type = &#39;l&#39;,  
+                    col = adjustcolor(&quot;gray20&quot;, 0.6), 
+                    lwd = 2,
+                    lty = 1, 
+                    ylim = c(0,2.2), 
+                    xlim = c(0,120), 
+                    xlab = &quot;Time&quot;,
+                    yaxt = &quot;n&quot;,
+                    ylab = &quot;&quot;, 
+                    main = title,
+                    ...)
+    lines(res$means + 3, type = &#39;l&#39;, xlim=c(0,120), col=segcol, lwd=2, lty= 1 )
+    for(k in startn:stopn) lines(dfch[ , 4 + k] + 0.5*(k-startn), 
+                       lwd = 2, 
+                       col = pal[k + 2])
+    for(k in res$kout) abline(v = k, col = segcol, lwd = 1.5, lty = 2)
+  }
+  
+  # pdf(file.path(getwd(), paste0(&quot;figures/&quot;, prefix, &quot;-segment-plot.pdf&quot;)), 
+  #     width = 9, height = 4)
+  par(mfrow = c(1,1), mar = c(1,1,1,1))
+  seg_plot(3,5, xaxt = &quot;n&quot;)</code></pre>
+<div class="figure" style="text-align: center">
+<img src="figure/index.Rmd/segment-plot2-1.png" alt="Segmentation of spectral freatures based complexity coefficient change points" width="480" />
+<p class="caption">
+Segmentation of spectral freatures based complexity coefficient change points
+</p>
+</div>
+<p><br></p>
+<div id="credits" class="section level3">
+<h3>Credits</h3>
+<p>These poject pages were developed with the help of the <a href="https://jdblischak.github.io/workflowr/">workflowr</a> package.</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="https://arxiv.org/abs/1303.1777">Epsilon-complexity of continuous functions</a><a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p><a href="https://arxiv.org/abs/1610.01633">Binary classification of multi-channel EEG records based on the ε-complexity of continuous vector functions</a><a href="#fnref2">↩</a></p></li>
+</ol>
+</div>
 
 
 

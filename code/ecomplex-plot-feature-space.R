@@ -14,7 +14,7 @@ sim_df1 <- sim_df1 %>% dplyr::filter(variable != "ecomp_all_B")
 sim_df1$id2 <- as.factor(rep(c(1,2,1,3,1,4,1,5,1,6,1,7), each = 30))
 
 # pal <- c("gray10", viridis::viridis(60)[c(5,10,15,20,25,30)])
-pal <- eegpalette(0.9)[c(1,3)]
+pal <- eegpalette(0.7)[c(1,3)]
 gp <- ggplot(data = sim_df1, aes(x  = value, y = yvalue))  
 
 gp + facet_grid(~ variable, scales = "free_y") +

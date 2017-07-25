@@ -1,13 +1,69 @@
 ---
-title: "eeg-complex"
+title: "Project overview"
 output:
   html_document:
     toc: false
+    code_folding: hide
 ---
 
 
-1.[Simulation and Approximation methods](simulations.html) 
+<!-- The file analysis/chunks.R contains chunks that define default settings
+shared across the workflowr files. -->
 
-2.[Properties of the Complexity Coefficients](complexity-coefficients.html)
+```{r read-chunk, include=FALSE, cache=FALSE}
+knitr::read_chunk("../analysis/chunks.R")
 
-3.[Seizure Prediction](seizure-prediction.html)
+```
+
+<!-- Update knitr chunk options -->
+```{r knitr-opts-chunk, include=FALSE}
+
+```
+
+<!-- Insert the date the file was last updated -->
+```{r last-updated, echo=FALSE, results='asis'}
+
+```
+<!-- Insert the code version (Git commit SHA1) if Git repository exists and R
+ package git2r is installed -->
+
+1. [Simulation and Approximation Methods](simulations.html) 
+2. [Properties of the Complexity Coefficients](complexity-coefficients.html)
+3. [Seizure Prediction](seizure-prediction.html)
+4. [Computing the complexity coefficients](ecomplexity-procedure.html)
+
+The $\varepsilon$-complexity of a continuous function is, roughly speaking, the amount of information needed to reconstruct that function within an absolute error $\varepsilon$. The theory and procedure for estimating $\varepsilon$-complexity was introduced by Darkhovsky and Piryatinska[^1]. In previous work, the complexity coefficients have been shown to be useful features for the segmentation and classification of time series[^2]. 
+
+The purpose of these analyses was three-fold: 
+
+1. To improve the estimation of the complexity coefficients by enlarging the set of approximation methods used in the estimation procedure.
+
+2. To explore the relation between the complexity coefficients, the Hölder condition and fractal dimension. 
+
+3. An application of the complexity coefficients to the segmentation and classification of EEG.
+
+Along with an overview of the results of each of these analyses, we outline the procedure for estimating the complexity coefficients.
+
+
+```{r, segment-plot1}
+library(devtools)
+load_all()
+knitr::read_chunk("../code/eeg-segment-plot.R")
+```
+
+
+```{r segment-plot2, fig.align = "center", fig.width = 5, fig.height = 3.6, fig.cap = "Segmentation of spectral freatures based complexity coefficient change points"}
+  par(mar = c(0, 0, 2, 0))
+  <<eeg-segment-create>> 
+  <<eeg-segment-plot2>>
+  
+```
+<br>
+
+### Credits 
+
+These poject pages were developed with the help of the [workflowr](https://jdblischak.github.io/workflowr/) package.
+
+
+[^1]: [Epsilon-complexity of continuous functions](https://arxiv.org/abs/1303.1777)
+[^2]: [Binary classification of multi-channel EEG records based on the ε-complexity of continuous vector functions](https://arxiv.org/abs/1610.01633)
