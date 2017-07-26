@@ -28,22 +28,11 @@ body {
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <h2 id="eeg-complex">eeg-complex</h2>
 <p>This package contains code that reproduces figures and analyses used in my MA thesis, <em>Improvement of epsilon-complexity estimation and an application to seizure prediction</em>.</p>
-<p>For an overview of the research and individual analyses see the <a href="https://nateaff.github.io/eeg-complex/">web pages</a>.</p>
+<p>For an overview of the research and individual analyses see the <a href="https://nateaff.github.io/eeg-complex/">project website</a>.</p>
 <p>The <a href="https://github.com/nateaff/ecomplex">ecomplex</a> package contains the <code>R</code> version of the procedure for computing the epsilon-complexity of a single variable function or time series. The repositories for the three other packages used in this thesis, <a href="https://github.com/nateaff/tssims">tssims</a>, <a href="https://github.com/nateaff/tsfeats">tsfeats</a> and the imaginatively named <a href="https://github.com/nateaff/tssegment">tssegment</a>, are also on github. The first two packages unify access to a set of simulations and features, respectively. The <code>tssegment</code> package provides an interface to the segmentation and classification methods used for predicting seizures.</p>
 <p>The current draft of the complete thesis is <a href="https://github.com/nateaff/eeg-complex/blob/master/docs/thesis/thesis.pdf">here.</a> (This is a draft and has not yet been submitted.)</p>
-<h2 id="files">Files</h2>
 <p>This is an <code>R</code> package with additional files that follow the structure of a <a href="https://github.com/jdblischak/workflowr">workflowr</a> project. See the <a href="https://jdblischak.github.io/workflowr/index.html">workflowr documentation</a> for more information. The <a href="https://github.com/jdblischak/workflowr">workflowr readme</a> also as a nice overview of similar project management packages.</p>
-<p><code>R</code> : Contains most standalone functions.</p>
-<p><code>code</code>: Code associated with individual analyses. Code is organized by prefix into 5 sections:</p>
-<ul>
-<li><code>sim</code>,<code>ecomplex</code>: Simulations and testing of the <code>ecomplex</code> procedure.</li>
-<li><code>holder</code>: Test of the properties of the epsilon-complexity coefficients and their relation to Holder continuity and fractal dimension.</li>
-<li><code>eeg-prep</code>: Data cleaning and feature extraction from the raw eeg data.</li>
-<li><code>eeg</code>: Prediction and analysis of the derived eeg features.</li>
-</ul>
-<p><code>analysis</code>: These are Rmarkdown files used to build the accompanying web pages. The analyses provide samples of the results from each section. The data pre</p>
-<p><code>docs</code>: The web-pages and related documents such as slide presentations and the thesis tex and pdf files.</p>
-<p><code>output</code>: Output of intermediate analyses</p>
+<p>This repository follows the structure of a workflowr project with the additional folders and files associated with an <code>R</code> package -- man files,the <code>R</code> directory and description files, etc.</p>
 
 </body>
 </html>
