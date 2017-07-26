@@ -11,6 +11,9 @@ The [ecomplex](https://github.com/nateaff/ecomplex) package contains the `R` ver
 
 The current draft of the complete thesis is [here.](https://github.com/nateaff/eeg-complex/blob/master/docs/thesis/thesis.pdf) (This is a draft and has not yet been submitted.)
 
+Organization
+------------
+
 This is an `R` package with additional files that follow the structure of a [workflowr](https://github.com/jdblischak/workflowr) project. See the [workflowr documentation](https://jdblischak.github.io/workflowr/index.html) for more information. The [workflowr readme](https://github.com/jdblischak/workflowr) also as a nice overview of similar project management packages.
 
 This repository follows the structure of a workflowr project with the additional folders and files associated with an `R` package -- man files,the `R` directory and description files, etc.
