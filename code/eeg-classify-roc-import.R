@@ -92,4 +92,23 @@ corrplot::corrplot(
                ) 
 # mtext("Uniform partition into 8 segments.", side = 3, line = 3)
 
+## @knitr save-corrplot
+c1  <- corrplot::corrplot(
+               as.matrix(ABnorm),
+               method = "circle", 
+               col = viridis::viridis(30)[25:10],
+               # col = gray.colors(10, start = 0.9, end = 0),
+               is.corr = FALSE, 
+               tl.col = "Black"
+               )
+# mtext("Parition on coefficient B change points.", side = 3, line = 3) 
+
+corrplot::corrplot(
+               as.matrix(vecnorm), 
+               method = "circle", 
+                col = viridis::viridis(30)[25:10],
+               # col = gray.colors (10, start = 0.9, end = 0),
+               is.corr = FALSE, 
+               tl.col = "Black"
+               ) 
 

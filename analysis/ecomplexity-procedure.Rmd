@@ -26,11 +26,11 @@ knitr::read_chunk("chunks.R")
 
 <!-- Add your analysis here -->
 
-The practical estimation of $\varepsilon$-complexity uses some set of approximation methods to successively downsample and approximation a function. At each $h$th step, only some proportion of the initial samples, $S_h$, are used finding the minimum approximation error,  $\varepsilon_h$. A least squares fit 
+The practical estimation of $\varepsilon$-complexity uses some family of approximation methods $\mathcal{F}$ to successively downsample and approximate a function. At each step $h$, only some proportion of the initial samples, $S_h$, are used finding the minimum approximation error,  $\varepsilon_h$. A least squares fit 
 \[
   \log(S) \approx A + B\log(\varepsilon)
 \]
-determines the two parameters $A$ and $B$ which characterize the $\varepsilon-$complexity of the function. 
+determines the two parameters, $A$ and $B$, which characterize the $\varepsilon-$complexity of the function. 
 
 <hr>
 ### $\varepsilon$-complexity algorithm
