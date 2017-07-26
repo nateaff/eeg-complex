@@ -13,13 +13,15 @@ library(ggthemes)
 #  and correspond to the Holder exponent of the function.
 #----------------------------------------------------------
   
-seed = 2017
-from_cache = FALSE
+if(!exists("from_cache")){
+  from_cache = TRUE
+}
+
 # With density parameter 250 time series length is 250*2 
 len  = 2
 reps = 2
-prefix <- "holder_coeffs"
-set.seed(seed)
+prefix = "holder_coeffs"
+set.seed(2017)
 alpha <- seq(0.1, 0.99, length.out = 20)
 
 if(from_cache) {

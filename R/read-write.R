@@ -1,3 +1,16 @@
+
+ 
+ #' Set flag to build files from cached data
+ #'
+ #' Set flag to "TRUE" to build files from intermediate 
+ #' data files. Set "FALSE" to build analyses from scratch. 
+ #'
+ #' @param flag Logical flag
+build_from_cache <- function(flag = TRUE){
+  from_cache = flag
+  cat("from_cache flag set to", flag, "\n")
+}
+
 #' Save processed data to a directory. 
 #'
 #' 

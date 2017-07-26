@@ -2,9 +2,13 @@
 # Weierstrass function without random phase
 library(dplyr)
 
+if(!exists("from_cache")){
+  from_cache = TRUE
+}
+
 prefix = "holder_notrandom"
 len = 1000
-from_cache = TRUE
+
 set.seed(seed)
 alpha <- seq(0.1, 0.99, length.out = 20)
 reps = 1
@@ -69,41 +73,40 @@ plot(alpha[1:19], fdmeans[1:19, 1],
      )
 
 ## @knitr weierstrass-save-plots
-# repeat plots if not from cache
+
 if(!from_cache){
-pdf(file.path(getwd(), paste0("figures/", prefix, "-param-plots-notrandom.pdf")), 
-    width = 9, height = 4)
-par(mfrow = c(1, 3))
-plot(alpha[1:19],  emeans[1:19, 1], 
-   xlab = "Alpha", 
-     ylab = "A", 
-     cex = 1.2, 
-     col = eegpalette(1)[1]
-     # pch = 16, 
-     # col = adjustcolor("gray10", 0.8)
-     )
-
-plot(alpha[1:19], emeans[1:19, 2], 
+  pdf(file.path(getwd(), paste0("figures/", prefix, "-param-plots-notrandom.pdf")), 
+      width = 9, height = 4)
+  par(mfrow = c(1, 3))
+  plot(alpha[1:19],  emeans[1:19, 1], 
      xlab = "Alpha", 
-     ylab = "B", 
-     cex = 1.3,
-     col = eegpalette(1)[2] 
-     # pch = 16, 
-     # col = adjustcolor("gray10", 0.8)
-     )
-plot(alpha[1:19], fdmeans[1:19, 1], 
-     xlab = "Alpha", 
-     ylab = "Fractal Dimension", 
-     cex = 1.3,
-     col = eegpalette(1)[3] 
-     # pch = 16, 
-     # col = adjustcolor("gray10", 0.8)
-     )
-dev.off()
+       ylab = "A", 
+       cex = 1.2, 
+       col = eegpalette(1)[1]
+       # pch = 16, 
+       # col = adjustcolor("gray10", 0.8)
+       )
 
-pdf(file.path(getwd(), paste0("figures/", prefix, "-weier-notrandom.pdf")))
-plot.ts(xs[,cols], main = "Weierstrass function")
-dev.off()
+  plot(alpha[1:19], emeans[1:19, 2], 
+       xlab = "Alpha", 
+       ylab = "B", 
+       cex = 1.3,
+       col = eegpalette(1)[2] 
+       # pch = 16, 
+       # col = adjustcolor("gray10", 0.8)
+       )
+  plot(alpha[1:19], fdmeans[1:19, 1], 
+       xlab = "Alpha", 
+       ylab = "Fractal Dimension", 
+       cex = 1.3,
+       col = eegpalette(1)[3] 
+       # pch = 16, 
+       # col = adjustcolor("gray10", 0.8)
+       )
+  dev.off()
 
+  pdf(file.path(getwd(), paste0("figures/", prefix, "-weier-notrandom.pdf")))
+  plot.ts(xs[,cols], main = "Weierstrass function")
+  dev.off()
 }
 

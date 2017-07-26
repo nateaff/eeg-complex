@@ -15,13 +15,11 @@ library(stargazer) # tables
 #    features  
 # 5. Classify on means of segments with 5-fold cross validation
 #----------------------------------------------------------
+if(!exists("from_cache")){
+  from_cache = TRUE
+}
 prefix    = "eeg"
 set.seed(2017)
-chs       = 1:6
-segch     = 4
-from_cache = FALSE
-window    = 240
-len = window/2
 
 # Derived features. 30 Trials : 6 channels : 15 features
 feature_df <-readRDS(cache_file("mod_all_features", prefix))

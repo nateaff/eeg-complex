@@ -187,6 +187,9 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
+  <a href="setup.html">Setup</a>
+</li>
+<li>
   <a href="license.html">License</a>
 </li>
       </ul>
@@ -231,10 +234,10 @@ $(document).ready(function () {
 shared across the workflowr files. -->
 <!-- Update knitr chunk options -->
 <!-- Insert the date the file was last updated -->
-<p><strong>Last updated:</strong> 2017-07-25</p>
+<p><strong>Last updated:</strong> 2017-07-26</p>
 <!-- Insert the code version (Git commit SHA1) if Git repository exists and R
  package git2r is installed -->
-<p><strong>Code version:</strong> 1b369e6</p>
+<p><strong>Code version:</strong> 26dff77</p>
 <div id="introduction" class="section level3">
 <h3>Introduction</h3>
 <p>The EEG signal exhibit abrupt changes in their statistical distribution and functional behavior. The procedure for estimating complexity coefficients was developed, in part, as a model free way of detecting changes in the underlying generating mechanism. We assume that such regime changes are reflected in changes in the complexity coefficients. With that in mind, we used change points in the complexity coefficients to segment the EEG signal. The goal was to compute features on more homogeneous segments rather than on arbitrary partitions.</p>
@@ -664,7 +667,6 @@ Probability of seizure for model built on channel 1 using complexity coefficient
 Variable importance (mean-decrease in GINI) for all model and channel combinations. On the left is the model segmented by complexity coefficients A+B. On the right is the model with 8 uniform partitions.
 </p>
 </div>
-<pre class="r"><code>  # mtext(&quot;Uniform partition into 8 segments.&quot;, side = 3, line = 3)</code></pre>
 <p>Although the underlying random forest classifier can be highly non-linear the pattern of variable importance is reflected in the differences of distributions of the raw features. The boxplots below show clear differences in the distributions of the relative gamma and theta for channel 1.</p>
 <pre class="r"><code>  knitr::read_chunk(&quot;../code/eeg-boxplot-ch1.R&quot;)</code></pre>
 <pre class="r"><code>  library(dplyr) 
@@ -743,7 +745,7 @@ other attached packages:
  [1] corrplot_0.77        caret_6.0-76         lattice_0.20-35     
  [4] tssegment_0.0.0.9000 randomForest_4.6-12  eegcomplex_0.0.0.1  
  [7] bindrcpp_0.2         ecomplex_0.0.1       viridis_0.3.4       
-[10] dplyr_0.7.1          ggplot2_2.2.1       
+[10] dplyr_0.7.2          ggplot2_2.2.1       
 
 loaded via a namespace (and not attached):
  [1] splines_3.4.1         foreach_1.4.3         assertthat_0.2.0     
@@ -755,7 +757,7 @@ loaded via a namespace (and not attached):
 [19] timeDate_3012.100     pkgconfig_2.0.1       devtools_1.13.2      
 [22] SparseM_1.7           scales_0.4.1          ForeCA_0.2.4         
 [25] MatrixModels_0.4-1    ifultools_2.0-4       lme4_1.1-13          
-[28] pracma_2.0.7          git2r_0.18.0          tibble_1.3.3         
+[28] pracma_2.0.7          git2r_0.19.0          tibble_1.3.3         
 [31] mgcv_1.8-12           car_2.1-4             withr_1.0.2          
 [34] nnet_7.3-12           lazyeval_0.2.0        pbkrtest_0.4-6       
 [37] magrittr_1.5          memoise_1.1.0         evaluate_0.10.1      
@@ -767,11 +769,11 @@ loaded via a namespace (and not attached):
 [55] fractaldim_0.8-4      labeling_0.3          rmarkdown_1.6        
 [58] gtable_0.2.0          ModelMetrics_1.1.0    codetools_0.2-15     
 [61] fracdiff_1.4-2        gmwm_2.0.0            abind_1.4-3          
-[64] roxygen2_6.0.1        reshape2_1.4.1        R6_2.2.2             
+[64] roxygen2_6.0.1        reshape2_1.4.2        R6_2.2.2             
 [67] gridExtra_2.2.1       knitr_1.16            bindr_0.1            
 [70] commonmark_1.2        fBasics_3011.87       rprojroot_1.2        
 [73] stringi_1.1.5         pdc_1.0.3             parallel_3.4.1       
-[76] Rcpp_0.12.11          splus2R_1.2-1        </code></pre>
+[76] Rcpp_0.12.12          splus2R_1.2-1        </code></pre>
 </div>
 
 

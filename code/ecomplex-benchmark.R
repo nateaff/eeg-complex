@@ -3,7 +3,9 @@ library(ggplot2)
 #----------------------------------------------------------
 # Compare running times for ecomplexity methods
 #----------------------------------------------------------
-from_cache = TRUE
+if(!exists("from_cache")){
+  from_cache = TRUE
+}
 prefix = "benchmark"
 filename = "lift_timing"
 

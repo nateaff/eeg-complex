@@ -1,16 +1,13 @@
 ##@knitr beeboxplots
 library(dplyr) 
 library(viridis)
+
+if(!exists("from_cache")){
+  from_cache = TRUE
+}
 prefix     = "eeg"
-seed       = 2017
-chs        = 1:6
-segch      = 4
-from_cache = TRUE
-window     = 240 
-len        = window/2
 colnums    = c(5:9, 13:15, 21, 19)
  
-
 feature_df <-readRDS(cache_file("mod_all_features", prefix))
 trial_df   <- readRDS(cache_file("mod_trial_segments", "eeg"))
 

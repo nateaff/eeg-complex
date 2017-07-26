@@ -7,9 +7,11 @@ library(ggthemes)
 library(tssims) 
 library(fArma)
 
-prefix = "ecomplex_mae"
-from_cache = TRUE
+if(!exists("from_cache")){
+  from_cache = TRUE
+}
 len = 500
+prefix = "ecomplex_mae"
 
 fnames <- c("ARMA", "Logistic", "Weierstrass", "Cauchy", "FARIMA", "fBm")
 
@@ -22,7 +24,6 @@ plot_fit <- function(res, title){
   abline(fit, col = eegpalette(1)[3])
 }
 
-len = 250
 gs <- tssims::sim_suite()
 fits1   <- lapply(gs$group1, function(g) gen(g)(len)) %>%
            lapply(., function(x) ecomplex::ecomplex(x, method = "lift")) 

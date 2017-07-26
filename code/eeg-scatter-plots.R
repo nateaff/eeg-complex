@@ -1,8 +1,6 @@
 # library(ggplot2)
 library(dplyr)
 library(ecomplex)
-window      = 240 
-len         = window/2
 
 # Derived features. 30 Trials : 6 channels : 15 features
 feature_df <-readRDS(cache_file("mod_all_features", prefix))

@@ -6,9 +6,7 @@ library(ggthemes)
 
  
 prefix = 'eeg'
-#----------------------------------------------------------
-# Notes on features used
-#----------------------------------------------------------
+
 # Split length for regular splits
 npts <- lapply(c(10,5,1), function(m) palarm(1:120, m = m)$kout) %>%
         lapply(., length) %>% unlist + 1

@@ -4,13 +4,15 @@ library(ggplot2)
 library(dplyr)
 library(ggthemes)
 library(tssims) 
+
+if(!exists("from_cache")){
+  from_cache = TRUE
+}
   
-seed = 2017
-from_cache = TRUE
+set.seed(2017)
 len <- 150
 reps <- 50
 prefix <- "cauchy"
-set.seed(seed)
 
 alpha <- seq(0.1, 1.3, length.out = 3) 
 beta <- seq(0.01, .7, length.out = 3)

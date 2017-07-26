@@ -1,4 +1,3 @@
-
 #----------------------------------------------------------
 # The stimplus files have an extra few seconds after 
 # the application of the stimulus Stimulus times were 

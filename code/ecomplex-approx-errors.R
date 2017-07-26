@@ -10,7 +10,9 @@ library(fArma)
 #    ecomplex methods. 
 #---------------------------------------------------------- 
 prefix = "ecomplex"
-from_cache = TRUE
+if(!exists("from_cache")){
+  from_cache = TRUE
+}
 
 if(from_cache){
   err_means <- readRDS(cache_file("ds_epsilons", prefix))

@@ -4,12 +4,14 @@ library(dplyr)
 library(ggplot2)
 library(ggthemes)
 
-seed = 2017
-from_cache = TRUE
-len <- 150
-reps <- 50
-prefix <- "cauchy"
-set.seed(seed)
+if(!exists("from_cache")){
+  from_cache = TRUE
+}
+
+prefix = "cauchy"
+len = 150
+reps = 50
+set.seed(2017)
 
 alpha <- seq(0.1, 1.3, length.out = 3) 
 beta <- seq(0.01, .7, length.out = 3)

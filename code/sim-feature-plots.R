@@ -3,8 +3,10 @@ library(ecomplex)
 library(dplyr)
 library(ggthemes)
 
+if(!exists("from_cache")){
+  from_cache = TRUE
+}
 prefix = "sim"
-from_cache = TRUE
 n = 20 
 len = 500
 seed = 1
@@ -56,7 +58,6 @@ for(k in 1:length(gs$group1)) {
   # save_plot(plot_names[k], prefix)
 }
 
- 
 #----------------------------------------------------------
 # variance feature plots
 #----------------------------------------------------------
