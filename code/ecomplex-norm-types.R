@@ -5,11 +5,11 @@ library(tssims)
 library(tsfeats)
 library(fArma)
 
+if(!exists("from_cache")){
+  from_cache = TRUE
+}
 prefix = "ecomplex_norm_types"
-from_cache = TRUE
-#----------------------------------------------------------
-# 
-#----------------------------------------------------------
+
 if(from_cache){
   err_df <- readRDS(cache_file("sim_df", prefix))
 } else {  ecomp_methods <- c( ecomp_cspline_mse, 

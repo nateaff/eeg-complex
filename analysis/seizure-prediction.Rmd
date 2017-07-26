@@ -141,6 +141,7 @@ Although the underlying random forest classifier can be highly non-linear the pa
 ```
 Channel 1 represents an LFP or local field potential signal, captured from a smaller cluster of neurons in the thalamus. Channel 3 is an iEEG or external EEG sensor placed on the brain surface. For channel 3 the direction of the difference for relative gamma and theta are reversed. Where differences in the beta distribution for seizure an non-seizure trials are not significant for channel 1, for channel three the differences are clear. The difference in distributions is also reflected in the variable importance in the previous plot, as are differences in Hurst and spectral entropy features.
 
+
 ```{r egg-boxplot3, fig.height = 4, fig.cap = "Feature distribution for Channel 3"}
   <<eeg-boxplotpanel-ch3>>
 ```

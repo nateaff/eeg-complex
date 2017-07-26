@@ -186,6 +186,9 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
+  <a href="setup.html">Setup</a>
+</li>
+<li>
   <a href="license.html">License</a>
 </li>
       </ul>
@@ -230,10 +233,10 @@ $(document).ready(function () {
 shared across the workflowr files. -->
 <!-- Update knitr chunk options -->
 <!-- Insert the date the file was last updated -->
-<p><strong>Last updated:</strong> 2017-07-25</p>
+<p><strong>Last updated:</strong> 2017-07-26</p>
 <!-- Insert the code version (Git commit SHA1) if Git repository exists and R
  package git2r is installed -->
-<p><strong>Code version:</strong> 1b369e6</p>
+<p><strong>Code version:</strong> 26dff77</p>
 <pre class="r"><code>  devtools::load_all()
   knitr::read_chunk(&quot;../code/holder-weierstrass-notrandom.R&quot;)</code></pre>
 <div id="introduction" class="section level3">
@@ -253,9 +256,13 @@ shared across the workflowr files. -->
 <pre class="r"><code># Weierstrass function without random phase
 library(dplyr)
 
+if(!exists(&quot;from_cache&quot;)){
+  from_cache = TRUE
+}
+
 prefix = &quot;holder_notrandom&quot;
 len = 1000
-from_cache = TRUE
+
 set.seed(seed)
 alpha &lt;- seq(0.1, 0.99, length.out = 20)
 reps = 1
@@ -348,12 +355,14 @@ Complexity coefficients and fractal dimension plotted against the Weierstrass pa
   library(ggplot2)
   library(ggthemes)
   
-  seed = 2017
-  from_cache = TRUE
-  len &lt;- 150
-  reps &lt;- 50
-  prefix &lt;- &quot;cauchy&quot;
-  set.seed(seed)
+  if(!exists(&quot;from_cache&quot;)){
+    from_cache = TRUE
+  }
+  
+  prefix = &quot;cauchy&quot;
+  len = 150
+  reps = 50
+  set.seed(2017)
   
   alpha &lt;- seq(0.1, 1.3, length.out = 3) 
   beta &lt;- seq(0.01, .7, length.out = 3)
@@ -391,12 +400,14 @@ Plot of Cauchy process for a grid of parameters.
   library(ecomplex)
   library(tsfeats)
   
-  seed = 2017
-  from_cache = TRUE
+  set.seed(2017)
+  
+  if(!exists(&quot;from_cache&quot;)){
+    from_cache = TRUE
+  }
   len &lt;- 500
   reps &lt;- 30
   prefix &lt;- &quot;cauchy&quot;
-  set.seed(seed)
   
   alpha &lt;- seq(0.01, 1.99, length.out = 10) 
   beta &lt;- seq(0.01, 1.5, length.out = 10)
@@ -514,10 +525,10 @@ attached base packages:
 
 other attached packages:
 [1] tsfeats_0.0.0.9000 ggthemes_3.4.0     ggplot2_2.2.1     
-[4] ecomplex_0.0.1     dplyr_0.7.1        eegcomplex_0.0.0.1
+[4] ecomplex_0.0.1     dplyr_0.7.2        eegcomplex_0.0.0.1
 
 loaded via a namespace (and not attached):
- [1] reshape2_1.4.1           lattice_0.20-35         
+ [1] reshape2_1.4.2           lattice_0.20-35         
  [3] splines_3.4.1            colorspace_1.2-6        
  [5] fArma_3010.79            htmltools_0.3.6         
  [7] yaml_2.1.14              rlang_0.1.1             
@@ -532,7 +543,7 @@ loaded via a namespace (and not attached):
 [25] devtools_1.13.2          gmwm_2.0.0              
 [27] memoise_1.1.0            evaluate_0.10.1         
 [29] labeling_0.3             knitr_1.16              
-[31] highr_0.6                Rcpp_0.12.11            
+[31] highr_0.6                Rcpp_0.12.12            
 [33] scales_0.4.1             backports_1.0.5         
 [35] abind_1.4-3              sapa_2.0-2              
 [37] gridExtra_2.2.1          fracdiff_1.4-2          
@@ -548,7 +559,7 @@ loaded via a namespace (and not attached):
 [57] tssims_0.0.0.9000        assertthat_0.2.0        
 [59] rmarkdown_1.6            roxygen2_6.0.1          
 [61] viridis_0.3.4            R6_2.2.2                
-[63] git2r_0.18.0             compiler_3.4.1          </code></pre>
+[63] git2r_0.19.0             compiler_3.4.1          </code></pre>
 </div>
 <div class="footnotes">
 <hr />

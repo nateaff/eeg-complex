@@ -2,8 +2,9 @@
 boxplot_panel <- function(df, response, addbee = TRUE, cex = 0.5){
 
   # FIXME : use layout and add title as parameter
-  par(mfrow = c(1,7), mar = c(4,0.05,0.05,0.05), cex.lab = 1.5, cex.axis = 1.2)
-
+  par(mfrow = c(1,1), mar = c(4, 0.05,0.05,0.05), cex.lab = 1.5, cex.axis = 1.2)
+  layout(matrix(c(1:7), ncol = 7))
+  response <- ifelse(response, "Y", "N")
   # dfin <- chdf[[ch]]
   beeboxplot(df$bandpower.theta, response, "Theta", addbee = TRUE, cex = cex)
   beeboxplot(df$bandpower.alpha, response, "Alpha", addbee = TRUE, cex = cex)

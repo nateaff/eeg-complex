@@ -11,13 +11,14 @@ library(dplyr)
 #  and correspond to the Holder exponent of the function.
 #----------------------------------------------------------
 
-seed = 2017
-from_cache = TRUE
-len <- 500
-reps <- 50
+if(!exists(from_cache)){
+  from_cache = TRUE
+}
 
-prefix <- "holder_coeffs"
-set.seed(seed)
+len = 500
+reps = 50
+prefix = "holder_coeffs"
+set.seed(2017)
 alphas <- seq(0.1, 0.99, length.out = 20)
 
 if(from_cache) {

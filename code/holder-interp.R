@@ -5,6 +5,10 @@ library(tsfeats)
 # Interpretation of complexity coefficients
 # Do not update functions
 #----------------------------------------------------------
+if(!exists("from_cache")){
+  from_cache = TRUE
+}
+
 prefix = "coeff-interp"
 
 f1 <- function(x)  x

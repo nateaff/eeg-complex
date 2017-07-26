@@ -13,10 +13,13 @@ library(fArma)
 # exponent. See Nualart, "Fractional Brownian motion: 
 # stochastic calculus and applications."
 #----------------------------------------------------------
-seed = 2017
-from_cache = TRUE
-prefix <- "fBm-coeffs"
-set.seed(seed)
+
+if(!exists("from_cache")){
+  from_cache = TRUE
+}
+
+prefix = "fBm-coeffs"
+set.seed(2017)
 alpha <- seq(0.1, 0.99, length.out = 20)
 
 if(from_cache){

@@ -10,14 +10,12 @@ library(stargazer)
 #    features  
 # 5. Classify on means of segments with 5-fold cross validation
 #----------------------------------------------------------
+
+if(!exists("from_cache")){
+  from_cache = TRUE
+}
 prefix    = "eeg"
 seed      = 2017
-chs       = 1:6
-segch     = 4
-from_cache = TRUE
-window    = 240 
-len = window/2
-
 
 # Derived features. 30 Trials : 6 channels : 15 features
 feature_df <-readRDS(cache_file("mod_all_features", prefix))
@@ -95,12 +93,3 @@ save_cache(res, "pvals", "eeg")
 
 
 stargazer(res)
-
-# df1 <- dfchs[[1]][ , colnums]
-# names(df1) <- row.names(res) <- c("Delta", "Theta", "Alpha", "Beta", 
-#                      "Gamma", "Variance", "Hurst", 
-#                      "Spectral Entropy")
-
-# df1$response <- as.factor(response) 
-# dfin <- reshape2::melt(df1, id.vars = "response")
-# boxplot(value ~ response + variable, data = dfin)

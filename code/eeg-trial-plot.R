@@ -1,8 +1,9 @@
 ##@knitr trialplot
 library(dplyr)
 
-from_cache = TRUE
-
+if(!exists("from_cache")){
+  from_cache = TRUE
+}
 plot_trial <- function(df_){
   plot( 
         y,  

@@ -6,6 +6,7 @@ output:
     code_folding: hide
 ---
 
+
 <!-- The file analysis/chunks.R contains chunks that define default settings
 shared across the workflowr files. -->
 

@@ -8,12 +8,10 @@ library(tssegment)
 library(caret)
 library(corrplot) 
 
+if(!exists("from_cache")){
+  from_cache = TRUE
+}
 prefix    = "eeg"
-seed      = 2017
-chs       = 1:6
-from_cache = TRUE
-window    = 240 
-len = window/2
 
 feature_df <-readRDS(cache_file("mod_all_features", "eeg"))
 trial_df <- readRDS(cache_file("mod_trial_segments", "eeg"))
@@ -90,25 +88,28 @@ corrplot::corrplot(
                is.corr = FALSE, 
                tl.col = "Black"
                ) 
-# mtext("Uniform partition into 8 segments.", side = 3, line = 3)
+
 
 ## @knitr save-corrplot
+
 c1  <- corrplot::corrplot(
                as.matrix(ABnorm),
                method = "circle", 
-               col = viridis::viridis(30)[25:10],
-               # col = gray.colors(10, start = 0.9, end = 0),
+               # col = viridis::viridis(30)[25:10],
+               col = gray.colors(10, start = 0.9, end = 0),
                is.corr = FALSE, 
                tl.col = "Black"
                )
-# mtext("Parition on coefficient B change points.", side = 3, line = 3) 
+mtext("Parition on coefficient B change points.", side = 3, line = 3) 
+dev.off()
 
 corrplot::corrplot(
                as.matrix(vecnorm), 
                method = "circle", 
-                col = viridis::viridis(30)[25:10],
-               # col = gray.colors (10, start = 0.9, end = 0),
+                # col = viridis::viridis(30)[25:10],
+               col = gray.colors (10, start = 0.9, end = 0),
                is.corr = FALSE, 
                tl.col = "Black"
                ) 
-
+mtext("Uniform partition into 8 segments.", side = 3, line = 3)
+dev.off()

@@ -22,6 +22,7 @@
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-1.1/highlight.js"></script>
 
@@ -159,6 +160,14 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
 
 
 
@@ -178,6 +187,9 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
+  <a href="setup.html">Setup</a>
+</li>
+<li>
   <a href="license.html">License</a>
 </li>
       </ul>
@@ -192,6 +204,14 @@ $(document).ready(function () {
 
 <div class="fluid-row" id="header">
 
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
 
 
 <h1 class="title toc-ignore">Set up</h1>
@@ -205,40 +225,27 @@ $(document).ready(function () {
 shared across the workflowr files. -->
 <!-- Update knitr chunk options -->
 <!-- Insert the date the file was last updated -->
-<p><strong>Last updated:</strong> 2017-07-25</p>
+<p><strong>Last updated:</strong> 2017-07-26</p>
 <!-- Insert the code version (Git commit SHA1) if Git repository exists and R
  package git2r is installed -->
-<p><strong>Code version:</strong> 1b369e6</p>
+<p><strong>Code version:</strong> 26dff77</p>
 <!-- Add your analysis here -->
-<div id="session-information" class="section level2">
-<h2>Session information</h2>
-<!-- Insert the session information into the document -->
-<pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 3.4.1 (2017-06-30)
-Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 14.04.5 LTS
-
-Matrix products: default
-BLAS: /usr/lib/libblas/libblas.so.3.0
-LAPACK: /usr/lib/lapack/liblapack.so.3.0
-
-locale:
- [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
- [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
- [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
- [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
-
-attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
-
-loaded via a namespace (and not attached):
- [1] compiler_3.4.1  backports_1.0.5 magrittr_1.5    rprojroot_1.2  
- [5] tools_3.4.1     htmltools_0.3.6 yaml_2.1.14     Rcpp_0.12.11   
- [9] stringi_1.1.5   rmarkdown_1.6   knitr_1.16      git2r_0.18.0   
-[13] stringr_1.2.0   digest_0.6.12   evaluate_0.10.1</code></pre>
-</div>
+<p>The associated <a href="https://github.com/nateaff/eeg-complex">repository</a> is an <code>R</code> package and installation will import a number of additional packages. The analysis also requires three additional packages used as time series analysis helpers. You will also need the <code>workflowr</code> and <code>devtools</code> packages.</p>
+<pre class="r"><code>  install.packages(&quot;devtools&quot;)
+  devtools::install_github(&quot;jdblischak/workflowr&quot;)
+  # The project repository
+  devtools::install_github(&quot;nateaff/eeg-complex&quot;)
+  # The time series analysis packages
+  devtools::install_github(c(&quot;nateaff/tssims&quot;, &quot;nateaff/tsfeats&quot;, &quot;nateaff/tssegment&quot;))</code></pre>
+<p>Set the working directory to the project folder and load the package.</p>
+<pre class="r"><code># Load project package
+devtools::load_all()</code></pre>
+<p>The project pages can be built and viewed with <code>workflowr</code>. The pages will only be re-built if there are changes to the file. The individual analyses have a flag that indicates whether cached intermedidate data should be used in building the analysis. To build files from scratch set the <code>from_cache</code> flag to <code>FALSE</code>.</p>
+<pre class="r"><code>build_from_cache(FALSE)</code></pre>
+<p>This will only work for the files without the <code>eeg-</code> prefix. The <code>eeg</code> data files are not included in the repo so those files can’t be built from scratch, sorry :(.</p>
+<pre class="r"><code># This only builds the project analyses
+workflowr::wflow_build()</code></pre>
+<p>The full thesis is the <code>docs/thesis</code> and can be built from the <code>thesis.tex</code> file.</p>
 
 
 

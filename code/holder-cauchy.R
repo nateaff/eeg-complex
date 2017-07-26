@@ -4,12 +4,14 @@ library(dplyr)
 library(ecomplex)
 library(tsfeats)
 
-seed = 2017
-from_cache = TRUE
+set.seed(2017)
+
+if(!exists("from_cache")){
+  from_cache = TRUE
+}
 len <- 500
 reps <- 30
 prefix <- "cauchy"
-set.seed(seed)
 
 alpha <- seq(0.01, 1.99, length.out = 10) 
 beta <- seq(0.01, 1.5, length.out = 10)

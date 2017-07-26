@@ -5,7 +5,9 @@ library(ecomplex)
 # library(tssims)
 library(fArma)
 
-from_cache = FALSE
+if(!exists("from_cache")){
+  from_cache = TRUE
+}
 prefix = "ecomplex"
 set.seed(1)
 

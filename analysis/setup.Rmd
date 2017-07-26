@@ -2,7 +2,10 @@
 title: "Set up"
 author: "Nathanael Aff"
 date: 2017-07-24
-output: html_document
+output: 
+  html_document:
+    code_folding: show
+    toc: true
 ---
 
 <!-- The file analysis/chunks.R contains chunks that define default settings
@@ -12,7 +15,7 @@ knitr::read_chunk("chunks.R")
 ```
 
 <!-- Update knitr chunk options -->
-```{r knitr-opts-chunk, include=FALSE}
+```{r , knitr-opts-chunk, include=FALSE}
 ```
 
 <!-- Insert the date the file was last updated -->
@@ -26,9 +29,36 @@ knitr::read_chunk("chunks.R")
 
 <!-- Add your analysis here -->
 
+The associated [repository](https://github.com/nateaff/eeg-complex) is an `R` package and installation will import a number of additional packages. The analysis also requires three additional packages used as time series analysis helpers. You will also need the `workflowr` and `devtools` packages.
 
-## Session information
+```{r eval=FALSE}
+  install.packages("devtools")
+  devtools::install_github("jdblischak/workflowr")
+  # The project repository
+  devtools::install_github("nateaff/eeg-complex")
+  # The time series analysis packages
+  devtools::install_github(c("nateaff/tssims", "nateaff/tsfeats", "nateaff/tssegment"))
 
-<!-- Insert the session information into the document -->
-```{r session-info}
 ```
+
+Set the working directory to the project folder and load the package. 
+
+```{r eval=FALSE}
+# Load project package
+devtools::load_all()
+```
+
+The project pages can be built and viewed with `workflowr`. The pages will only be re-built if there are changes to the file. The individual analyses have a flag that indicates whether cached intermedidate data should be used in building the analysis. To build files from scratch set the `from_cache` flag to `FALSE`.
+
+```{r eval=FALSE}
+build_from_cache(FALSE)
+```
+
+This will only work for the files without the `eeg-` prefix. The `eeg` data files are not included in the repo so those files can't be built from scratch, sorry :(.
+
+```{r eval=FALSE}
+# This only builds the project analyses
+workflowr::wflow_build()
+```
+The full thesis is the `docs/thesis` and can be built from the `thesis.tex` file.
+

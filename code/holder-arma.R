@@ -5,13 +5,13 @@ library(ggthemes)
 library(tssims) 
 library(tsfeats)
 
-
-seed = 2017
-from_cache = FALSE
-len <- 500
-reps <- 30
-prefix <- "arma"
-set.seed(seed)
+if(!exists("from_cache")){
+  from_cache = TRUE
+}
+set.seed(2017)
+len = 500
+reps = 30
+prefix = "arma"
 
 alpha <- seq(-0.5, 0.5, length.out = 10) 
 ab <- expand.grid(alpha,alpha)
