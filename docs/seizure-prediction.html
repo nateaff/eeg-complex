@@ -234,16 +234,17 @@ shared across the workflowr files. -->
 <p><strong>Last updated:</strong> 2017-07-25</p>
 <!-- Insert the code version (Git commit SHA1) if Git repository exists and R
  package git2r is installed -->
-<p><strong>Code version:</strong> 877928f</p>
+<p><strong>Code version:</strong> 1b369e6</p>
 <div id="introduction" class="section level3">
 <h3>Introduction</h3>
-<p>Electroencephalograms(EEG) are non-stationary and non-homogeneous signals. In other words, EEG signals exhibit abrupt changes in their statistical distribution and functional behavior. EEG signals can also be considered as points in a high-dimensional space. A common way of reducing the EEG signal to a more tractable, lower-dimensional space is by some combination of features extraction and signal decomposition – i.e., spectral, wavelet, principal component(PCA) or independent component(ICA) decomposition. Feature selection and decompositions of the raw signal entail an averaging over possibly inhomogeneous segments of the EEG signal.</p>
-<p>The theory of the <span class="math inline">\(\varepsilon-\)</span>complexity of continuous functions was developed as a model free way of capturing inhomogeneity in a source signal. With that in mind, we used changes points in the complexity coefficients to segment the raw signal. The spectral decomposition of the EEG signal along with a small set of nonlinear features were segmented based on changes in the complexity coefficients and averages on these segments were used as features in the final classifier.</p>
-<p>Segmentation based on complexity coefficients was compared to several models that used uniform partitions of the signal. Segmentation based on complexity coefficients did not perform better than the uniform partition schemes.</p>
+<p>The EEG signal exhibit abrupt changes in their statistical distribution and functional behavior. The procedure for estimating complexity coefficients was developed, in part, as a model free way of detecting changes in the underlying generating mechanism. We assume that such regime changes are reflected in changes in the complexity coefficients. With that in mind, we used change points in the complexity coefficients to segment the EEG signal. The goal was to compute features on more homogeneous segments rather than on arbitrary partitions.</p>
+<p>EEG from several optogenetically modified epileptic mice were used to predict a seizure response to a laser stimulus. A single set of features including relative bandpower and several nonlinear features were used to predict the response. Several models were built using features calcuated on both uniform segmentation of the raw EEG and on segmetation based on change points in the complexity coefficients. Models using the complexity based partitions performed no better than the uniform partition schemes.</p>
+<p>The EEG came from 4 intercranial EEG channels and 2 local field potential(LFP) sensors. The LFP data capture the electrical potential of a small group of neurons located in the thalamus. All models were based on single channel EEG channels. We compare the features predictive of a seizure outcome for each channel and the feature distribution associated with seizure and non-seizure responses. Gamma and beta levels in the LFP channels were the strongest predictor of a seizure responses.</p>
+<p>There are several inherent flaws in the data that are discussed in more detail below. All seizures come from a single mouse and seizure responses were recorded in most cases following a previous seizure.</p>
 </div>
 <div id="classification-models" class="section level3">
 <h3>Classification models</h3>
-<p>The plot below illustrates a partition of spectral features based on change points in the complexity coefficient <span class="math inline">\(B\)</span>. In total, 6 segmentation models were used: segmentation based on complexity coefficients <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, individually and combined, and three models using uniform partitions.</p>
+<p>The plot below illustrates a partition of spectral features based on change points in the complexity coefficient <span class="math inline">\(B\)</span>. In total, 6 segmentation models were used: segmentation based on complexity coefficients <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> – individually and combined – and three models using uniform partitions.</p>
 <pre class="r"><code> devtools::load_all()
   knitr::read_chunk(&quot;../code/eeg-segment-plot.R&quot;)</code></pre>
 <pre class="r"><code>  library(ggplot2)
@@ -305,9 +306,8 @@ shared across the workflowr files. -->
 Segmentation of trial one based on the complexity coefficient <span class="math inline">\(B\)</span>. Only spectral features are shown.
 </p>
 </div>
-<p>We discuss the data in more detail below. In short, there were 26 trials with 9 seizure responses. The underlying classifier is a random forest which produces some random variation in classification results. The classification performance reported in the table below is the mean balanced accuracy based on 30 iterations of 5-fold cross-validation. Within individual folds classes were relatively balanced but no other class balancing procedure was used. The final prediction probability is a sum of the outcome probabilities weighted by partition length.</p>
-<p>Models were built separately for each EEG channel. The mean balanced accuracy for each model and channel is reported below. All models performed better on channels 1 and 2: these are local field potential(LFP) channels which record the activity of a small set of neurons in the thalamus. The regular partition models of 8 and 15 partitions performed better across most channels. In particular, the performance of the models based on the complexity coefficients dropped for channels 5 and 6.</p>
-<p>Because of the small number of trials and some inherent flaws in the data, further tests would be needed to know if these results generalize to other conditions. In particular, the detection of change points in the complexity coefficients is sensitive to the resolution at which the feature is calculated.</p>
+<p>There were 26 trials with 9 seizure responses. The underlying classifier is a random forest. The classification performance reported in the table below is the mean balanced accuracy based on 30 iterations of 5-fold cross-validation.</p>
+<p>The mean balanced accuracy for each model and channel is reported below. All models performed better on channels 1 and 2: these are local field potential(LFP) channels which record the activity of a small set of neurons in the thalamus. The regular partition models of 8 and 15 partitions performed better across most channels.</p>
 <pre class="r"><code>  knitr::read_chunk(&quot;../code/eeg-tables.R&quot;)</code></pre>
 <pre class="r"><code>  library(dplyr)
   
@@ -403,8 +403,8 @@ Segmentation of trial one based on the complexity coefficient <span class="math 
 </div>
 <div id="data" class="section level3">
 <h3>Data</h3>
-<p>The EEG come from mice with a genetic mutation similar to Dravet syndrome that makes them prone to epilepsy. The mice are also genetically modified to allow for direct stimulation of neurons by a laser pulse.</p>
-<p>Data was gathered from 13 distinct time periods during which a laser stimulus was applied between one to four times. There were 26 trials in total. The 4-minute segments preceding the stimulus was used to predict outcomes. Since the seizures are induced and not naturally occuring, features associated with seizure response may be different, and possibly harder to detect, than those associated with a spotaneous seizure.</p>
+<p>The EEG data was collected from mice with a genetic mutation that makes them prone to epilepsy. The mice are also genetically modified to allow for direct stimulation of neurons by a laser pulse.</p>
+<p>Data was gathered from 13 distinct time periods during which a laser stimulus was applied between one to four times. There were 26 trials in total. The 4-minute segments preceding the stimulus was used to predict outcomes.</p>
 <pre class="r"><code>  devtools::load_all()
   knitr::read_chunk(&quot;../code/eeg-plot.R&quot;)</code></pre>
 <pre class="r"><code>  eeg &lt;- readRDS(cache_file(&quot;eegsnip&quot;, prefix = &quot;eeg&quot;))
@@ -437,7 +437,7 @@ Segmentation of trial one based on the complexity coefficient <span class="math 
 </p>
 </div>
 <p>While we were able to prediction seizures on with a relatively high degree of accuracy – over 80% for some channels, there are significant limitations to the data. First and foremost, all seizures came from an individual mouse. We can only make limited inferences about features related to seizure responses without additional data. Variations in the features could be specific to the biology or measurement devices particular to that mouse.</p>
-<p>Seizures also occured mainly in the same series of trials. A plot below shows a shematic diagram of the trials. Each bar represents a single trial. Filled boxes indicate a trial period and green bars indicate an application of the stimulus. Most seizures occured in a trial following a previous seizure: these are indicated by cyan boxes.</p>
+<p>Seizures also occured mainly in the same series of trials. A plot below shows a shematic diagram of the trials. Each bar represents a single trial. Filled boxes indicate a trial period and green bars indicate an application of the stimulus. Most seizures occured in a trial following a previous seizure: these are indicated by blue boxes.</p>
 <p>Again, features associated with seizures may simply be features that occur following a seizure, not preceeding it.</p>
 <pre class="r"><code>  knitr::read_chunk(&quot;../code/eeg-trial-plot.R&quot;)</code></pre>
 <pre class="r"><code>  library(dplyr)
@@ -516,7 +516,7 @@ Schematic of the trial time periods. A seizures is indicated as a ‘repsonse’
 </p>
 </div>
 <pre class="r"><code>  # dev.off()</code></pre>
-<p>The plot below shows the probability of seizure as estimated by a single model for each trial. Pink and cyan indicate seizure responses. For most trials the model separates seizure and non-seizure trials fairly well. However, the initial seizure responses are much closer to the threshold than the later seizure trials.</p>
+<p>The plot below shows the probability of seizure as estimated by a single model for each trial. Pink and blue indicate seizure responses. For most trials the model separates seizure and non-seizure trials fairly well. However, the initial seizure responses are much closer to the threshold than the later seizure trials.</p>
 <pre class="r"><code>  knitr::read_chunk(&quot;../code/eeg-cv-ch1-plot.R&quot;)</code></pre>
 <pre class="r"><code>  library(ggplot2)
   prefix = &quot;eeg&quot;
@@ -665,7 +665,7 @@ Variable importance (mean-decrease in GINI) for all model and channel combinatio
 </p>
 </div>
 <pre class="r"><code>  # mtext(&quot;Uniform partition into 8 segments.&quot;, side = 3, line = 3)</code></pre>
-<p>Although the underlying random forest classifier can be highly non-linear, so differences in distributions of the features may not be obvious, the pattern of variable importance is reflected in the differences of distributions of the raw features. The boxplots below show clear differences in the distributions of the relative gamma and theta for channel 1.</p>
+<p>Although the underlying random forest classifier can be highly non-linear the pattern of variable importance is reflected in the differences of distributions of the raw features. The boxplots below show clear differences in the distributions of the relative gamma and theta for channel 1.</p>
 <pre class="r"><code>  knitr::read_chunk(&quot;../code/eeg-boxplot-ch1.R&quot;)</code></pre>
 <pre class="r"><code>  library(dplyr) 
   library(viridis)
@@ -707,8 +707,7 @@ Variable importance (mean-decrease in GINI) for all model and channel combinatio
 Feature distribution for Channel 1
 </p>
 </div>
-<p>Channel 1 represents an LFP or local field potential signal, captured from a smaller cluster of neurons in the thalamus. Channel 3 is an iEEG or external EEG sensor placed on the brain surface.</p>
-<p>For channel 3 direction of the difference for relative gamma and theta are reversed. Where differences in the beta distribution for seizure an non-seizure trials are not significant for channel 1, for channel three the differences are clear. The difference in distributions is also reflected in the variable importance in the previous plot, as are differences in Hurst and spectral entropy features.</p>
+<p>Channel 1 represents an LFP or local field potential signal, captured from a smaller cluster of neurons in the thalamus. Channel 3 is an iEEG or external EEG sensor placed on the brain surface. For channel 3 the direction of the difference for relative gamma and theta are reversed. Where differences in the beta distribution for seizure an non-seizure trials are not significant for channel 1, for channel three the differences are clear. The difference in distributions is also reflected in the variable importance in the previous plot, as are differences in Hurst and spectral entropy features.</p>
 <pre class="r"><code>  boxplot_panel(chdf[[3]], response, cex = 0.3)</code></pre>
 <div class="figure" style="text-align: center">
 <img src="figure/seizure-prediction.Rmd/egg-boxplot3-1.png" alt="Feature distribution for Channel 3" width="672" />
