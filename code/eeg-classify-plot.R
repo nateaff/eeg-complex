@@ -1,4 +1,4 @@
-ram(list = ls())
+rm(list = ls())
 library(ggplot2)
 library(dplyr)
 library(ecomplex)
@@ -36,74 +36,98 @@ vecdf$method <- factor(rep(c("8", "15", "30"), each = reps*6),
 # vecmeans <- readRDS(cache_file("vecmeans", prefix))
 # ABmeans  <- readRDS(cache_file("ABmeans", prefix))
 combdf <- bind_rows(vecdf, ABdf)
-
-
-
 library(gridExtra)
-# Both models predicted best on channel 1
+# Use quantiles
 plotdf <- combdf %>% filter(channel == "ch1") %>% 
-          group_by(method) %>%
-          dplyr::select(auc, Sensitivity, Specificity, Balanced.Accuracy) %>%  
-          dplyr::summarise(SEacc = 1.96 * sd(Balanced.Accuracy)/sqrt(n()), 
+                group_by(method) %>% 
+                dplyr::select(auc, Sensitivity, Specificity, Balanced.Accuracy) %>% 
+                dplyr::summarise(
+                           acc05 = quantile(Balanced.Accuracy, probs = 0.0275), 
                            ACC = mean(Balanced.Accuracy),
-                          SEauc = 1.96 * sd(auc)/sqrt(n()), 
+                           acc95 = quantile(Balanced.Accuracy, probs = 0.975),
+                           auc05 = quantile(auc, probs = 0.0275), 
                            AUC = mean(auc), 
-                           SEsp = 1.96 * sd(Specificity)/sqrt(n()), 
+                           auc95 = quantile(auc, probs = 0.975),
+                           sp05 = quantile(Specificity, probs = 0.0275), 
                            Specificity = mean(Specificity),
-                           SEse = 1.96 * sd(Sensitivity)/sqrt(n()), 
-                           Sensitivity = mean(Sensitivity)
-                           ) 
-# mdf <- reshape2::melt(plotdf)
+                           sp95 = quantile(Specificity, probs = 0.975), 
+                           se05 = quantile(Sensitivity, probs = 0.0275), 
+                           Sensitivity = mean(Sensitivity),
+                           se95 = quantile(Sensitivity, probs = 0.975)
+                           )
 
-# reshape2::melt(plotdf)
-
-gacc <- ggplot(plotdf, aes(x = ACC, xmin = ACC - SEacc, xmax = ACC+SEacc, y = method )) +
-      geom_point() + geom_segment( aes(x = ACC - SEacc, xend = ACC + SEacc,
-                                       y = method, yend=method)) +
+gacc <- ggplot(plotdf, aes(
+                            x = ACC, 
+                            xmin = acc05, 
+                            xmax = acc95, 
+                            y = method 
+                            )) +
+      geom_point() + geom_segment( aes(
+                                        x = acc05, 
+                                        xend = acc95,
+                                        y = method, 
+                                        yend=method
+                                        )) +
       theme_bw() + xlab("Percent") + 
       ylab("Partition Method") + 
       xlim(c(0.50,1)) + 
       ggtitle("Accuracy")
 
-gauc <- ggplot(plotdf, aes(x = AUC, xmin = AUC-SEauc, xmax = AUC+SEauc, y = method )) +
+gauc <- ggplot(plotdf, aes(
+                           x = AUC, 
+                           xmin = auc05, 
+                           xmax = auc95, 
+                           y = method 
+                           )) +
       geom_point() + 
-      geom_segment( aes(x = AUC-SEauc, xend = AUC+SEauc,
-                                       y = method, yend=method)) +
+      geom_segment( aes(
+                        x = auc05, 
+                        xend = auc95,
+                        y = method, 
+                        yend = method
+                        )) +
       theme_bw() + xlab("Percent") +
       ylab("")+  
       xlim(c(0.50,1)) + 
       ggtitle("AUC")
 
-gsp <- ggplot(plotdf, aes(x = Specificity, xmin = Specificity-SEsp, 
-                                          xmax = Specificity+SEsp, 
-                                          y = method )) +
+gsp <- ggplot(plotdf, aes(
+                           x = Specificity, 
+                           xmin = sp05, 
+                           xmax = sp95, 
+                           y = method 
+                           )) +
       geom_point() + 
-      geom_segment( aes(x    = Specificity-SEsp, 
-                                       xend = Specificity+SEsp,
-                                       y    = method, yend=method)) +
+      geom_segment( aes(
+                        x    = sp05, 
+                        xend = sp95,
+                        y    = method, 
+                        yend = method
+                        )) +
       theme_bw() + xlab("Percent") + 
       ylab("")+
       xlim(c(0.50,1)) +
       ggtitle("Specificity")
 
-gse <- ggplot(plotdf, aes(x = Sensitivity, xmin = Sensitivity-SEse, 
-                                          xmax = Specificity+SEse, 
-                                          y    = method )) +
-      geom_point() + geom_segment( aes(x    = Sensitivity-SEse, 
-                                       xend = Sensitivity+SEse,
+gse <- ggplot(plotdf, aes(x = Sensitivity, 
+                          xmin = se05, 
+                          xmax = se95, 
+                          y    = method 
+                          )) +
+      geom_point() + geom_segment( aes(
+                                       x    = se05, 
+                                       xend = se95,
                                        y    = method, 
-                                       yend = method)) +
+                                       yend = method
+                                       )) +
       theme_bw() + xlab("Percent") +
       ylab("") +  
       xlim(c(0.50,1)) + 
       ggtitle("Sensitivity")
 
-# pdf(file.path(getwd(), paste0("figures/", prefix, "-eeg-partition-diagnostic.pdf")), 
-#     width = 9, height = 4)
-
-
 g <- grid.arrange(gacc, gauc, gsp, gse, nrow = 1)
 grid.arrange(gacc, gauc, gsp, gse, nrow = 1 )
 
 ggsave("figures/eeg-partition-diagnostic.pdf", g)
+
 
