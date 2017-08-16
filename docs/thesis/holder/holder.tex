@@ -49,8 +49,8 @@ examples highlight some basic properties of the complexity coefficients.
   % \includegraphics[width = 0.9\linewidth, height = 3in]{./figs/coeff-interp-simple-functions1.pdf}
     % \caption{Functions without added noise.}
   \end{subfigure}
-  \caption{Linear and sinusoidal functions with and 
-  without added noise.}
+  \caption{Simple linear and sinusoidal functions (left) and with
+  added noise (right).}
      \label{fig:simple-functions}
 \end{figure}
 
@@ -62,8 +62,8 @@ examples highlight some basic properties of the complexity coefficients.
     % \end{picture}s 
     \end{center}
     \caption{The log-log linear regression
-     of approximation errors against the
-     proportion of sampled $S_h$ for simple 
+     of approximation errors against sample
+     proportion $S_h$ for simple 
      linear and sinusoidal functions.}
     \label{fig:simple-fits}
   \end{figure}
@@ -88,7 +88,7 @@ examples highlight some basic properties of the complexity coefficients.
 % (fig: simple-functions)
 
 The epsilon complexity coefficients $A$ and $B$ along with 
-a variogram-based fractal dimension estimator which 
+a variogram-based fractal dimension estimator, which 
 we denote $\hat D$, were estimated on the four 
 functions depicted in in Figure \ref{fig:simple-functions}. 
 In addition to the original functions, $A,B$ and $\hat D$ where 
@@ -96,7 +96,7 @@ computed on the functions with two levels of added noise.
 Figure \ref{fig:simple-fits} 
 shows the $log-log$ regression of the errors $\varepsilon_h$ 
 on the fraction of samples kept $S_h$. The complexity coefficients for these fits are given in Table \ref{tab:simple-coeffs}. While these functions do not reveal much about the behavior of the complexity coefficients for more complicated time series, the results
-demonstrate properties of the complexity coefficients and 
+demonstrate some simple properties of the complexity coefficients and 
 the sensitivity of the estimators to added noise.
 
 \begin{table}[!htbp] \centering 
@@ -148,13 +148,15 @@ The parameters of the linear regression in Figure
 coefficients $A,B$. The $x-$axis is the log of $S_h$, 
 the proportion of points used to approximate the original function at each step. The finest scale approximation is when $h=2$, represented by the point with the least (log) error located furthest to the right at $log( S )\approx -0.7$. Small values at this point
  correspond to accurate approximations and less variability at the finest scale of the sampled function. 
-In theory, the approximation error at zero should be an exact approximation of the function. Since we are computing the log of the approximation error $\varepsilon$, $\log(\varepsilon) \to -\infty$
-as $\varepsilon \to 0$. For 
+In theory, the approximation $log(1) = zero$ should be an exact approximation of the function. Since we are computing the log of the approximation error $\varepsilon$, $\log(\varepsilon) \to -\infty$
+as $\varepsilon \to 0$ and an intercept of $-41.45$ represent 
+the log of an error that is approximately zero, give or take 
+some machine accuracy. For 
 the three functions in Figure \ref{fig:simple-functions}
 the overall approximation error is low. Larger intercept 
 should correspond to larger errors and, as expected, 
 the intercept value $A$ increases with increased
-function complexity and higher levels of noise.  
+function complexity and higher levels of noise.
 
 The complexity coefficient $B$ measures the rate of change 
 of the approximation error as a function is approximated
@@ -205,7 +207,7 @@ performance of approximation methods have  parameters that
 determine both the H\"older class of a function and its 
 fractal dimension. Our experiments show that for most 
 of these simulations, the complexity slope coefficient 
-$B$ behaves similar to the variogram estimator of
+$B$ has behavior like the variogram estimator of
 fractal dimension $\hat D$. For three of the simulations, 
 the Weierstrass function, fractional Brownian motion(fBm), 
 and the Cauchy process, the median values of the 
@@ -223,6 +225,21 @@ to white noise while the complexity
 coefficient $A$ changed linearly with the parameter 
 deterimining the H\"older exponent of the function.
 
+\begin{figure}[h]
+  \begin{subfigure}[b]{0.49\textwidth}
+\includegraphics[width = 0.9\linewidth, height = 3in]{./figs/holder_notrandom-weier-notrandom.pdf}
+    % \caption{Functions without added noise.}
+    \label{fig:weierstrass}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.49\textwidth}
+  \includegraphics[width = 0.9\linewidth, height = 3in]{./figs/holder_coeffs-weier-random.pdf}
+    % \caption{Functions without added noise.}
+  \end{subfigure}
+  \caption{The Weierstrass and random-phase Weierstrass function
+  for $\alpha = \{ 0.20, 0.42, 0.80 \}$}
+    \label{fig:weierstrass}
+\end{figure}
 
 The Weierstrass function is a self-similar 
 deterministic function 
@@ -244,9 +261,53 @@ show that the complexity coefficient $B$ and fractal dimension
 change linearly with $\alpha$. The fractal dimension 
 estimator tracks the theoretical fractal dimension 
 closely, ranging from 2 to 1. The complexity coefficient 
-$B$ ranges $-0.6$ to $-1.4$. For both estimators, fractal 
-dimension corresponding to 2 coincides with estimates
-close to those estimated for Gaussian noise.
+$B$ ranges $-0.6$ to $-1.4$. For both estimators, 
+functions with a theoretical
+fractal dimension near 2 produced estimates similar 
+to those produced by fractal and $B$ complexity 
+coefficient estimates for Gaussian noise. This suggests 
+a value of around $-0.5$ is near an upper bound on 
+the level of complexity or randomness that the $B$ 
+coefficient can measure.
+
+
+\begin{figure}[!htbp]
+  \begin{center}
+  % \begin{picture}(60,60)
+  % ./figs/coeff-interp-simple-functions1.pdf
+  \includegraphics[width = \textwidth, keepaspectratio]{./figs/holder_notrandom-param-plots-notrandom}
+  % \end{picture}
+  \end{center} 
+  \caption{Complexity coefficients and fractal dimension 
+    for values of the Weierstrass $\alpha$ parameter.  }
+  \label{fig:notrandom-params}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \begin{center}
+  % \begin{picture}(60,60)
+  \includegraphics[height = 3in, width =6in, keepaspectratio]{./figs/holder_coeffs-boxplots.pdf}
+   
+  \caption{Complexity coefficients and fractal dimension 
+   for values of the random-phase
+    Weierstrass $\alpha$ parameters.  }
+  % \end{picture}
+    \label{fig:rp-weierstrass-boxplot}
+  \end{center}
+\end{figure}
+\begin{figure}[!htbp]
+  \begin{center}
+  % \begin{picture}(60,60)
+  \includegraphics[height = 3in, width =6in, keepaspectratio]{./figs/holder_coeffs-boxplots.pdf}
+   
+  \caption{Complexity coefficients and fractal dimension 
+   for values of the random-phase
+    Weierstrass $\alpha$ parameters.  }
+  % \end{picture}
+    \label{fig:rp-weierstrass-boxplot}
+  \end{center}
+\end{figure}
+
 
 The random-phase Weierstrass function adds a random 
 phase to the periodic component of the Weierstrass function 
@@ -269,37 +330,8 @@ fractal estimator $\hat D$ range around values
 associated with estimates for Gaussian noise.
 The intercept coefficient $A$ increases 
 linearly but the total magnitude of the change is 
-relatively small--- the median of the estimates has a range 
+relatively small\textemdash the median of the estimates has a range 
 of less than $0.5$. 
-
-
-\begin{figure}[h]
-  \begin{subfigure}[b]{0.49\textwidth}
-\includegraphics[width = 0.9\linewidth, height = 3in]{./figs/holder_notrandom-weier-notrandom.pdf}
-    % \caption{Functions without added noise.}
-    \label{fig:weierstrass}
-  \end{subfigure}
-  \hfill
-  \begin{subfigure}[b]{0.49\textwidth}
-  \includegraphics[width = 0.9\linewidth, height = 3in]{./figs/holder_coeffs-weier-random.pdf}
-    % \caption{Functions without added noise.}
-  \end{subfigure}
-  \caption{The Weierstrass and random-phase Weierstrass function
-  for $\alpha = \{ 0.20, 0.42, 0.80 \}$}
-    \label{fig:weierstrass}
-\end{figure}
-
-\begin{figure}[!htbp]
-  \begin{center}
-  % \begin{picture}(60,60)
-  % ./figs/coeff-interp-simple-functions1.pdf
-  \includegraphics[width = \textwidth, keepaspectratio]{./figs/holder_notrandom-param-plots-notrandom.pdf}
-  % \end{picture}
-  \end{center} 
-  \caption{Complexity coefficients and fractal dimension 
-    for values of the Weierstrass $\alpha$ parameter.  }
-  \label{fig:notrandom-params}
-\end{figure}
 
 
 Fractional Brownian motion also has 
@@ -336,18 +368,6 @@ $\alpha$.
 % given when white noise was added to the simple functions 
 % as reported in Table \ref{tab:simple-coeffs}.
 
-\begin{figure}[!htbp]
-  \begin{center}
-  % \begin{picture}(60,60)
-  \includegraphics[height = 3in, width =6in, keepaspectratio]{./figs/holder_coeffs-boxplots.pdf}
-   
-  \caption{Complexity coefficients and fractal dimension 
-   for values of the random-phase
-    Weierstrass $\alpha$ parameters.  }
-  % \end{picture}
-    \label{fig:rp-weierstrass-boxplot}
-  \end{center}
-\end{figure}
 
 
 \begin{figure}[!htbp]
@@ -435,7 +455,7 @@ Figure \ref{fig:cauchy-beta} shows another view of
 the complexity coefficients plotted against 
 changes the Cauchy process parameter $\beta$. The complexity 
 coefficient $B$ and fractal dimension $\hat D$, 
- preserve the grid of the parameter space --- for a fixed 
+ preserve the grid of the parameter space \textemdash for a fixed 
 $\beta$, the parameter varies linearly with $\alpha$. The  
 $\beta$ parameter controls the long-range dependence of 
 the Cauchy process and the plots indicate that 

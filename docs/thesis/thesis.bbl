@@ -9,7 +9,7 @@
 
 \bibitem{alotaiby2014}
 Turkey~N Alotaiby, Saleh~A Alshebeili, Tariq Alshawi, Ishtiaq Ahmad, and Fathi
-  E~Abd El-Samie, \emph{Eeg seizure detection and prediction algorithms: a
+  E~Abd El-Samie, \emph{{EEG} seizure detection and prediction algorithms: a
   survey}, EURASIP Journal on Advances in Signal Processing \textbf{2014}
   (2014), no.~1, 183.
 
@@ -18,8 +18,8 @@ Leo Breiman, \emph{Random forests}, Machine learning \textbf{45} (2001), no.~1,
   5--32.
 
 \bibitem{eeg}
-Michael~X Cohen, \emph{Where does eeg come from and what does it mean?}, Trends
-  in Neurosciences (2017).
+Michael~X Cohen, \emph{Where does {EEG} come from and what does it mean?},
+  Trends in Neurosciences (2017).
 
 \bibitem{dahlquist08}
 Germund Dahlquist and Ake Bj\"orck, \emph{Numerical methods in scientific
@@ -54,9 +54,14 @@ Brian~R. Hunt, \emph{The {H}ausdorff dimension of graphs of {W}eierstrass
 
 \bibitem{ito2013}
 Susumu Ito, Ikuo Ogiwara, Kazuyuki Yamada, Hiroyuki Miyamoto, Takao~K Hensch,
-  Makiko Osawa, and Kazuhiro Yamakawa, \emph{Mouse with na v 1.1
-  haploinsufficiency, a model for dravet syndrome, exhibits lowered sociability
-  and learning impairment}, Neurobiology of disease \textbf{49} (2013), 29--40.
+  Makiko Osawa, and Kazuhiro Yamakawa, \emph{Mouse with {Na V} 1.1
+  haploinsufficiency, a model for {D}ravet syndrome, exhibits lowered
+  sociability and learning impairment}, Neurobiology of disease \textbf{49}
+  (2013), 29--40.
+
+\bibitem{aff2017}
+{Nathanael Aff and Alexandra Piryatinska}, \emph{ecomplex: A package for
+  computing epsilon-complexity}, 2017.
 
 \bibitem{orey1970}
 Steven Orey, \emph{Gaussian sample functions and the {H}ausdorff dimension of
@@ -67,27 +72,16 @@ Steven Orey, \emph{Gaussian sample functions and the {H}ausdorff dimension of
 Jianqing Fan;~Yao Qiwei, \emph{Nonlinear time series}, Springer, New York,
   1993.
 
-\bibitem{baseR}
-{R Core Team}, \emph{R: A language and environment for statistical computing},
-  R Foundation for Statistical Computing, Vienna, Austria, 2016.
-
-\bibitem{racine}
-Jeffrey~S. Racine, \emph{A primer on regression splines}.
-
 \bibitem{shen2015}
 Weixiao Shen, \emph{Hausdorff dimension of the graphs of the classical
-  weierstrass functions}, arXiv preprint arXiv:1505.03986 (2015).
-
-\bibitem{sweldens1998}
-Wim Sweldens, \emph{The lifting scheme: a construction of second generation
-  wavelets}, SIAM J. Math. Anal. \textbf{29} (1998), no.~2, 511--546.
+  {W}eierstrass functions}, arXiv preprint arXiv:1505.03986 (2015).
 
 \bibitem{sweldens1996}
 Wim Sweldens and Peter Schr{\"o}der, \emph{Building your own wavelets at home},
   Wavelets in the Geosciences (2000), 72--107.
 
 \bibitem{vitanyi1993}
-Paul Vitanyi and Ming Li, \emph{An introduction to kolmolgorov complexity and
+Paul Vitanyi and Ming Li, \emph{An introduction to {Kolmolgorov} complexity and
   its applications}, Springer-Verlag, New York, 1993.
 
 \bibitem{weron2002}

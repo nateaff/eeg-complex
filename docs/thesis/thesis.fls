@@ -193,7 +193,6 @@ OUTPUT bg/bg.aux
 INPUT bg/bg.tex
 INPUT bg/bg.tex
 INPUT /usr/local/texlive/2014/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
-INPUT /usr/local/texlive/2014/texmf-dist/fonts/tfm/public/cm/cmss8.tfm
 OUTPUT lift/lift.aux
 INPUT lift/lift.tex
 INPUT lift/lift.tex
@@ -203,8 +202,6 @@ INPUT ./figs/sim_jitter_plot_jitter_timeseries.pdf
 INPUT ./figs/sim_jitter_plot-sim-fits.pdf
 INPUT ./figs/sim_jitter_plot-sim-fits.pdf
 INPUT ./figs/sim_jitter_plot-sim-fits.pdf
-INPUT ./figs/ecomplex_approx-feature-space.pdf
-INPUT ./figs/ecomplex_approx-feature-space.pdf
 INPUT ./figs/ecomplex_approx-feature-space.pdf
 INPUT ./figs/ecomplex_approx-feature-space.pdf
 INPUT ./figs/ecomplex_approx-feature-space.pdf
@@ -232,6 +229,8 @@ INPUT ./figs/holder_coeffs-weier-random.pdf
 INPUT ./figs/holder_notrandom-param-plots-notrandom.pdf
 INPUT ./figs/holder_notrandom-param-plots-notrandom.pdf
 INPUT ./figs/holder_notrandom-param-plots-notrandom.pdf
+INPUT ./figs/holder_coeffs-boxplots.pdf
+INPUT ./figs/holder_coeffs-boxplots.pdf
 INPUT ./figs/holder_coeffs-boxplots.pdf
 INPUT ./figs/holder_coeffs-boxplots.pdf
 INPUT ./figs/holder_coeffs-boxplots.pdf
@@ -300,7 +299,6 @@ INPUT /usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pf
 INPUT /usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
 INPUT /usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb
 INPUT /usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
-INPUT /usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb
 INPUT /usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT /usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb
 INPUT /usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb

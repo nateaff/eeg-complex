@@ -1,13 +1,13 @@
 # Fdb version 3
-["pdflatex"] 1499745831 "eeg.tex" "eeg.pdf" "eeg" 1499745834
+["pdflatex"] 1501619622 "eeg.tex" "eeg.pdf" "eeg" 1501619623
   "/usr/local/texlive/2014/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2014/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
   "/usr/local/texlive/2014/texmf-dist/fonts/tfm/public/cm/cmti10.tfm" 1136768653 1480 aa8e34af0eb6a2941b776984cf1dfdc4 ""
   "/usr/local/texlive/2014/texmf-dist/web2c/texmf.cnf" 1418473959 31908 9e60cc122a23ef93121ea6e29902081d ""
   "/usr/local/texlive/2014/texmf-var/web2c/pdftex/pdflatex.fmt" 1432586525 3847283 1844e03a4c669d8c81f683b237add385 ""
   "/usr/local/texlive/2014/texmf.cnf" 1432586481 455 5b996dcaa0eb4ef14a83b026bc0a008c ""
-  "eeg.aux" 1499729040 3767 88428abca43cba762068dbe9a35e1ca9 ""
-  "eeg.tex" 1499745830 31728 853a0e552f7b2e891fbadb0f75752e07 ""
+  "eeg.aux" 1501556527 3721 820be18049528a740ce9a5a679b25761 ""
+  "eeg.tex" 1501619618 33356 86411112ce3f1bf33e81fa780839f35b ""
   (generated)
   "eeg.log"
   "eeg.pdf"
