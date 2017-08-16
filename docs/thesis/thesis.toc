@@ -1,22 +1,21 @@
 \contentsline {chapter}{\numberline {1}Introduction}{1}
 \contentsline {chapter}{\numberline {2}Background}{5}
-\contentsline {section}{\numberline {2.1}Epsilon-complexity}{5}
-\contentsline {section}{\numberline {2.2}Time series}{10}
-\contentsline {section}{\numberline {2.3}Fractal dimension}{12}
-\contentsline {section}{\numberline {2.4}Simulations}{15}
-\contentsline {section}{\numberline {2.5}Approximation methods}{18}
-\contentsline {chapter}{\numberline {3}Approximation Methods}{22}
-\contentsline {section}{\numberline {3.1}Simulations Experiments}{23}
-\contentsline {section}{\numberline {3.2}Computational Complexity}{29}
-\contentsline {chapter}{\numberline {4}Interpreting the Complexity Coefficients}{32}
-\contentsline {section}{\numberline {4.1}The Complexity Coefficients}{33}
-\contentsline {section}{\numberline {4.2}H\"older Class and Fractal Dimension}{36}
-\contentsline {chapter}{\numberline {5}Seizure Prediction}{44}
-\contentsline {section}{\numberline {5.1}Introduction}{45}
-\contentsline {section}{\numberline {5.2}EEG Data}{46}
-\contentsline {section}{\numberline {5.3}EEG Features}{47}
-\contentsline {section}{\numberline {5.4}Classification Procedure}{48}
-\contentsline {section}{\numberline {5.5}Model Performance}{50}
-\contentsline {section}{\numberline {5.6}Feature Importance}{55}
-\contentsline {section}{\numberline {5.7}Discussion}{58}
-\contentsline {chapter}{Bibliography}{60}
+\contentsline {section}{\numberline {2.1}Epsilon-Complexity}{5}
+\contentsline {section}{\numberline {2.2}Time Series}{10}
+\contentsline {section}{\numberline {2.3}Fractal Dimension}{14}
+\contentsline {section}{\numberline {2.4}Simulations}{16}
+\contentsline {section}{\numberline {2.5}Approximation Methods}{20}
+\contentsline {chapter}{\numberline {3}Approximation Methods}{23}
+\contentsline {section}{\numberline {3.1}Approximation and Classification Accuracy}{24}
+\contentsline {section}{\numberline {3.2}Computational Efficiency}{30}
+\contentsline {chapter}{\numberline {4}Interpreting the Complexity Coefficients}{33}
+\contentsline {section}{\numberline {4.1}The Complexity Coefficients}{34}
+\contentsline {section}{\numberline {4.2}H\"older Class and Fractal Dimension}{37}
+\contentsline {chapter}{\numberline {5}Seizure Prediction}{45}
+\contentsline {section}{\numberline {5.1}Introduction}{46}
+\contentsline {section}{\numberline {5.2}EEG Data}{47}
+\contentsline {section}{\numberline {5.3}EEG Features}{48}
+\contentsline {section}{\numberline {5.4}Classification Procedure}{49}
+\contentsline {section}{\numberline {5.5}Model Performance}{52}
+\contentsline {section}{\numberline {5.6}Feature Importance}{56}
+\contentsline {chapter}{Bibliography}{62}

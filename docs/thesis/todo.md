@@ -20,42 +20,6 @@ Quantfind : associate analyst
   * Proof of solving "real world" problems 
   * Signals from social media, etc. 
   * Ari Tuchman, (and another physicist)
-  * Solid state physics 
-
-Facebook 
-  
-  * SMB division
-  * Small medium business consulting 
-  * Related experience 
-  * 
-Lyft : Data science 
-Glu Mobile 
-Linked in : Glu Mobile
-Glassdoor : Tapingo Operations
-*Singular (math modeling) http://www.singular.net/careers/
-
-
-Lift: 
-Fig : lift-lm function names
-
-TODO: fig 4.2 -- switch axis labels
-Figure 4.4 --- label fractal dimension
-
-
-
-* Thesis 
-  - Finish make 
-  - Add docker/reproducible aspects 
-  - Clean up analysis files
-  - Separate algorithm for segmentation
-
-Models: 
-Segment on A, B, A + B, 
-Regular steps 5, 10, 60
-
-TODO: 
-* make change-points for regular steps. 
-* Add segment method to combine A + B 
 
 
 * Thesis writing 

@@ -37,10 +37,9 @@ dfchs <-  lapply(df[ ,1:6], function(x) do.call(rbind, x))
 # colnums = c(5:9,  13:15)
 
 wc_test <- function(df_, response){
-
+# Perform unparied Wilcox rank sum test = Mann-Whitney test
   tidx <- which(response)
   fidx <- which(!response)
-  colnums = c(5:9,  13:15)
   wc <- function(y){
      res <- (median(y[tidx]) > median(y[fidx]))
      type = ifelse(res, "g", "l")
@@ -64,6 +63,16 @@ wc_med <- function(df_, response){
 #----------------------------------------------------------
 # Medians
 #----------------------------------------------------------
+trimmed_normalize <- function(x){
+    x <- Trim(x, 0.01) 
+    if (!max(x) == min(x)) {
+        (x - min(x))/(max(x) - min(x))
+    }
+    else {
+        rep(0, length(x))
+    }
+}
+
 featnames <- c("Delta", "Theta", "Alpha", "Beta", 
                      "Gamma", "Variance", "Hurst", 
                      "Spectral Entropy")
@@ -72,10 +81,54 @@ meds <- lapply(dfchs, wc_med, response = response) %>%
         bind_rows 
 names(meds) <- paste0(rep(featnames, each = 2), rep(c("_T", "_F"), 8))
 row.names(meds) <- paste0("Channel ", 1:6)
+
 corrplot::corrplot(as.matrix(t(meds[, 1:10])), method = "circle", 
                col = gray.colors(10, start = 0.9, end = 0),
                is.corr = FALSE, 
                tl.col = "Black") 
+ 
+#----------------------------------------------------------
+# Differences
+#----------------------------------------------------------
+# variance, hurst, entropy
+colnums = c(13:15)
+normalized_dfchs <- lapply(dfchs, function(x) apply(x[,colnums], 2, trimmed_normalize))
+meds <- lapply(dfchs, wc_med, response = response) %>% 
+        bind_rows 
+names(meds) <- paste0(rep(featnames, each = 2), rep(c("_T", "_F"), 8))
+row.names(meds) <- paste0("Channel ", 1:6)
+
+diff <- meds[, seq(1,16, by = 2)] - meds[, seq(2,16, by = 2)]
+names(diff) <- c("Delta", "Theta", "Alpha", "Beta", 
+                     "Gamma", "Variance", "Hurst", 
+                     "Spec. Entropy")
+diff <- apply(diff, 2, round, digits = 2) 
+
+corrplot::corrplot(as.matrix(diff, method = "circle", 
+               col = gray.colors(10, start = 0.9, end = 0),
+               is.corr = FALSE, 
+               tl.col = "Black") )
+
+knitr::kable(t(diff))
+stargazer(t(diff))2
+
+ 
+#----------------------------------------------------------
+# Logistic Regression
+#----------------------------------------------------------
+colnums = c(5:9,  13:15)
+dfprepped <- lapply(dfchs, function(x) x[ ,colnums])
+          
+for( k in seq_along(dfprepped) ){
+  dfprepped[[k]]$response <- response
+}
+dfprepped[[3]]
+res <- lapply(dfprepped, 
+              function(x) glm(response ~., 
+                          family = binomial(link = "logit"), 
+                          data = x)) %>% 
+              lapply(., broom::tidy)
+
 
 #----------------------------------------------------------
 # P-values
