@@ -32,7 +32,7 @@ knitr::read_chunk("../analysis/chunks.R")
 3. [Seizure Prediction](seizure-prediction.html)
 4. [Computing the Complexity Coefficients](ecomplexity-procedure.html)
 
-The $\varepsilon$-complexity of a continuous function is, roughly speaking, the amount of information needed to reconstruct that function within an absolute error $\varepsilon$. The theory and procedure for estimating $\varepsilon$-complexity was introduced by Darkhovsky and Piryatinska[^1]. In previous work, the complexity coefficients have been shown to be useful features for the segmentation and classification of time series[^2]. 
+The $\varepsilon$-complexity of a continuous function is, roughly speaking, the amount of information needed to reconstruct that function within an absolute error $\varepsilon$. The theory and procedure for estimating $\varepsilon$-complexity was introduced by [Darkhovsky and Piryatinska](https://arxiv.org/abs/1303.1777). In previous work, the complexity coefficients [have been shown](https://arxiv.org/abs/1610.01633) to be useful features for the segmentation and classification of time series. 
 
 The purpose of these analyses was three-fold: 
 
@@ -63,7 +63,3 @@ knitr::read_chunk("../code/eeg-segment-plot.R")
 ### Credits 
 
 These poject pages were developed with the help of the [workflowr](https://jdblischak.github.io/workflowr/) package.
-
-
-[^1]: [Epsilon-complexity of continuous functions](https://arxiv.org/abs/1303.1777)
-[^2]: [Binary classification of multi-channel EEG records based on the ε-complexity of continuous vector functions](https://arxiv.org/abs/1610.01633)
