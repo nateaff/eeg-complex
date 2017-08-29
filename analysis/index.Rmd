@@ -42,7 +42,7 @@ The purpose of these analyses was three-fold:
 
 3. An application of the complexity coefficients to the segmentation and classification of EEG.
 
-4. Along with an overview of the results of each of these analyses we outline the procedure for estimating the complexity coefficients.
+Along with an overview of the results of each of these analyses we outline the procedure for estimating the complexity coefficients.
 
 
 ```{r, segment-plot1}
